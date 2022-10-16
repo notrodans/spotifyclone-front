@@ -7,15 +7,15 @@ import '../styles/style.scss'
 import { wrapper } from '@/redux/store'
 
 const App = ({ Component, router: { route }, ...pageProps }: AppProps) => {
-  const { store, props } = wrapper.useWrappedStore(pageProps)
+	const { store, props } = wrapper.useWrappedStore(pageProps)
 
-  return (
-    <Provider store={store}>
-      <AnimatePresence mode='wait'>
-        <Component key={route} {...props.pageProps} />
-      </AnimatePresence>
-    </Provider>
-  )
+	return (
+		<Provider store={store}>
+			<AnimatePresence mode='wait'>
+				<Component key={route} {...props.pageProps} />
+			</AnimatePresence>
+		</Provider>
+	)
 }
 
 export default App

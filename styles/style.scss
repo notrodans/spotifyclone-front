@@ -10,38 +10,38 @@
 @import 'base/null';
 
 body {
-  background-color: var(--color-background);
+	background-color: var(--color-background);
 }
 
 .wrapper {
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	min-height: 100vh;
 
-  > main {
-    flex: 1 1 auto;
-  }
+	> main {
+		flex: 1 1 auto;
+	}
 
-  > * {
-    min-width: 0;
-  }
+	> * {
+		min-width: 0;
+	}
 }
 
 .page {
-  @include adaptiveValue('padding-top', 100, 80);
+	@include adaptiveValue('padding-top', 100, 80);
 }
 
 [class*='_container'] {
-  @if $maxWidthContainer > 0 {
-    margin: 0 auto;
-    max-width: rem($maxWidthContainer);
-    box-sizing: content-box;
-  }
+	@if $maxWidthContainer > 0 {
+		margin: 0 auto;
+		max-width: rem($maxWidthContainer);
+		box-sizing: content-box;
+	}
 
-  @if $containerPadding > 0 {
-    padding: 0 rem(math.div($containerPadding, 2));
-  }
+	@if $containerPadding > 0 {
+		padding: 0 rem(math.div($containerPadding, 2));
+	}
 }
 
 @import 'base';

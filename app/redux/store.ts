@@ -5,10 +5,10 @@ import { Action, combineReducers } from 'redux'
 const rootReducer = combineReducers({})
 
 export const makeStore = () =>
-  configureStore({
-    reducer: rootReducer,
-    devTools: true
-  })
+	configureStore({
+		reducer: rootReducer,
+		devTools: true
+	})
 
 export type AppStore = ReturnType<typeof makeStore>
 export type AppState = ReturnType<AppStore['getState']>
