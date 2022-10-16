@@ -4,32 +4,32 @@ import { HYDRATE } from 'next-redux-wrapper'
 import { AppState } from '@/redux/store'
 
 interface IAuthState {
-	name: string
-	password: string
+  name: string
+  password: string
 }
 
 const initialState: IAuthState = {
-	name: '',
-	password: ''
+  name: '',
+  password: ''
 }
 
 const authSlice = createSlice({
-	name: 'auth',
-	initialState,
-	reducers: {
-		setName: (state, { payload }: PayloadAction<string>) => {
-			state.name = payload
-		},
-		setPassword: (state, { payload }: PayloadAction<string>) => {
-			state.password = payload
-		}
-	},
-	extraReducers: {
-		[HYDRATE]: (state, action) => ({
-			...state,
-			...action.payload.auth
-		})
-	}
+  name: 'auth',
+  initialState,
+  reducers: {
+    setName: (state, { payload }: PayloadAction<string>) => {
+      state.name = payload
+    },
+    setPassword: (state, { payload }: PayloadAction<string>) => {
+      state.password = payload
+    }
+  },
+  extraReducers: {
+    [HYDRATE]: (state, action) => ({
+      ...state,
+      ...action.payload.auth
+    })
+  }
 })
 
 export const selectAuth = (state: AppState) => state?.auth
