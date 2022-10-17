@@ -14,11 +14,11 @@
 		"isolatedModules": true,
 		"jsx": "preserve",
 		"incremental": true,
-		"baseUrl": "./app/",
+		"baseUrl": "app",
 		"paths": {
 			"@/components/*": ["components/*"],
 			"@/UI/*": ["components/common/UI/*"],
-			"@/styles/*": ["styles*"],
+			"@/styles/*": ["styles/*"],
 			"@/screens/*": ["components/screens/*"],
 			"@/layouts/*": ["layouts/*"],
 			"@/assets/*": ["assets/*"],

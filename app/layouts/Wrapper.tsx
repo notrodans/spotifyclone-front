@@ -1,16 +1,18 @@
 import { FC, PropsWithChildren } from 'react'
 
-import Noise from '@/components/UI/Noise'
 import Footer from '@/components/common/Footer/Footer'
 import Header from '@/components/common/Header/Header'
+import Sidebar from '@/components/common/Sidebar/Sidebar'
 
 const Wrapper: FC<PropsWithChildren> = ({ children }) => {
 	return (
 		<>
-			<Noise />
 			<div className='wrapper'>
 				<Header />
-				<main className='page'>{children}</main>
+				<div className='wrapper__body'>
+					<Sidebar />
+					<main className='page'>{children}</main>
+				</div>
 				<Footer />
 			</div>
 		</>

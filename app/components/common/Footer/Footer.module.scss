@@ -1,0 +1,19 @@
+@import '../../../../styles/base/mixins';
+
+.root {
+	display: flex;
+	border-top: rem(1) solid var(--color-border);
+	min-height: rem(90);
+	background-color: var(--color-background);
+}
+
+.containerWithoutMaxWidth {
+	display: flex;
+	flex: 1 1 auto;
+}
+
+.body {
+	display: flex;
+	flex: 1 1 auto;
+	align-items: center;
+}

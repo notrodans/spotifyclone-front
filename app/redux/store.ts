@@ -2,7 +2,13 @@ import { ThunkAction, configureStore } from '@reduxjs/toolkit'
 import { createWrapper } from 'next-redux-wrapper'
 import { Action, combineReducers } from 'redux'
 
-const rootReducer = combineReducers({})
+import auth from './slices/auth/auth.slice'
+import player from './slices/player/player.slice'
+
+const rootReducer = combineReducers({
+	auth,
+	player
+})
 
 export const makeStore = () =>
 	configureStore({

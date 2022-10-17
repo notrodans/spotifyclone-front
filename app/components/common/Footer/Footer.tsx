@@ -1,11 +1,17 @@
-import React from 'react'
+import { FC } from 'react'
+
+import PlayerTrackInfo from '../PlayerTrackInfo/PlayerTrackInfo'
 
 import styles from './Footer.module.scss'
 
-const Footer = () => {
+const Footer: FC = () => {
 	return (
 		<footer className={styles.root}>
-			<div className='footer__container'>Footer</div>
+			<div className={styles.containerWithoutMaxWidth}>
+				<div className={styles.body}>
+					<PlayerTrackInfo src={''} />
+				</div>
+			</div>
 		</footer>
 	)
 }

@@ -19,8 +19,14 @@ body {
 	overflow: hidden;
 	min-height: 100vh;
 
-	> main {
+	&__body {
+		display: flex;
 		flex: 1 1 auto;
+		min-height: 100%;
+
+		> main {
+			flex: 1 1 auto;
+		}
 	}
 
 	> * {
@@ -28,14 +34,22 @@ body {
 	}
 }
 
-.page {
-	@include adaptiveValue('padding-top', 100, 80);
-}
-
 [class*='_container'] {
 	@if $maxWidthContainer > 0 {
 		margin: 0 auto;
 		max-width: rem($maxWidthContainer);
+		box-sizing: content-box;
+	}
+
+	@if $containerPadding > 0 {
+		padding: 0 rem(math.div($containerPadding, 2));
+	}
+}
+
+[class*='_containerWithoutMaxWidth'] {
+	@if $maxWidthContainer > 0 {
+		margin: 0 auto;
+		max-width: none;
 		box-sizing: content-box;
 	}
 

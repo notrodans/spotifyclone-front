@@ -1,0 +1,6 @@
+@import '../../../../styles/base/mixins';
+
+.root {
+	flex: 0 0 rem(68);
+	background-color: var(--color-background-dark);
+}
