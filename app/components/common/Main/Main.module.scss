@@ -1,6 +1,7 @@
 @import '../../../../styles/base/mixins';
 
 .root {
+	overflow-y: auto;
 	margin-top: rem(25);
 	margin-left: rem(25);
 	border-radius: var(--min-border);

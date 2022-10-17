@@ -1,13 +1,17 @@
 import { FC } from 'react'
 
+import Meta from '@/components/SEO/Meta'
 import LoginForm from '@/components/common/LoginForm/LoginForm'
 import WrapperWithoutPlayer from '@/layouts/WrapperWithoutPlayer'
 
 const Login: FC = () => {
 	return (
-		<WrapperWithoutPlayer>
-			<LoginForm />
-		</WrapperWithoutPlayer>
+		<>
+			<Meta title='Авторизация' description='autorization' />
+			<WrapperWithoutPlayer>
+				<LoginForm />
+			</WrapperWithoutPlayer>
+		</>
 	)
 }
 

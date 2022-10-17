@@ -14,14 +14,14 @@ const Links = [
 		name: 'Home',
 		path: '/',
 		icon: <HomeIcon className={styles.icon} />,
-		iconActive: <HomeIconActive />
+		iconActive: <HomeIconActive className={styles.icon} />
 	},
 	{
 		id: 2,
 		name: 'Favorite',
 		path: '/favorite',
 		icon: <FavoriteIcon className={styles.icon} />,
-		iconActive: <FavoriteIconActive />
+		iconActive: <FavoriteIconActive className={styles.icon} />
 	}
 ]
 

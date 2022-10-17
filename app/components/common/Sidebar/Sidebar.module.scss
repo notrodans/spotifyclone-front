@@ -4,3 +4,20 @@
 	flex: 0 0 rem(68);
 	background-color: var(--color-background-dark);
 }
+
+.containerWithoutMaxWidth {
+	display: flex;
+	flex-direction: column;
+	min-height: 100%;
+}
+
+.body {
+	display: flex;
+	flex: 1 1 auto;
+	flex-direction: column;
+	row-gap: rem(10);
+}
+
+.icon {
+	fill: var(--color-main);
+}
