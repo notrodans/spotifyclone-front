@@ -1,4 +1,3 @@
-import { AnimatePresence } from 'framer-motion'
 import type { AppProps } from 'next/app'
 import { Provider } from 'react-redux'
 
@@ -11,9 +10,7 @@ const App = ({ Component, router: { route }, ...pageProps }: AppProps) => {
 
 	return (
 		<Provider store={store}>
-			<AnimatePresence mode='wait'>
-				<Component key={route} {...props.pageProps} />
-			</AnimatePresence>
+			<Component key={route} {...props.pageProps} />
 		</Provider>
 	)
 }
