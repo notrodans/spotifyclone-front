@@ -11,8 +11,13 @@ const LoginForm: FC = () => {
 				<div className={styles.body}>
 					<span className={styles.title}>Авторизация</span>
 					<div className={styles.form}>
-						<LoginInput type={'text'} placeholder={'name'} />
-						<LoginInput type={'password'} placeholder={'password'} />
+						<div className={styles.formBody}>
+							<LoginInput type={'text'} placeholder={'name'} />
+							<LoginInput type={'password'} placeholder={'password'} />
+						</div>
+						<button onSubmit={e => e.preventDefault()} className={styles.button} type={'submit'}>
+							Авторизоваться
+						</button>
 					</div>
 				</div>
 			</div>

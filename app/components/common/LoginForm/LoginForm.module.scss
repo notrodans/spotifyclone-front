@@ -14,19 +14,16 @@
 }
 
 .body {
-	@include adaptiveValue('min-height', 345, 200);
-
 	display: flex;
 	flex: 1 1 auto;
 	flex-direction: column;
-	border: rem(2) solid var(--color-main);
-	padding: rem(10);
+	min-height: rem(220);
 }
 
 .title {
 	@include adaptiveValue('font-size', 26, 18);
 
-	font-weight: 700;
+	font-weight: 600;
 	text-align: center;
 
 	&:not(:last-child) {
@@ -36,7 +33,36 @@
 
 .form {
 	display: flex;
+	flex: 1 1 auto;
+	flex-direction: column;
+}
+
+.formBody {
+	display: flex;
+	flex: 1 1 auto;
 	flex-direction: column;
 	align-items: center;
 	row-gap: rem(15);
+
+	&:not(:last-child) {
+		margin-bottom: rem(15);
+	}
+}
+
+.button {
+	display: inline-flex;
+	align-items: center;
+	align-self: center;
+	justify-content: center;
+	border: rem(2) solid var(--color-main);
+	border-radius: var(--min-border);
+	padding: rem(10) rem(15);
+	font-family: var(--font-second);
+	font-weight: 500;
+	transition: all 0.3s ease 0s;
+
+	&:hover {
+		color: var(--color-tertiary);
+		background-color: var(--color-main);
+	}
 }

@@ -1,16 +1,19 @@
-import { FC, PropsWithChildren } from 'react'
+import cn from 'classnames'
+import { FC, HTMLAttributes, PropsWithChildren } from 'react'
 
 import Header from '@/components/common/Header/Header'
 
-const Wrapper: FC<PropsWithChildren> = ({ children }) => {
+interface IWrapperWithoutPlayer extends PropsWithChildren, HTMLAttributes<HTMLDivElement> {}
+
+const WrapperWithoutPlayer: FC<IWrapperWithoutPlayer> = ({ className, children }) => {
 	return (
 		<div className='wrapper'>
 			<Header />
 			<div className='wrapper__body'>
-				<main className='page'>{children}</main>
+				<main className={cn('page', className)}>{children}</main>
 			</div>
 		</div>
 	)
 }
 
-export default Wrapper
+export default WrapperWithoutPlayer
