@@ -1,10 +1,12 @@
 import { FC } from 'react'
+import { useForm } from 'react-hook-form'
 
 import LoginInput from '../LoginInput/LoginInput'
 
 import styles from './LoginForm.module.scss'
 
 const LoginForm: FC = () => {
+	const { register } = useForm()
 	return (
 		<div className={styles.root}>
 			<div className={styles.container}>
