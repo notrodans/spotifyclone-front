@@ -1,8 +1,8 @@
+import { AppState } from "@redux/store"
 import { PayloadAction, createSlice } from "@reduxjs/toolkit"
 import { HYDRATE } from "next-redux-wrapper"
 
 import { IAuthState } from "./types"
-import { AppState } from "@/redux/store"
 
 const initialState: IAuthState = {
 	name: "",

@@ -2,7 +2,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit"
 import { HYDRATE } from "next-redux-wrapper"
 
 import { IPlayState, StatusType } from "./types"
-import { AppState } from "@/redux/store"
+import { AppState } from "@redux/store"
 
 const initialState: IPlayState = {
 	status: "off",
