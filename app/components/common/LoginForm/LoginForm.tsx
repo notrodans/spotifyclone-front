@@ -1,9 +1,9 @@
-import { FC } from 'react'
-import { useForm } from 'react-hook-form'
+import { FC } from "react"
+import { useForm } from "react-hook-form"
 
-import LoginInput from '../LoginInput/LoginInput'
+import LoginInput from "../LoginInput/LoginInput"
 
-import styles from './LoginForm.module.scss'
+import styles from "./LoginForm.module.scss"
 
 const LoginForm: FC = () => {
 	const { register } = useForm()
@@ -14,10 +14,13 @@ const LoginForm: FC = () => {
 					<span className={styles.title}>Авторизация</span>
 					<div className={styles.form}>
 						<div className={styles.formBody}>
-							<LoginInput type={'text'} placeholder={'name'} />
-							<LoginInput type={'password'} placeholder={'password'} />
+							<LoginInput type={"text"} placeholder={"name"} />
+							<LoginInput type={"password"} placeholder={"password"} />
 						</div>
-						<button onSubmit={e => e.preventDefault()} className={styles.button} type={'submit'}>
+						<button
+							onSubmit={e => e.preventDefault()}
+							className={styles.button}
+							type={"submit"}>
 							Авторизоваться
 						</button>
 					</div>

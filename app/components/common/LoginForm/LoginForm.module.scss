@@ -1,4 +1,4 @@
-@import '../../../../styles/base/mixins';
+@import "../../../../styles/base/mixins";
 
 .root {
 	display: flex;
@@ -21,7 +21,7 @@
 }
 
 .title {
-	@include adaptiveValue('font-size', 26, 18);
+	@include adaptiveValue("font-size", 26, 18);
 
 	font-weight: 600;
 	text-align: center;

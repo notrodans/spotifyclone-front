@@ -1,6 +1,6 @@
-import type { NextPage } from 'next'
+import type { NextPage } from "next"
 
-import Login from '@/components/screens/login/Login'
+import Login from "@components/screens/login/Login"
 
 const login: NextPage = () => <Login />
 

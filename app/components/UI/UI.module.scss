@@ -13,14 +13,14 @@
 	pointer-events: none;
 
 	&::before {
-		content: '';
+		content: "";
 		position: absolute;
 		left: -50%;
 		top: -50%;
 		display: block;
 		width: 200%;
 		height: 200%;
-		background-image: url('../../assets/noise.png');
+		background-image: url("../../assets/noise.png");
 		animation: noise-animation 1s steps(4) infinite;
 		will-change: transform;
 	}

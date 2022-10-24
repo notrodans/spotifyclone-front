@@ -1,6 +1,6 @@
-import React from 'react'
+import React from "react"
 
-import Favorite from '@/components/screens/favorite/Favorite'
+import Favorite from "@components/screens/favorite/Favorite"
 
 const FavoritePage = () => {
 	return <Favorite />

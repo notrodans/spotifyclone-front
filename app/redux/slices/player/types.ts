@@ -1,4 +1,4 @@
-export type StatusType = 'on' | 'off'
+export type StatusType = "on" | "off"
 
 export interface IPlayState {
 	status: StatusType

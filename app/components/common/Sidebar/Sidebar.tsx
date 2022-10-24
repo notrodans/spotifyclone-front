@@ -1,25 +1,25 @@
-import Link from 'next/link'
-import { useRouter } from 'next/router'
-import { FC } from 'react'
+import Link from "next/link"
+import { useRouter } from "next/router"
+import { FC } from "react"
 
-import styles from './Sidebar.module.scss'
-import FavoriteIcon from '@/assets/icons-components/FavoriteIcon'
-import FavoriteIconActive from '@/assets/icons-components/FavoriteIconActive'
-import HomeIcon from '@/assets/icons-components/HomeIcon'
-import HomeIconActive from '@/assets/icons-components/HomeIconActive'
+import styles from "./Sidebar.module.scss"
+import FavoriteIcon from "@assets/icons-components/FavoriteIcon"
+import FavoriteIconActive from "@assets/icons-components/FavoriteIconActive"
+import HomeIcon from "@assets/icons-components/HomeIcon"
+import HomeIconActive from "@assets/icons-components/HomeIconActive"
 
 const Links = [
 	{
 		id: 1,
-		name: 'Home',
-		path: '/',
+		name: "Home",
+		path: "/",
 		icon: <HomeIcon className={styles.icon} />,
 		iconActive: <HomeIconActive className={styles.icon} />
 	},
 	{
 		id: 2,
-		name: 'Favorite',
-		path: '/favorite',
+		name: "Favorite",
+		path: "/favorite",
 		icon: <FavoriteIcon className={styles.icon} />,
 		iconActive: <FavoriteIconActive className={styles.icon} />
 	}

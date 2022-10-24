@@ -1,6 +1,6 @@
-import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux"
 
-import { AppState, makeStore } from './store'
+import { AppState, makeStore } from "./store"
 
 const store = makeStore()
 

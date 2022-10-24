@@ -1,9 +1,9 @@
-import cn from 'classnames'
-import Image, { StaticImageData } from 'next/image'
-import Link from 'next/link'
-import { FC, LinkHTMLAttributes } from 'react'
+import cn from "classnames"
+import Image, { StaticImageData } from "next/image"
+import Link from "next/link"
+import { FC, LinkHTMLAttributes } from "react"
 
-import styles from './RecentItem.module.scss'
+import styles from "./RecentItem.module.scss"
 
 interface IRecentItem extends LinkHTMLAttributes<HTMLElement> {
 	title: string
@@ -11,7 +11,13 @@ interface IRecentItem extends LinkHTMLAttributes<HTMLElement> {
 	link: string
 }
 
-const RecentItem: FC<IRecentItem> = ({ title, src, link, className, ...props }) => {
+const RecentItem: FC<IRecentItem> = ({
+	title,
+	src,
+	link,
+	className,
+	...props
+}) => {
 	return (
 		<Link href={link}>
 			<a href='#' className={cn(className, styles.root)} {...props}>
@@ -21,7 +27,11 @@ const RecentItem: FC<IRecentItem> = ({ title, src, link, className, ...props }) 
 					</div>
 					<span className={styles.title}>{title}</span>
 				</div>
-				<button onClick={() => console.log('click')} className={styles.button} type={'button'} />
+				<button
+					onClick={() => console.log("click")}
+					className={styles.button}
+					type={"button"}
+				/>
 			</a>
 		</Link>
 	)

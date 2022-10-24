@@ -1,16 +1,16 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit'
-import { HYDRATE } from 'next-redux-wrapper'
+import { PayloadAction, createSlice } from "@reduxjs/toolkit"
+import { HYDRATE } from "next-redux-wrapper"
 
-import { IAuthState } from './types'
-import { AppState } from '@/redux/store'
+import { IAuthState } from "./types"
+import { AppState } from "@/redux/store"
 
 const initialState: IAuthState = {
-	name: '',
-	password: ''
+	name: "",
+	password: ""
 }
 
 const authSlice = createSlice({
-	name: 'auth',
+	name: "auth",
 	initialState,
 	reducers: {
 		setName: (state, { payload }: PayloadAction<string>) => {

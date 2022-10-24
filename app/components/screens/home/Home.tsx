@@ -1,9 +1,9 @@
-import { FC } from 'react'
+import { FC } from "react"
 
-import styles from './Home.module.scss'
-import Meta from '@/components/SEO/Meta'
-import Main from '@/components/common/Main/Main'
-import Wrapper from '@/layouts/Wrapper'
+import styles from "./Home.module.scss"
+import Meta from "@components/SEO/Meta"
+import Main from "@components/common/Main/Main"
+import Wrapper from "@layouts/Wrapper"
 
 const Home: FC = () => {
 	return (

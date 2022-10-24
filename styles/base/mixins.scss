@@ -1,11 +1,12 @@
-@use 'sass:math';
+@use "sass:math";
 
-@import '../vars/forMixins';
+@import "../vars/forMixins";
 
 //Import fonts
 @mixin font($font_name, $file_name, $weight, $style) {
 	@font-face {
-		src: url('../fonts/#{$file_name}.woff2') format('woff2'), url('../fonts/#{$file_name}.woff') format('woff');
+		src: url("../fonts/#{$file_name}.woff2") format("woff2"),
+			url("../fonts/#{$file_name}.woff") format("woff");
 		font-family: $font_name;
 		font-weight: #{$weight};
 		font-style: #{$style};
@@ -37,7 +38,7 @@
 //Currency
 @mixin currency($sym) {
 	&::after {
-		content: '#{$sym}';
+		content: "#{$sym}";
 	}
 }
 
@@ -49,7 +50,14 @@
 }
 
 // Adaptive value (clamp)
-@mixin adaptiveValue($property, $startSize, $minSize, $widthFrom: $containerWidth, $widthTo: $minWidth, $keepSize: 0) {
+@mixin adaptiveValue(
+	$property,
+	$startSize,
+	$minSize,
+	$widthFrom: $containerWidth,
+	$widthTo: $minWidth,
+	$keepSize: 0
+) {
 	// for calc();
 	$addSize: math.div($startSize - $minSize, 16);
 
@@ -58,10 +66,10 @@
 	$widthToMedia: em($widthTo);
 	$slope: math.div(($startSize - $minSize), ($widthFrom - $widthTo));
 	$yIntersection: -$widthTo * $slope + $minSize;
-	$flyValue: #{rem($yIntersection)}' + ' #{$slope * 100}vw;
+	$flyValue: #{rem($yIntersection)}" + " #{$slope * 100}vw;
 
 	// Get value property
-	$propertyValue: #{'clamp(' rem($minSize) ',' $flyValue ',' rem($startSize) ')'};
+	$propertyValue: #{"clamp(" rem($minSize) "," $flyValue "," rem($startSize) ")"};
 
 	@if $startSize == 0 {
 		$startSize: 0.000001;
@@ -81,7 +89,13 @@
 
 	// If negative values
 	@if $minSize > $startSize {
-		$propertyValue: #{'clamp(' rem($startSize) ',' $flyValue ',' rem($minSize) ')'};
+		$propertyValue: #{"clamp("
+			rem($startSize)
+			","
+			$flyValue
+			","
+			rem($minSize)
+			")"};
 	}
 
 	// If support clamp();
@@ -99,7 +113,15 @@
   }
 
 	// Set default values
-	@if $widthFrom != $containerWidth and $widthFrom != $maxWidth and $keepSize != 1 and $keepSize != 2 {
+	@if $widthFrom !=
+		$containerWidth and
+		$widthFrom !=
+		$maxWidth and
+		$keepSize !=
+		1 and
+		$keepSize !=
+		2
+	{
 		@media (min-width: $widthFromMedia) {
 			#{$property}: inherit;
 		}

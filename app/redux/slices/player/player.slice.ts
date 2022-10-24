@@ -1,19 +1,19 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit'
-import { HYDRATE } from 'next-redux-wrapper'
+import { PayloadAction, createSlice } from "@reduxjs/toolkit"
+import { HYDRATE } from "next-redux-wrapper"
 
-import { IPlayState, StatusType } from './types'
-import { AppState } from '@/redux/store'
+import { IPlayState, StatusType } from "./types"
+import { AppState } from "@/redux/store"
 
 const initialState: IPlayState = {
-	status: 'off',
-	name: 'SPACE X',
-	nameLink: '/',
-	artist: 'August',
-	artistLink: '/'
+	status: "off",
+	name: "SPACE X",
+	nameLink: "/",
+	artist: "August",
+	artistLink: "/"
 }
 
 const playerSlice = createSlice({
-	name: 'player',
+	name: "player",
 	initialState,
 	reducers: {
 		setStatus: (state, { payload }: PayloadAction<StatusType>) => {

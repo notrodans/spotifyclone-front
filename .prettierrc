@@ -5,10 +5,6 @@
   "tabWidth": 2,
   "jsxSingleQuote": true,
   "bracketSameLine": true,
-  "singleQuote": true,
+  "singleQuote": false,
   "arrowParens": "avoid",
-  "printWidth": 130,
-  "importOrder": ["^../(.*)", "^./(.*)"],
-  "importOrderSeparation": true,
-  "importOrderSortSpecifiers": true
 }

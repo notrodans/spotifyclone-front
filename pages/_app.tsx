@@ -1,9 +1,8 @@
-import type { AppProps } from 'next/app'
-import { Provider } from 'react-redux'
+import type { AppProps } from "next/app"
+import { Provider } from "react-redux"
+import "../styles/style.scss"
 
-import '../styles/style.scss'
-
-import { wrapper } from '@/redux/store'
+import { wrapper } from "@redux/store"
 
 const App = ({ Component, router: { route }, ...pageProps }: AppProps) => {
 	const { store, props } = wrapper.useWrappedStore(pageProps)

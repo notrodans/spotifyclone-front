@@ -1,13 +1,13 @@
-@use 'sass:math';
+@use "sass:math";
 
-@import 'fonts';
-@import 'base/mixins';
-@import 'vars/colors';
-@import 'vars/variables';
-@import 'vars/forMixins';
+@import "fonts";
+@import "base/mixins";
+@import "vars/colors";
+@import "vars/variables";
+@import "vars/forMixins";
 
 // Reset styles and general styles
-@import 'base/null';
+@import "base/null";
 
 body {
 	background-color: var(--color-background);
@@ -34,7 +34,7 @@ body {
 	}
 }
 
-[class*='_container'] {
+[class*="_container"] {
 	@if $maxWidthContainer > 0 {
 		margin: 0 auto;
 		max-width: rem($maxWidthContainer);
@@ -46,7 +46,7 @@ body {
 	}
 }
 
-[class*='_containerWithoutMaxWidth'] {
+[class*="_containerWithoutMaxWidth"] {
 	@if $maxWidthContainer > 0 {
 		margin: 0 auto;
 		max-width: none;
@@ -58,5 +58,5 @@ body {
 	}
 }
 
-@import 'base';
-@import 'common';
+@import "base";
+@import "common";

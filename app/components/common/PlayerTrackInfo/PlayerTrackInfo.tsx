@@ -1,9 +1,9 @@
-import cn from 'classnames'
-import Image, { StaticImageData } from 'next/image'
-import Link from 'next/link'
-import { FC, HTMLAttributes } from 'react'
+import cn from "classnames"
+import Image, { StaticImageData } from "next/image"
+import Link from "next/link"
+import { FC, HTMLAttributes } from "react"
 
-import styles from './PlayerTrackInfo.module.scss'
+import styles from "./PlayerTrackInfo.module.scss"
 
 interface IPlayerTrackInfo extends HTMLAttributes<HTMLDivElement> {
 	src: string | StaticImageData
@@ -13,10 +13,23 @@ interface IPlayerTrackInfo extends HTMLAttributes<HTMLDivElement> {
 	authorLink: string
 }
 
-const PlayerTrackInfo: FC<IPlayerTrackInfo> = ({ src, title, author, titleLink, authorLink, ...props }) => {
+const PlayerTrackInfo: FC<IPlayerTrackInfo> = ({
+	src,
+	title,
+	author,
+	titleLink,
+	authorLink,
+	...props
+}) => {
 	return (
 		<div className={styles.root} {...props}>
-			<Image className={styles.image} src={src} width={56} height={56} alt={'hehe'} />
+			<Image
+				className={styles.image}
+				src={src}
+				width={56}
+				height={56}
+				alt={"hehe"}
+			/>
 			<div className={styles.body}>
 				<Link href={titleLink}>
 					<a className={cn(styles.title, styles.link)} href='#'>
