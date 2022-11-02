@@ -2,9 +2,9 @@
 
 .root {
 	display: flex;
-	border-top: rem(1) solid var(--color-border);
 	min-height: rem(90);
 	background-color: var(--color-background);
+	border-top: rem(1) solid var(--color-border);
 }
 
 .containerWithoutMaxWidth {

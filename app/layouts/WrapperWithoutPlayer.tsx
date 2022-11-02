@@ -1,11 +1,11 @@
 import cn from "classnames"
-import { FC, HTMLAttributes, PropsWithChildren } from "react"
+import { DetailedHTMLProps, FC, HTMLAttributes, PropsWithChildren } from "react"
 
 import Header from "@components/common/Header/Header"
 
 interface IWrapperWithoutPlayer
 	extends PropsWithChildren,
-		HTMLAttributes<HTMLDivElement> {}
+		DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
 
 const WrapperWithoutPlayer: FC<IWrapperWithoutPlayer> = ({
 	className,

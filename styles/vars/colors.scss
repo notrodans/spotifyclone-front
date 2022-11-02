@@ -1,8 +1,8 @@
 :root {
 	--color-font: #fff;
-	--color-main: #ebe5dc;
-	--color-first: #805ad5;
-	--color-second: #a46bff;
+	--color-main: #c1c0d4;
+	--color-first: #aca1cf;
+	--color-second: #b9aeda;
 	--color-second-rgb: 240, 231, 219;
 	--color-tertiary: #222;
 	--color-background: #151515;
@@ -10,6 +10,6 @@
 	--color-background-light: #202023;
 	--color-border: #282828;
 	--color-author: #b3b3b3;
-	--color-recent-item: rgba(255, 255, 255, 10%);
-	--color-recent-item-hover: rgba(255, 255, 255, 20%);
+	--color-recent-item: rgb(255 255 255 / 10%);
+	--color-recent-item-hover: rgb(255 255 255 / 20%);
 }

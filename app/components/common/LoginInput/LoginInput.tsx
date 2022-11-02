@@ -1,13 +1,12 @@
 import styles from "./LoginInput.module.scss"
 import cn from "classnames"
-import { FC, HTMLAttributes, HTMLInputTypeAttribute } from "react"
+import { DetailedHTMLProps, forwardRef, InputHTMLAttributes } from "react"
 
-interface ILoginInput extends HTMLAttributes<HTMLInputElement> {
-	type: HTMLInputTypeAttribute
-}
-
-const LoginInput: FC<ILoginInput> = ({ type, className, ...props }) => {
-	return <input type={type} className={cn(styles.root, className)} {...props} />
-}
+const LoginInput = forwardRef<
+	HTMLInputElement,
+	DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
+>(({ className, ...props }, ref) => (
+	<input ref={ref} className={cn(styles.root, className)} {...props} />
+))
 
 export default LoginInput

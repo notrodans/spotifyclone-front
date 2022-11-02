@@ -1,3 +1,6 @@
-import { HTMLAttributes } from "react"
+import { DetailedHTMLProps, HTMLAttributes } from "react"
 
-export type IconType = HTMLAttributes<SVGSVGElement>
+export type IconType = DetailedHTMLProps<
+	HTMLAttributes<SVGSVGElement>,
+	SVGSVGElement
+>

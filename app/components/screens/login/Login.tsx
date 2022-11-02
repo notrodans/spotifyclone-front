@@ -7,7 +7,7 @@ import WrapperWithoutPlayer from "@layouts/WrapperWithoutPlayer"
 const Login: FC = () => {
 	return (
 		<>
-			<Meta title='Авторизация' description='authorization' />
+			<Meta title='Авторизация' description='Authorization' />
 			<WrapperWithoutPlayer>
 				<LoginForm />
 			</WrapperWithoutPlayer>

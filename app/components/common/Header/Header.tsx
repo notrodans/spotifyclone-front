@@ -1,11 +1,13 @@
+import { useAuth } from "@hooks/useAuth"
 import Link from "next/link"
-import { useRouter } from "next/router"
-import React from "react"
+import HeaderAuthLinks from "../HeaderAuthLinks/HeaderAuthLinks"
+import Profile from "../Profile/Profile"
 
 import styles from "./Header.module.scss"
 
 const Header = () => {
-	const { pathname } = useRouter()
+	const { user } = useAuth()
+
 	return (
 		<header className={styles.root}>
 			<div className={styles.containerWithoutMaxWidth}>
@@ -16,17 +18,8 @@ const Header = () => {
 						</a>
 					</Link>
 				</div>
-				<div className={styles.body}>
-					{pathname === "/login" ? (
-						""
-					) : (
-						<Link href={"login"}>
-							<a className={styles.link} href='#'>
-								Log in
-							</a>
-						</Link>
-					)}
-				</div>
+				<div className={styles.body}>{!user && <HeaderAuthLinks />}</div>
+				{user && <Profile />}
 			</div>
 		</header>
 	)

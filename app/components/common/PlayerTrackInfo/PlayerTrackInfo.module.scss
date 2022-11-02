@@ -2,8 +2,8 @@
 
 .root {
 	display: flex;
-	column-gap: rem(15);
 	align-items: center;
+	column-gap: rem(15);
 }
 
 .image {
@@ -26,6 +26,6 @@
 }
 
 .author {
-	font-size: rem(12);
 	color: var(--color-author);
+	font-size: rem(12);
 }

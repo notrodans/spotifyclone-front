@@ -3,14 +3,19 @@ import { Provider } from "react-redux"
 import "../styles/style.scss"
 
 import { wrapper } from "@redux/store"
+import { QueryClient, QueryClientProvider } from "react-query"
 
-const App = ({ Component, router: { route }, ...pageProps }: AppProps) => {
+const queryClient = new QueryClient()
+
+const App = ({ Component, ...pageProps }: AppProps) => {
 	const { store, props } = wrapper.useWrappedStore(pageProps)
 
 	return (
-		<Provider store={store}>
-			<Component key={route} {...props.pageProps} />
-		</Provider>
+		<QueryClientProvider client={queryClient}>
+			<Provider store={store}>
+				<Component {...props.pageProps} />
+			</Provider>
+		</QueryClientProvider>
 	)
 }
 

@@ -1,33 +1,33 @@
 %listCounter {
-	counter-reset: item;
 	list-style-type: none;
+	counter-reset: item;
 
 	li {
 		position: relative;
 
 		&::before {
-			counter-increment: item;
-			content: counter(item);
 			position: absolute;
-			left: 0;
 			top: 0;
+			left: 0;
+			content: counter(item);
+			counter-increment: item;
 		}
 	}
 }
 
 %responsiveVideo {
 	position: relative;
-	overflow: hidden;
-	padding-bottom: 56.25%;
 	height: 0;
+	padding-bottom: 56.25%;
+	overflow: hidden;
 
 	video,
 	iframe,
 	object,
 	embed {
 		position: absolute;
-		left: 0;
 		top: 0;
+		left: 0;
 		width: 100%;
 		height: 100%;
 	}
@@ -39,12 +39,12 @@
 	object,
 	embed {
 		position: fixed;
-		left: 50%;
 		top: 50%;
+		left: 50%;
 		z-index: -100;
 		width: auto;
-		height: auto;
 		min-width: 100%;
+		height: auto;
 		min-height: 100%;
 		background-size: cover;
 		transform: translateX(-50%) translateY(-50%);

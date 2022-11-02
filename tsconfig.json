@@ -9,8 +9,11 @@
 		"module": "esnext",
 		"moduleResolution": "node",
 		"resolveJsonModule": true,
+		"declaration": true,
+		"removeComments": true,
 		"isolatedModules": true,
 		"strict": true,
+		"skipLibCheck": true,
 		"strictNullChecks": false,
 		"noImplicitAny": false,
 		"strictBindCallApply": false,
@@ -19,13 +22,16 @@
 		"baseUrl": "app",
 		"paths": {
 			"@components/*": ["components/*"],
-			"@UI/*": ["components/common/UI/*"],
+			"@ui/*": ["components/common/UI/*"],
 			"@styles/*": ["styles/*"],
 			"@screens/*": ["components/screens/*"],
 			"@layouts/*": ["layouts/*"],
 			"@assets/*": ["assets/*"],
 			"@redux/*": ["redux/*"],
-			"@hooks/*": ["hooks/*"]
+			"@hooks/*": ["hooks/*"],
+			"@axios/*": ["axios/*"],
+			"@util/*": ["util/*"],
+			"@services/*": ["services/*"]
 		}
 	},
 	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

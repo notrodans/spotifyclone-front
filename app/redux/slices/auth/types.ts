@@ -1,4 +1,5 @@
-export interface IAuthState {
-	name: string
-	password: string
+import { IAuthData } from "@services/Auth/AuthService.type"
+
+export interface IAuthState extends IAuthData {
+	isLoading: boolean
 }

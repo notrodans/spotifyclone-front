@@ -1,11 +1,12 @@
 import cn from "classnames"
 import Image, { StaticImageData } from "next/image"
 import Link from "next/link"
-import { FC, HTMLAttributes } from "react"
+import { DetailedHTMLProps, FC, HTMLAttributes } from "react"
 
 import styles from "./PlayerTrackInfo.module.scss"
 
-interface IPlayerTrackInfo extends HTMLAttributes<HTMLDivElement> {
+interface IPlayerTrackInfo
+	extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
 	src: string | StaticImageData
 	title: string
 	author: string
@@ -23,13 +24,17 @@ const PlayerTrackInfo: FC<IPlayerTrackInfo> = ({
 }) => {
 	return (
 		<div className={styles.root} {...props}>
-			<Image
-				className={styles.image}
-				src={src}
-				width={56}
-				height={56}
-				alt={"hehe"}
-			/>
+			<Link href={authorLink}>
+				<a>
+					<Image
+						className={styles.image}
+						src={src}
+						width={56}
+						height={56}
+						alt={"hehe"}
+					/>
+				</a>
+			</Link>
 			<div className={styles.body}>
 				<Link href={titleLink}>
 					<a className={cn(styles.title, styles.link)} href='#'>

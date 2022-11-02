@@ -31,12 +31,6 @@
 	}
 }
 
-.form {
-	display: flex;
-	flex: 1 1 auto;
-	flex-direction: column;
-}
-
 .formBody {
 	display: flex;
 	flex: 1 1 auto;
@@ -54,11 +48,11 @@
 	align-items: center;
 	align-self: center;
 	justify-content: center;
+	padding: rem(10) rem(15);
+	font-weight: 500;
+	font-family: var(--font-second);
 	border: rem(2) solid var(--color-main);
 	border-radius: var(--min-border);
-	padding: rem(10) rem(15);
-	font-family: var(--font-second);
-	font-weight: 500;
 	transition: all 0.3s ease 0s;
 
 	&:hover {
