@@ -8,17 +8,13 @@ const HeaderAuthLinks: FC = () => {
 	return (
 		<>
 			{pathname === "/login" ? null : (
-				<Link href={"login"}>
-					<a className={styles.link} href='#'>
-						Sign in
-					</a>
+				<Link className={styles.link} href={"login"}>
+					Sign in
 				</Link>
 			)}
 			{pathname === "/signup" ? null : (
-				<Link href={"/signup"}>
-					<a className={styles.link} href='#'>
-						Sign up
-					</a>
+				<Link className={styles.link} href={"/signup"}>
+					Sign up
 				</Link>
 			)}
 		</>

@@ -89,13 +89,7 @@
 
 	// If negative values
 	@if $minSize > $startSize {
-		$propertyValue: #{"clamp("
-			rem($startSize)
-			","
-			$flyValue
-			","
-			rem($minSize)
-			")"};
+		$propertyValue: #{"clamp(" rem($startSize) "," $flyValue "," rem($minSize) ")"};
 	}
 
 	// If support clamp();

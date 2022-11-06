@@ -12,10 +12,8 @@ const Header = () => {
 		<header className={styles.root}>
 			<div className={styles.containerWithoutMaxWidth}>
 				<div className={styles.logo}>
-					<Link href={"/"}>
-						<a className={styles.logoTitle} href='#'>
-							SpotifyClone
-						</a>
+					<Link className={styles.logoTitle} href={"/"}>
+						SpotifyClone
 					</Link>
 				</div>
 				<div className={styles.body}>{!user && <HeaderAuthLinks />}</div>

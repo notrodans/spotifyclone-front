@@ -6,12 +6,8 @@ import { postLogin, postRegister } from "./auth.actions"
 import { IAuthState } from "./types"
 
 const initialState: IAuthState = {
-	user:
-		typeof window !== "undefined"
-			? JSON.parse(localStorage.getItem("user"))
-			: null,
-	accessToken:
-		typeof window !== "undefined" ? localStorage.getItem("token") : "",
+	user: typeof window !== "undefined" ? JSON.parse(localStorage.getItem("user")) : null,
+	accessToken: typeof window !== "undefined" ? localStorage.getItem("token") : "",
 	isLoading: false
 }
 
@@ -55,16 +51,13 @@ const authSlice = createSlice({
 			.addCase(postLogin.pending, state => {
 				state.isLoading = true
 			})
-			.addCase(
-				postLogin.fulfilled,
-				(state, { payload: { user, accessToken } }) => {
-					state.isLoading = false
-					state.user = user
-					state.accessToken = accessToken
-					window.localStorage.setItem("token", accessToken)
-					window.localStorage.setItem("user", JSON.stringify(user))
-				}
-			)
+			.addCase(postLogin.fulfilled, (state, { payload: { user, accessToken } }) => {
+				state.isLoading = false
+				state.user = user
+				state.accessToken = accessToken
+				window.localStorage.setItem("token", accessToken)
+				window.localStorage.setItem("user", JSON.stringify(user))
+			})
 			.addCase(postLogin.rejected, state => {
 				state.isLoading = false
 				state.user = null

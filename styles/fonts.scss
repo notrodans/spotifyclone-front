@@ -7,7 +7,6 @@
 	font-style: normal;
 	src: url("fonts/DrukWide-Bold.ttf");
 	src: local("fonts/DrukWide-Bold"), local("DrukWide"),
-		url("fonts/DrukWide-Bold.woff") format("woff"),
-		url("fonts/DrukWide-Bold.woff2") format("woff2"),
+		url("fonts/DrukWide-Bold.woff") format("woff"), url("fonts/DrukWide-Bold.woff2") format("woff2"),
 		url("fonts/DrukWide-Bold.ttf") format("truetype");
 }

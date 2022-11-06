@@ -32,10 +32,8 @@ const Sidebar: FC = () => {
 			<div className={styles.containerWithoutMaxWidth}>
 				<div className={styles.body}>
 					{Links.map(({ id, path, icon, iconActive }) => (
-						<Link key={id} href={path}>
-							<a className={styles.link} href='#'>
-								{pathname === path ? iconActive : icon}
-							</a>
+						<Link className={styles.link} key={id} href={path}>
+							{pathname === path ? iconActive : icon}
 						</Link>
 					))}
 				</div>

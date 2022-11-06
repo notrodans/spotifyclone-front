@@ -73,12 +73,8 @@ const LoginForm: FC<LoginFormType> = ({ className, ...props }) => {
 		<div className={cn(styles.root, className)} {...props}>
 			<div className={styles.container}>
 				<div className={styles.body}>
-					<span className={styles.title}>
-						{type === "login" ? "Авторизация" : "Регистрация"}
-					</span>
-					<form
-						onSubmit={handleSubmit(onSubmitForm, onErrorForm)}
-						className={styles.formBody}>
+					<span className={styles.title}>{type === "login" ? "Авторизация" : "Регистрация"}</span>
+					<form onSubmit={handleSubmit(onSubmitForm, onErrorForm)} className={styles.formBody}>
 						<LoginInput
 							{...register(type === "login" ? "email" : "login", {
 								required: true,
@@ -102,9 +98,7 @@ const LoginForm: FC<LoginFormType> = ({ className, ...props }) => {
 									pattern: validateEmailPattern
 								})}
 								type={"email"}
-								onChange={e =>
-									setValues(prev => ({ ...prev, email: e.target.value }))
-								}
+								onChange={e => setValues(prev => ({ ...prev, email: e.target.value }))}
 								value={email}
 								placeholder={"email"}
 								required
@@ -113,17 +107,12 @@ const LoginForm: FC<LoginFormType> = ({ className, ...props }) => {
 						<LoginInput
 							{...register("password", { required: true })}
 							type={"password"}
-							onChange={e =>
-								setValues(prev => ({ ...prev, password: e.target.value }))
-							}
+							onChange={e => setValues(prev => ({ ...prev, password: e.target.value }))}
 							value={password}
 							placeholder={"password"}
 							required
 						/>
-						<button
-							disabled={isLoading}
-							className={styles.button}
-							type={"submit"}>
+						<button disabled={isLoading} className={styles.button} type={"submit"}>
 							{type === "signup" ? "Зарегистрироваться" : "Авторизоваться"}
 						</button>
 					</form>

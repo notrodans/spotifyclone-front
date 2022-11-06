@@ -7,10 +7,7 @@ interface IWrapperWithoutPlayer
 	extends PropsWithChildren,
 		DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
 
-const WrapperWithoutPlayer: FC<IWrapperWithoutPlayer> = ({
-	className,
-	children
-}) => {
+const WrapperWithoutPlayer: FC<IWrapperWithoutPlayer> = ({ className, children }) => {
 	return (
 		<div className='wrapper'>
 			<Header />

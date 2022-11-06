@@ -1,10 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import { AuthService } from "@services/Auth/AuthService"
-import {
-	IAuthData,
-	ILoginFields,
-	IRegisterFields
-} from "@services/Auth/AuthService.type"
+import { IAuthData, ILoginFields, IRegisterFields } from "@services/Auth/AuthService.type"
 
 export const postRegister = createAsyncThunk<IAuthData, IRegisterFields>(
 	"authAsync/register",

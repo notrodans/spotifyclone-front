@@ -11,28 +11,16 @@ interface IRecentItem extends LinkHTMLAttributes<HTMLElement> {
 	link: string
 }
 
-const RecentItem: FC<IRecentItem> = ({
-	title,
-	src,
-	link,
-	className,
-	...props
-}) => {
+const RecentItem: FC<IRecentItem> = ({ title, src, link, className, ...props }) => {
 	return (
-		<Link href={link}>
-			<a href='#' className={cn(className, styles.root)} {...props}>
-				<div className={styles.body}>
-					<div className={styles.image}>
-						<Image src={src} width={80} height={80} alt={title} />
-					</div>
-					<span className={styles.title}>{title}</span>
+		<Link className={cn(className, styles.root)} {...props} href={link}>
+			<div className={styles.body}>
+				<div className={styles.image}>
+					<Image src={src} width={80} height={80} alt={title} />
 				</div>
-				<button
-					onClick={() => console.log("click")}
-					className={styles.button}
-					type={"button"}
-				/>
-			</a>
+				<span className={styles.title}>{title}</span>
+			</div>
+			<button onClick={() => console.log("click")} className={styles.button} type={"button"} />
 		</Link>
 	)
 }
