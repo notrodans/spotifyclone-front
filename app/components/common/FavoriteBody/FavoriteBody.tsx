@@ -5,7 +5,7 @@ import logo from "@assets/logo.jpeg"
 const FavoriteBody: FC = () => {
 	return (
 		<div>
-			<Image src={logo} width={1000} height={1200} alt={"logo"}  />
+			<Image src={logo} width={1000} height={1200} alt={"logo"} />
 		</div>
 	)
 }

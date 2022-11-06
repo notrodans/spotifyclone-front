@@ -1,5 +1,5 @@
 import cn from "classnames"
-import Image, { StaticImageData } from "next/image"
+import Image, { StaticImageData } from "next/legacy/image";
 import Link from "next/link"
 import { FC, LinkHTMLAttributes } from "react"
 
