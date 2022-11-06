@@ -4,8 +4,7 @@ import { ButtonHTMLAttributes, DetailedHTMLProps, FC } from "react"
 import styles from "./AddButton.module.scss"
 import cn from "classnames"
 
-interface IAddButton
-	extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {}
+type IAddButton = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
 
 const AddButton: FC<IAddButton> = ({ className, ...props }) => {
 	return (

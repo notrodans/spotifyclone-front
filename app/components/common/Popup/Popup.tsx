@@ -20,6 +20,7 @@ const Popup: FC<IPopup> = ({
 			ref={ref}
 			onAfterClose={onAfterClose}
 			onRequestClose={onRequestClose}
+			parentSelector={parentSelector}
 			isOpen={isOpen}
 			className={styles.root}
 			overlayClassName={styles.overlay}
