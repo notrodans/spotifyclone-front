@@ -1,0 +1,28 @@
+@import "../../../../styles/base/mixins";
+
+.root {
+	&:not(:last-child) {
+		margin-bottom: rem(10);
+	}
+}
+
+.input {
+}
+
+.label {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 100%;
+	padding: rem(10);
+	color: var(--color-input-font);
+	font-weight: 500;
+	background-color: var(--color-tertiary);
+	border-radius: var(--min-border);
+	cursor: pointer;
+	transition: color 0.3s ease 0s;
+
+	&:hover {
+		color: var(--color-main);
+	}
+}

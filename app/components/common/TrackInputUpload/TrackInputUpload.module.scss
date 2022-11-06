@@ -1,0 +1,14 @@
+@import "../../../../styles/base/mixins";
+
+.root {
+	width: 100%;
+	padding: rem(5);
+	color: var(--color-main);
+	font-weight: 500;
+	background-color: transparent;
+	border: rem(2) solid var(--color-tertiary);
+
+	&:not(:last-child) {
+		margin-bottom: rem(10);
+	}
+}

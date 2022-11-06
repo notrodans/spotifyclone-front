@@ -1,5 +1,5 @@
 import cn from "classnames"
-import Image, { StaticImageData } from "next/legacy/image";
+import Image, { StaticImageData } from "next/image"
 import Link from "next/link"
 import { FC, LinkHTMLAttributes } from "react"
 
@@ -13,14 +13,16 @@ interface IRecentItem extends LinkHTMLAttributes<HTMLElement> {
 
 const RecentItem: FC<IRecentItem> = ({ title, src, link, className, ...props }) => {
 	return (
-		<Link className={cn(className, styles.root)} {...props} href={link}>
-			<div className={styles.body}>
-				<div className={styles.image}>
-					<Image src={src} width={80} height={80} alt={title} />
+		<Link href={link}>
+			<a href='#' className={cn(className, styles.root)} {...props}>
+				<div className={styles.body}>
+					<div className={styles.image}>
+						<Image src={src} width={80} height={80} alt={title} />
+					</div>
+					<span className={styles.title}>{title}</span>
 				</div>
-				<span className={styles.title}>{title}</span>
-			</div>
-			<button onClick={() => console.log("click")} className={styles.button} type={"button"} />
+				<button onClick={() => console.log("click")} className={styles.button} type={"button"} />
+			</a>
 		</Link>
 	)
 }

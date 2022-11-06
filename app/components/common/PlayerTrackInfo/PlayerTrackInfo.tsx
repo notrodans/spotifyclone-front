@@ -1,5 +1,5 @@
 import cn from "classnames"
-import Image, { StaticImageData } from "next/legacy/image";
+import Image, { StaticImageData } from "next/image"
 import Link from "next/link"
 import { DetailedHTMLProps, FC, HTMLAttributes } from "react"
 
@@ -25,14 +25,20 @@ const PlayerTrackInfo: FC<IPlayerTrackInfo> = ({
 	return (
 		<div className={styles.root} {...props}>
 			<Link href={authorLink}>
-				<Image className={styles.image} src={src} width={56} height={56} alt={"hehe"} />
+				<a>
+					<Image className={styles.image} src={src} width={56} height={56} alt={"hehe"} />
+				</a>
 			</Link>
 			<div className={styles.body}>
-				<Link className={cn(styles.title, styles.link)} href={titleLink}>
-					{title}
+				<Link href={titleLink}>
+					<a className={cn(styles.title, styles.link)} href='#'>
+						{title}
+					</a>
 				</Link>
-				<Link className={cn(styles.author, styles.link)} href={authorLink}>
-					{author}
+				<Link href={authorLink}>
+					<a className={cn(styles.author, styles.link)} href='#'>
+						{author}
+					</a>
 				</Link>
 			</div>
 		</div>
