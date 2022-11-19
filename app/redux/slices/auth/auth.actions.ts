@@ -1,8 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import { AuthService } from "@services/Auth/AuthService"
-import { IAuthData, ILoginFields, IRegisterFields } from "@services/Auth/AuthService.type"
+import { ILoginFields, IRegisterFields, IUser } from "@services/Auth/AuthService.type"
 
-export const postRegister = createAsyncThunk<IAuthData, IRegisterFields>(
+export const postRegister = createAsyncThunk<IUser, IRegisterFields>(
 	"authAsync/register",
 	async ({ login, email, password }, thunkAPI) => {
 		try {
@@ -14,7 +14,7 @@ export const postRegister = createAsyncThunk<IAuthData, IRegisterFields>(
 	}
 )
 
-export const postLogin = createAsyncThunk<IAuthData, ILoginFields>(
+export const postLogin = createAsyncThunk<IUser, ILoginFields>(
 	"authAsync/login",
 	async ({ login, password }, thunkAPI) => {
 		try {

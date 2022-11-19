@@ -1,13 +1,12 @@
 import { AppState } from "@redux/store"
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice, PayloadAction } from "@reduxjs/toolkit"
+import { IUser } from "@services/Auth/AuthService.type"
 import { HYDRATE } from "next-redux-wrapper"
 import { postLogin, postRegister } from "./auth.actions"
-
 import { IAuthState } from "./types"
-
+import * as nookies from "nookies"
 const initialState: IAuthState = {
-	user: typeof window !== "undefined" ? JSON.parse(localStorage.getItem("user")) : null,
-	accessToken: typeof window !== "undefined" ? localStorage.getItem("token") : "",
+	user: null,
 	isLoading: false
 }
 
@@ -15,13 +14,18 @@ const authSlice = createSlice({
 	name: "auth",
 	initialState,
 	reducers: {
+		setUser: (state, { payload }: PayloadAction<IUser>) => {
+			state.user = payload?.login
+				? {
+						login: payload.login,
+						email: payload.email
+				  }
+				: null
+		},
 		logoutUser: state => {
-			if (typeof window !== "undefined") {
-				state.user = null
-				state.accessToken = ""
-				localStorage.removeItem("user")
-				localStorage.removeItem("token")
-			}
+			state.user = null
+			nookies.destroyCookie(null, "token")
+			window.location.href = "/login"
 		}
 	},
 	extraReducers: builder => {
@@ -33,41 +37,26 @@ const authSlice = createSlice({
 			.addCase(postRegister.pending, state => {
 				state.isLoading = true
 			})
-			.addCase(postRegister.fulfilled, (state, { payload: { user } }) => {
+			.addCase(postRegister.fulfilled, (state, { payload: {} }) => {
 				state.isLoading = false
-				state.user = user
-				if (typeof window !== "undefined") {
-					localStorage.setItem("user", JSON.stringify(user))
-				}
 			})
 			.addCase(postRegister.rejected, state => {
 				state.isLoading = false
-				state.user = null
-				state.accessToken = ""
-				if (typeof window !== "undefined") {
-					localStorage.removeItem("user")
-				}
 			})
 			.addCase(postLogin.pending, state => {
 				state.isLoading = true
 			})
-			.addCase(postLogin.fulfilled, (state, { payload: { user, accessToken } }) => {
+			.addCase(postLogin.fulfilled, (state, { payload }) => {
 				state.isLoading = false
-				state.user = user
-				state.accessToken = accessToken
-				window.localStorage.setItem("token", accessToken)
-				window.localStorage.setItem("user", JSON.stringify(user))
+				state.user = payload
 			})
 			.addCase(postLogin.rejected, state => {
 				state.isLoading = false
 				state.user = null
-				state.accessToken = ""
-				window.localStorage.removeItem("token")
-				window.localStorage.removeItem("user")
 			})
 	}
 })
 
 export const selectAuth = (state: AppState) => state?.auth
-export const { logoutUser } = authSlice.actions
+export const { logoutUser, setUser } = authSlice.actions
 export default authSlice.reducer

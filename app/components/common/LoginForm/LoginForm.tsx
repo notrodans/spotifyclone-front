@@ -9,6 +9,7 @@ import { validateEmailPattern } from "@util/regxpMail"
 import { useAppSelector } from "@redux/hooks"
 import { selectAuth } from "@redux/slices/auth/auth.slice"
 import { useActions } from "@hooks/useActions"
+import * as nookies from "nookies"
 
 interface IFormValues {
 	login: string
@@ -19,7 +20,8 @@ interface IFormValues {
 type LoginFormType = HTMLAttributes<HTMLDivElement>
 
 const LoginForm: FC<LoginFormType> = ({ className, ...props }) => {
-	const { pathname, push } = useRouter()
+	const { pathname, ...router } = useRouter()
+	const [token, setToken] = useState("")
 	const [type, setType] = useState("")
 	const { isLoading } = useAppSelector(selectAuth)
 	const { postLogin, postRegister } = useActions()
@@ -35,6 +37,12 @@ const LoginForm: FC<LoginFormType> = ({ className, ...props }) => {
 	})
 
 	useEffect(() => {
+		if (typeof window !== "undefined") {
+			setToken(nookies.parseCookies()?.token)
+		}
+	}, [])
+
+	useEffect(() => {
 		if (pathname === "/login") {
 			setType("login")
 		} else if (pathname === "/signup") {
@@ -45,20 +53,28 @@ const LoginForm: FC<LoginFormType> = ({ className, ...props }) => {
 	const onSubmitForm: SubmitHandler<IFormValues> = useCallback(
 		async data => {
 			if (type === "login") {
-				const loginParams = {
-					login: data.email,
-					password: data.password
+				try {
+					const loginParams = {
+						login: data.email,
+						password: data.password
+					}
+					postLogin(loginParams)
+					setInterval(() => (window.location.href = "/"), 1000)
+				} catch (e) {
+					console.log(e)
 				}
-				postLogin(loginParams)
-				push("/")
 			} else if (type === "signup") {
-				const registerParams = {
-					login: data.login,
-					email: data.email,
-					password: data.password
+				try {
+					const registerParams = {
+						login: data.login,
+						email: data.email,
+						password: data.password
+					}
+					postRegister(registerParams)
+					router.push("/login")
+				} catch (e) {
+					console.warn(e)
 				}
-				postRegister(registerParams)
-				push("/login")
 			}
 		},
 		// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -69,7 +85,9 @@ const LoginForm: FC<LoginFormType> = ({ className, ...props }) => {
 		console.log(errors)
 	}
 
-	return (
+	return token ? (
+		<h1>Вы уже авторизированны</h1>
+	) : (
 		<div className={cn(styles.root, className)} {...props}>
 			<div className={styles.container}>
 				<div className={styles.body}>

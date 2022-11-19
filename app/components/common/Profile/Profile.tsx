@@ -1,13 +1,22 @@
-import { useAuth } from "@hooks/useAuth"
 import { useClickOutside } from "@hooks/useClickOutside"
-import { useAppDispatch } from "@redux/hooks"
-import { logoutUser } from "@redux/slices/auth/auth.slice"
-import { FC } from "react"
+import { useAppDispatch, useAppSelector } from "@redux/hooks"
+import { logoutUser, selectAuth } from "@redux/slices/auth/auth.slice"
+import { FC, useEffect, useState } from "react"
 import styles from "./Profile.module.scss"
 import cn from "classnames"
+import { IUser } from "@services/Auth/AuthService.type"
 
-const Profile: FC = () => {
-	const { user } = useAuth()
+interface IProfile {
+	userData: IUser
+}
+
+const Profile: FC<IProfile> = ({ userData }) => {
+	const [user, setUserState] = useState<IUser>(userData)
+	const { user: userRedux } = useAppSelector(selectAuth)
+	useEffect(() => {
+		setUserState(userData)
+	}, [userRedux, userData])
+
 	const dispatch = useAppDispatch()
 	const { isShow, setIsShow, ref } = useClickOutside()
 

@@ -1,5 +1,6 @@
 import { $axiosInstance } from "@axios/axiosInstance"
-import { IAuthData } from "./AuthService.type"
+import { IAuthData, IUser } from "./AuthService.type"
+import { decode } from "jsonwebtoken"
 
 export class AuthService {
 	static async register(login: string, email: string, password: string) {
@@ -8,7 +9,8 @@ export class AuthService {
 			email,
 			password
 		})
-		return data
+		const { user } = decode(data.accessToken) as { user: IUser }
+		return user
 	}
 
 	static async login(email: string, password: string) {
@@ -16,6 +18,7 @@ export class AuthService {
 			login: email,
 			password
 		})
-		return data
+		const { user } = decode(data.accessToken) as { user: IUser }
+		return user
 	}
 }

@@ -4,12 +4,17 @@ import styles from "./Home.module.scss"
 import Meta from "@components/SEO/Meta"
 import Main from "@components/common/Main/Main"
 import Wrapper from "@layouts/Wrapper"
+import { IUser } from "@services/Auth/AuthService.type"
 
-const Home: FC = () => {
+interface IHome {
+	userData: IUser
+}
+
+const Home: FC<IHome> = ({ userData }) => {
 	return (
 		<>
 			<Meta title='Главная' description='Best team is Asirix' />
-			<Wrapper className={styles.page}>
+			<Wrapper className={styles.page} userData={userData}>
 				<Main />
 			</Wrapper>
 		</>

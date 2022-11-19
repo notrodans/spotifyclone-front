@@ -1,6 +1,6 @@
 export interface IAuthData {
-	user: IUser | null
 	accessToken?: string
+	user?: IUser
 }
 
 export interface IUser {

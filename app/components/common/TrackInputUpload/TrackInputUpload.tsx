@@ -6,7 +6,7 @@ import cn from "classnames"
 
 type ITrackInputUpload = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
 
-const TrackInputUpload: FC<ITrackInputUpload> = ({ children, className, ...props }) => {
+const TrackInputUpload: FC<ITrackInputUpload> = ({ className, ...props }) => {
 	return <input className={cn(styles.root, className)} {...props} />
 }
 

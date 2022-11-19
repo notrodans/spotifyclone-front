@@ -1,6 +1,5 @@
-import { useAuth } from "@hooks/useAuth"
 import Link from "next/link"
-import { useRef, useState } from "react"
+import { FC, useEffect, useState } from "react"
 import AddButton from "../AddButton/AddButton"
 import FileUploadButton from "../FileUploadButton/FileUploadButton"
 import HeaderAuthLinks from "../HeaderAuthLinks/HeaderAuthLinks"
@@ -10,12 +9,21 @@ import TrackFormUpload from "../TrackFormUpload/TrackFormUpload"
 import TrackInputUpload from "../TrackInputUpload/TrackInputUpload"
 
 import styles from "./Header.module.scss"
+import { IUser } from "@services/Auth/AuthService.type"
+import { useAppSelector } from "@redux/hooks"
+import { selectAuth } from "@redux/slices/auth/auth.slice"
 
-const Header = () => {
-	const { user } = useAuth()
-	const popup = useRef(null)
+interface IHeader {
+	userData: IUser
+}
 
+const Header: FC<IHeader> = ({ userData }) => {
 	const [popupIsOpen, setPopupIsOpen] = useState(false)
+	const { user: userRedux } = useAppSelector(selectAuth)
+	const [user, setUserState] = useState<IUser>(userData)
+	useEffect(() => {
+		setUserState(userData)
+	}, [userRedux, userData])
 
 	const onClosePopup = () => setPopupIsOpen(false)
 	const onOpenPopup = () => setPopupIsOpen(true)
@@ -36,19 +44,19 @@ const Header = () => {
 						{user && (
 							<>
 								<AddButton onClick={onOpenPopup} />
-								<Profile />
+								<Profile userData={userData} />
 							</>
 						)}
 					</>
 				</div>
 			</div>
-			<Popup ref={popup} isOpen={popupIsOpen}>
+			<Popup isOpen={popupIsOpen}>
 				<TrackFormUpload onSubmitForm={() => console.log("hehhe")} onClosePopup={onClosePopup}>
 					<TrackInputUpload placeholder='Trackname' type={"text"} />
-					<FileUploadButton id={"UploadImage"} htmlFor='UploadImage'>
+					<FileUploadButton accept={"image/*"} id={"UploadImage"} htmlFor='UploadImage'>
 						Upload Image
 					</FileUploadButton>
-					<FileUploadButton id={"UploadTrack"} htmlFor='UploadTrack'>
+					<FileUploadButton accept={"audio/*"} id={"UploadTrack"} htmlFor='UploadTrack'>
 						Upload Track
 					</FileUploadButton>
 				</TrackFormUpload>
