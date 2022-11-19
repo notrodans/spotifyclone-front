@@ -7,7 +7,7 @@ import cn from "classnames"
 import { IUser } from "@services/Auth/AuthService.type"
 
 interface IProfile {
-	userData: IUser
+	userData?: IUser
 }
 
 const Profile: FC<IProfile> = ({ userData }) => {

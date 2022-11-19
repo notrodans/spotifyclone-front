@@ -7,7 +7,7 @@ import { IUser } from "@services/Auth/AuthService.type"
 interface IWrapperWithoutPlayer
 	extends PropsWithChildren,
 		DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-	userData: IUser
+	userData?: IUser
 }
 
 const WrapperWithoutPlayer: FC<IWrapperWithoutPlayer> = ({ userData, className, children }) => {

@@ -14,7 +14,7 @@ import { useAppSelector } from "@redux/hooks"
 import { selectAuth } from "@redux/slices/auth/auth.slice"
 
 interface IHeader {
-	userData: IUser
+	userData?: IUser
 }
 
 const Header: FC<IHeader> = ({ userData }) => {
