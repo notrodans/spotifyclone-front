@@ -1,13 +1,15 @@
 import cn from "classnames"
-import { FC, HTMLAttributes, PropsWithChildren } from "react"
+import { DetailedHTMLProps, FC, HTMLAttributes, PropsWithChildren } from "react"
 
 import Footer from "@components/common/Footer/Footer"
 import Header from "@components/common/Header/Header"
 import Sidebar from "@components/common/Sidebar/Sidebar"
 import { IUser } from "@services/Auth/AuthService.type"
 
-interface IWrapper extends PropsWithChildren, HTMLAttributes<HTMLDivElement> {
-	userData: IUser
+interface IWrapper
+	extends PropsWithChildren,
+		DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+	userData?: IUser
 }
 
 const Wrapper: FC<IWrapper> = ({ userData, className, children }) => {

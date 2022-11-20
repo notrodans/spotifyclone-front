@@ -59,7 +59,9 @@ const LoginForm: FC<LoginFormType> = ({ className, ...props }) => {
 						password: data.password
 					}
 					postLogin(loginParams)
-					setInterval(() => (window.location.href = "/"), 1000)
+					if (!isLoading) {
+						setTimeout(() => router.push("/"), 500)
+					}
 				} catch (e) {
 					console.log(e)
 				}
@@ -71,14 +73,14 @@ const LoginForm: FC<LoginFormType> = ({ className, ...props }) => {
 						password: data.password
 					}
 					postRegister(registerParams)
-					router.push("/login")
+					setTimeout(() => router.push("/login"), 1000)
 				} catch (e) {
 					console.warn(e)
 				}
 			}
 		},
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-		[type]
+		[type, isLoading]
 	)
 
 	const onErrorForm: SubmitErrorHandler<IFormValues> = errors => {
