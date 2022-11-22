@@ -34,6 +34,11 @@ body {
 	}
 }
 
+.page {
+	padding-top: rem(25);
+	padding-left: rem(15);
+}
+
 [class*="_container"] {
 	@if $maxWidthContainer > 0 {
 		box-sizing: content-box;

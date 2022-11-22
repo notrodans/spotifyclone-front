@@ -1,3 +1,4 @@
+import Wrapper from "@layouts/Wrapper"
 import { IUser } from "@services/Auth/AuthService.type"
 import React, { FC } from "react"
 
@@ -6,8 +7,11 @@ interface IUpload {
 }
 
 const Upload: FC<IUpload> = ({ userData }) => {
-	console.log(userData)
-	return <div>Upload</div>
+	return (
+		<Wrapper userData={userData}>
+			<h1>Upload</h1>
+		</Wrapper>
+	)
 }
 
 export default Upload

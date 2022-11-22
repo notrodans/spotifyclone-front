@@ -9,7 +9,6 @@ import { validateEmailPattern } from "@util/regxpMail"
 import { useAppSelector } from "@redux/hooks"
 import { selectAuth } from "@redux/slices/auth/auth.slice"
 import { useActions } from "@hooks/useActions"
-import * as nookies from "nookies"
 
 interface IFormValues {
 	login: string
@@ -34,7 +33,7 @@ const LoginForm: FC<LoginFormType> = ({ className, ...props }) => {
 	useEffect(() => {
 		if (pathname === "/login") {
 			setType("login")
-		} else if (pathname === "/signup") {
+		} else {
 			setType("signup")
 		}
 	}, [pathname])
@@ -54,7 +53,7 @@ const LoginForm: FC<LoginFormType> = ({ className, ...props }) => {
 				} catch (e) {
 					console.log(e)
 				}
-			} else if (type === "signup") {
+			} else {
 				try {
 					const registerParams = {
 						login: data.login,

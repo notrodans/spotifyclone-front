@@ -7,14 +7,13 @@ const HeaderAuthLinks: FC = () => {
 	const { pathname } = useRouter()
 	return (
 		<>
-			{pathname === "/login" ? null : (
+			{pathname === "/login" ? (
 				<Link href={"login"}>
 					<a className={styles.link} href='#'>
 						Sign in
 					</a>
 				</Link>
-			)}
-			{pathname === "/signup" ? null : (
+			) : (
 				<Link href={"/signup"}>
 					<a className={styles.link} href='#'>
 						Sign up

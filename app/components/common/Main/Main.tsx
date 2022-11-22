@@ -11,9 +11,6 @@ const Main: FC = () => {
 			<div className={styles.containerWithoutMaxWidth}>
 				<div className={styles.body}>
 					<RecentItem title={"GA$$"} src={logo} link={"/"} />
-					<RecentItem title={"GA$$"} src={logo} link={"/"} />
-					<RecentItem title={"GA$$"} src={logo} link={"/"} />
-					<RecentItem title={"GA$$"} src={logo} link={"/"} />
 				</div>
 			</div>
 		</div>

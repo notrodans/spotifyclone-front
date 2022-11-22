@@ -1,16 +1,17 @@
 import AddIcon from "@assets/icons-components/AddIcon"
-import { ButtonHTMLAttributes, DetailedHTMLProps, FC } from "react"
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { AnchorHTMLAttributes, DetailedHTMLProps, FC } from "react"
 
 import styles from "./AddButton.module.scss"
 import cn from "classnames"
 
-type IAddButton = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
+type IAddButton = DetailedHTMLProps<AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>
 
 const AddButton: FC<IAddButton> = ({ className, ...props }) => {
 	return (
-		<button {...props} className={cn(styles.root, className)}>
+		<a href='' {...props} className={cn(styles.root, className)}>
 			<AddIcon />
-		</button>
+		</a>
 	)
 }
 
