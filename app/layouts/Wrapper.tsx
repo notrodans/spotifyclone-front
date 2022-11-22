@@ -13,16 +13,15 @@ interface IWrapper
 }
 
 const Wrapper: FC<IWrapper> = ({ userData, className, children }) => {
-	const user = userData ? { ...userData } : null
 	return (
 		<>
 			<div className='wrapper'>
 				<Header userData={userData} />
 				<div className='wrapper__body'>
-					<Sidebar />
+					{userData && <Sidebar />}
 					<main className={cn("page", className)}>{children}</main>
 				</div>
-				{user && <Footer />}
+				{userData && <Footer />}
 			</div>
 		</>
 	)

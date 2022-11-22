@@ -1,16 +1,19 @@
 import { FC } from "react"
 
 import Meta from "@components/SEO/Meta"
-import WrapperWithoutPlayer from "@layouts/WrapperWithoutPlayer"
 import LoginForm from "@components/common/LoginForm/LoginForm"
+import { IUser } from "@services/Auth/AuthService.type"
+import Wrapper from "@layouts/Wrapper"
 
-const Signup: FC = () => {
+interface ISignup {
+	userData: IUser
+}
+
+const Signup: FC<ISignup> = ({ userData }) => {
 	return (
 		<>
 			<Meta title='Регистрация' description='Signup' />
-			<WrapperWithoutPlayer>
-				<LoginForm />
-			</WrapperWithoutPlayer>
+			<Wrapper>{!userData ? <LoginForm /> : <h1>Вы уже авторизованны</h1>}</Wrapper>
 		</>
 	)
 }

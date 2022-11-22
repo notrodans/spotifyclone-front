@@ -63,10 +63,12 @@
 }
 
 .link {
+	display: inline-block;
 	width: 100%;
 	padding: rem(8) rem(5);
 	font-weight: 600;
 	font-size: rem(14);
+	line-height: normal;
 	text-align: left;
 	border-radius: var(--min-border);
 

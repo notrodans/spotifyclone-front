@@ -21,26 +21,15 @@ type LoginFormType = HTMLAttributes<HTMLDivElement>
 
 const LoginForm: FC<LoginFormType> = ({ className, ...props }) => {
 	const { pathname, ...router } = useRouter()
-	const [token, setToken] = useState("")
 	const [type, setType] = useState("")
 	const { isLoading } = useAppSelector(selectAuth)
 	const { postLogin, postRegister } = useActions()
-	const {
-		register,
-		handleSubmit
-		// formState: { errors }
-	} = useForm<IFormValues>({ mode: "onChange" })
+	const { register, handleSubmit } = useForm<IFormValues>({ mode: "onChange" })
 	const [{ login, email, password }, setValues] = useState<IFormValues>({
 		login: "",
 		email: "",
 		password: ""
 	})
-
-	useEffect(() => {
-		if (typeof window !== "undefined") {
-			setToken(nookies.parseCookies()?.token)
-		}
-	}, [])
 
 	useEffect(() => {
 		if (pathname === "/login") {
@@ -87,9 +76,7 @@ const LoginForm: FC<LoginFormType> = ({ className, ...props }) => {
 		console.log(errors)
 	}
 
-	return token ? (
-		<h1>Вы уже авторизированны</h1>
-	) : (
+	return (
 		<div className={cn(styles.root, className)} {...props}>
 			<div className={styles.container}>
 				<div className={styles.body}>

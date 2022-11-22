@@ -6,13 +6,19 @@ import Favorite from "@components/screens/favorite/Favorite"
 import { wrapper } from "@redux/store"
 import { setUser } from "@redux/slices/auth/auth.slice"
 import { IUser } from "@services/Auth/AuthService.type"
+import Meta from "@components/SEO/Meta"
 
 interface IFavoritePage {
 	userData: IUser
 }
 
 const FavoritePage: NextPage<IFavoritePage> = ({ userData }) => {
-	return <Favorite userData={userData} />
+	return (
+		<>
+			<Meta title='Избранные' description='Favorites' />
+			<Favorite userData={userData} />
+		</>
+	)
 }
 
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
@@ -20,6 +26,14 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
 		const token = nookies.parseCookies(ctx)?.token
 		const data = jwt.decode(token) as { user: IUser }
 		const userData = data?.user ? { ...data?.user } : null
+		if (!userData) {
+			return {
+				redirect: {
+					destination: "/login",
+					permanent: true
+				}
+			}
+		}
 		store.dispatch(setUser(userData))
 		return {
 			props: {

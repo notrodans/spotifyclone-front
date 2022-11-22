@@ -5,6 +5,7 @@ import { HYDRATE } from "next-redux-wrapper"
 import { postLogin, postRegister } from "./auth.actions"
 import { IAuthState } from "./types"
 import * as nookies from "nookies"
+
 const initialState: IAuthState = {
 	user: null,
 	isLoading: false
@@ -25,7 +26,6 @@ const authSlice = createSlice({
 		logoutUser: state => {
 			state.user = null
 			nookies.destroyCookie(null, "token")
-			window.location.href = "/login"
 		}
 	},
 	extraReducers: builder => {
@@ -41,7 +41,7 @@ const authSlice = createSlice({
 				state.isLoading = false
 			})
 			.addCase(postRegister.rejected, state => {
-				state.isLoading = "error"
+				state.isLoading = false
 			})
 			.addCase(postLogin.pending, state => {
 				state.isLoading = true
@@ -51,7 +51,7 @@ const authSlice = createSlice({
 				state.user = payload
 			})
 			.addCase(postLogin.rejected, state => {
-				state.isLoading = "error"
+				state.isLoading = false
 				state.user = null
 			})
 	}

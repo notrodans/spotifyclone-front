@@ -5,10 +5,20 @@ import { FC, useEffect, useState } from "react"
 import styles from "./Profile.module.scss"
 import cn from "classnames"
 import { IUser } from "@services/Auth/AuthService.type"
+import { useRouter } from "next/router"
+import Link from "next/link"
 
 interface IProfile {
 	userData?: IUser
 }
+
+const profilesLinks = [
+	{
+		id: 1,
+		text: "Профиль",
+		link: "/me"
+	}
+]
 
 const Profile: FC<IProfile> = ({ userData }) => {
 	const [user, setUserState] = useState<IUser>(userData)
@@ -19,9 +29,11 @@ const Profile: FC<IProfile> = ({ userData }) => {
 
 	const dispatch = useAppDispatch()
 	const { isShow, setIsShow, ref } = useClickOutside()
+	const router = useRouter()
 
 	const onLogout = () => {
 		dispatch(logoutUser())
+		router.push("/login")
 	}
 
 	return (
@@ -39,11 +51,15 @@ const Profile: FC<IProfile> = ({ userData }) => {
 					[styles.active]: isShow
 				})}>
 				<ul className={styles.body}>
+					{profilesLinks.map(item => (
+						<li key={item.id} className={styles.item}>
+							<Link href={item.link}>
+								<a className={styles.link}>Профиль</a>
+							</Link>
+						</li>
+					))}
 					<li className={styles.item}>
-						<button className={styles.link}>Профиль</button>
-					</li>
-					<li className={styles.item}>
-						<button onClick={onLogout} className={styles.link}>
+						<button onClick={onLogout} className={styles.link} type={"button"}>
 							Выйти
 						</button>
 					</li>
