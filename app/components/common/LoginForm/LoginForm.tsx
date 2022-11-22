@@ -20,7 +20,7 @@ type LoginFormType = HTMLAttributes<HTMLDivElement>
 
 const LoginForm: FC<LoginFormType> = ({ className, ...props }) => {
 	const { pathname, ...router } = useRouter()
-	const [type, setType] = useState("")
+	const [type, setType] = useState<"login" | "signup">(null)
 	const { isLoading } = useAppSelector(selectAuth)
 	const { postLogin, postRegister } = useActions()
 	const { register, handleSubmit } = useForm<IFormValues>({ mode: "onChange" })

@@ -1,11 +1,10 @@
 import { FC } from "react"
 
-import RecentItem from "../RecentItem/RecentItem"
-
-import styles from "./Main.module.scss"
+import styles from "./index.module.scss"
 import logo from "@assets/logo.jpeg"
+import RecentItem from "@components/common/RecentItem/RecentItem"
 
-const Main: FC = () => {
+const HomeComponent: FC = () => {
 	return (
 		<div className={styles.root}>
 			<div className={styles.containerWithoutMaxWidth}>
@@ -17,4 +16,4 @@ const Main: FC = () => {
 	)
 }
 
-export default Main
+export default HomeComponent

@@ -7,7 +7,6 @@ import FavoriteIcon from "@assets/icons-components/FavoriteIcon"
 import FavoriteIconActive from "@assets/icons-components/FavoriteIconActive"
 import HomeIcon from "@assets/icons-components/HomeIcon"
 import HomeIconActive from "@assets/icons-components/HomeIconActive"
-import { IUser } from "@services/Auth/AuthService.type"
 
 const Links = [
 	{

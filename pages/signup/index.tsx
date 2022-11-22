@@ -5,16 +5,21 @@ import * as nookies from "nookies"
 import { wrapper } from "@redux/store"
 import { IUser } from "@services/Auth/AuthService.type"
 import Wrapper from "@layouts/Wrapper"
+import Meta from "@components/SEO/Meta"
+import SignupComponent from "@components/screens/Signup"
 
-interface IMe {
+interface ISignupPage {
 	userData: IUser
 }
 
-const Me: NextPage<IMe> = ({ userData }) => {
+const SignupPage: NextPage<ISignupPage> = ({ userData }) => {
 	return (
-		<Wrapper userData={userData}>
-			<h1>Me</h1>
-		</Wrapper>
+		<>
+			<Meta title='Регистрация' description='Signup' />
+			<Wrapper userData={userData}>
+				<SignupComponent />
+			</Wrapper>
+		</>
 	)
 }
 
@@ -24,10 +29,10 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
 		const data = jwt.decode(token) as { user: IUser }
 		const userData = data?.user ? { ...data?.user } : null
 		store.dispatch(setUser(userData))
-		if (!userData) {
+		if (userData) {
 			return {
 				redirect: {
-					destination: "/login",
+					destination: "/",
 					permanent: true
 				}
 			}
@@ -40,4 +45,4 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
 	}
 )
 
-export default Me
+export default SignupPage

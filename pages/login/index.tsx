@@ -4,17 +4,21 @@ import * as jwt from "jsonwebtoken"
 import * as nookies from "nookies"
 import { wrapper } from "@redux/store"
 import { IUser } from "@services/Auth/AuthService.type"
-import Upload from "@components/screens/upload/Upload"
-import Meta from "@components/SEO/Meta"
 
-interface IUploadPage {
+import Meta from "@components/SEO/Meta"
+import Wrapper from "@layouts/Wrapper"
+import LoginComponent from "@components/screens/Login"
+
+interface ILoginPage {
 	userData: IUser
 }
 
-const UploadPage: NextPage<IUploadPage> = ({ userData }) => (
+const LoginPage: NextPage<ILoginPage> = ({ userData }) => (
 	<>
-		<Meta title='Загрузка треков' description='Upload Tracks' />
-		<Upload userData={userData} />
+		<Meta title='Регистрация' description='Signup' />
+		<Wrapper userData={userData}>
+			<LoginComponent />
+		</Wrapper>
 	</>
 )
 
@@ -23,15 +27,15 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
 		const token = nookies.parseCookies(ctx)?.token
 		const data = jwt.decode(token) as { user: IUser }
 		const userData = data?.user ? { ...data?.user } : null
-		if (!userData) {
+		store.dispatch(setUser(userData))
+		if (userData) {
 			return {
 				redirect: {
-					destination: "/login",
+					destination: "/",
 					permanent: true
 				}
 			}
 		}
-		store.dispatch(setUser(userData))
 		return {
 			props: {
 				userData
@@ -40,4 +44,4 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
 	}
 )
 
-export default UploadPage
+export default LoginPage

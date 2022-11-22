@@ -9,14 +9,14 @@ import { useRouter } from "next/router"
 import Link from "next/link"
 
 interface IProfile {
-	userData?: IUser
+	userData: IUser
 }
 
 const profilesLinks = [
 	{
 		id: 1,
 		text: "Профиль",
-		link: "/me"
+		link: "/profile"
 	}
 ]
 

@@ -1,22 +1,24 @@
-import React from "react"
-import type { GetServerSideProps, NextPage } from "next"
-import * as nookies from "nookies"
-import * as jwt from "jsonwebtoken"
-import Favorite from "@components/screens/favorite/Favorite"
-import { wrapper } from "@redux/store"
 import { setUser } from "@redux/slices/auth/auth.slice"
+import type { GetServerSideProps, NextPage } from "next"
+import * as jwt from "jsonwebtoken"
+import * as nookies from "nookies"
+import { wrapper } from "@redux/store"
 import { IUser } from "@services/Auth/AuthService.type"
+import Wrapper from "@layouts/Wrapper"
 import Meta from "@components/SEO/Meta"
+import ProfileComponent from "@components/screens/Profile"
 
-interface IFavoritePage {
+interface IProfile {
 	userData: IUser
 }
 
-const FavoritePage: NextPage<IFavoritePage> = ({ userData }) => {
+const Profile: NextPage<IProfile> = ({ userData }) => {
 	return (
 		<>
-			<Meta title='Избранные' description='Favorites' />
-			<Favorite userData={userData} />
+			<Meta title='Профиль' description='ProfilePage' />
+			<Wrapper userData={userData}>
+				<ProfileComponent />
+			</Wrapper>
 		</>
 	)
 }
@@ -26,6 +28,7 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
 		const token = nookies.parseCookies(ctx)?.token
 		const data = jwt.decode(token) as { user: IUser }
 		const userData = data?.user ? { ...data?.user } : null
+		store.dispatch(setUser(userData))
 		if (!userData) {
 			return {
 				redirect: {
@@ -34,7 +37,6 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
 				}
 			}
 		}
-		store.dispatch(setUser(userData))
 		return {
 			props: {
 				userData
@@ -43,4 +45,4 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
 	}
 )
 
-export default FavoritePage
+export default Profile
