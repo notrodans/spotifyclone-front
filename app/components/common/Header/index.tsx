@@ -16,6 +16,7 @@ interface IHeader {
 const Header: FC<IHeader> = ({ userData }) => {
 	const { user: userRedux } = useAppSelector(selectAuth)
 	const [user, setUserState] = useState<IUser>(userData)
+
 	useEffect(() => {
 		setUserState(userData)
 	}, [userRedux, userData])

@@ -22,6 +22,7 @@
 		"baseUrl": "app",
 		"paths": {
 			"@components/*": ["components/*"],
+			"@common/*": ["components/common/*"],
 			"@ui/*": ["components/common/UI/*"],
 			"@styles/*": ["styles/*"],
 			"@screens/*": ["components/screens/*"],
