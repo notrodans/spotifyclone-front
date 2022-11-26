@@ -1,4 +1,4 @@
-import styles from "./LoginInput.module.scss"
+import styles from "./index.module.scss"
 import cn from "classnames"
 import { DetailedHTMLProps, forwardRef, InputHTMLAttributes } from "react"
 

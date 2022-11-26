@@ -1,8 +1,8 @@
-import LoginForm from "@components/common/LoginForm/LoginForm"
+import SignupForm from "@components/common/SignupForm"
 import { FC } from "react"
 
 const SignupComponent: FC = () => {
-	return <LoginForm />
+	return <SignupForm />
 }
 
 export default SignupComponent

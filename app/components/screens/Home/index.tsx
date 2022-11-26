@@ -2,7 +2,7 @@ import { FC } from "react"
 
 import styles from "./index.module.scss"
 import logo from "@assets/logo.jpeg"
-import RecentItem from "@components/common/RecentItem/RecentItem"
+import RecentItem from "@components/common/RecentItem"
 
 const HomeComponent: FC = () => {
 	return (

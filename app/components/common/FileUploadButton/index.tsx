@@ -1,7 +1,7 @@
 import { DetailedHTMLProps, FC, InputHTMLAttributes, PropsWithChildren } from "react"
 
 import cn from "classnames"
-import styles from "./FileUploadButton.module.scss"
+import styles from "./index.module.scss"
 
 interface IFileUploadButton
 	extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,

@@ -1,6 +1,6 @@
 import { FC, PropsWithChildren } from "react"
 import ReactModal from "react-modal"
-import styles from "./Popup.module.scss"
+import styles from "./index.module.scss"
 
 interface IPopup extends PropsWithChildren, ReactModal.Props {}
 

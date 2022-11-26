@@ -3,7 +3,7 @@ import Image, { StaticImageData } from "next/image"
 import Link from "next/link"
 import { DetailedHTMLProps, FC, HTMLAttributes } from "react"
 
-import styles from "./PlayerTrackInfo.module.scss"
+import styles from "./index.module.scss"
 
 interface IPlayerTrackInfo
 	extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {

@@ -3,7 +3,7 @@ import Image, { StaticImageData } from "next/image"
 import Link from "next/link"
 import { FC, LinkHTMLAttributes } from "react"
 
-import styles from "./RecentItem.module.scss"
+import styles from "./index.module.scss"
 
 interface IRecentItem extends LinkHTMLAttributes<HTMLElement> {
 	title: string

@@ -1,13 +1,13 @@
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { FC } from "react"
-import styles from "./HeaderAuthLinks.module.scss"
+import styles from "./index.module.scss"
 
 const HeaderAuthLinks: FC = () => {
 	const { pathname } = useRouter()
 	return (
 		<>
-			{pathname === "/login" ? (
+			{pathname === "/signup" ? (
 				<Link href={"login"}>
 					<a className={styles.link} href='#'>
 						Sign in

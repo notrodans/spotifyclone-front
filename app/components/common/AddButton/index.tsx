@@ -2,7 +2,7 @@ import AddIcon from "@assets/icons-components/AddIcon"
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { AnchorHTMLAttributes, DetailedHTMLProps, FC } from "react"
 
-import styles from "./AddButton.module.scss"
+import styles from "./index.module.scss"
 import cn from "classnames"
 
 type IAddButton = DetailedHTMLProps<AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>

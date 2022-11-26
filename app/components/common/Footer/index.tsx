@@ -1,8 +1,8 @@
 import { FC } from "react"
 
-import PlayerTrackInfo from "../PlayerTrackInfo/PlayerTrackInfo"
+import PlayerTrackInfo from "../PlayerTrackInfo"
 
-import styles from "./Footer.module.scss"
+import styles from "./index.module.scss"
 import logo from "@assets/logo.jpeg"
 
 const Footer: FC = () => {
