@@ -20,10 +20,11 @@ const PlayerTrackInfo: FC<IPlayerTrackInfo> = ({
 	author,
 	titleLink,
 	authorLink,
+	className,
 	...props
 }) => {
 	return (
-		<div className={styles.root} {...props}>
+		<div className={cn(styles.root, className)} {...props}>
 			<Link href={authorLink}>
 				<a>
 					<Image className={styles.image} src={src} width={56} height={56} alt={"hehe"} />

@@ -1,4 +1,4 @@
-import { FC, useRef, useState } from "react"
+import { DetailedHTMLProps, FC, HTMLAttributes, useRef, useState } from "react"
 
 import styles from "./index.module.scss"
 import cn from "classnames"
@@ -7,13 +7,15 @@ import PlayerIconPause from "@assets/icons-components/PlayerIconPause"
 import PlayerIconArrowRight from "@assets/icons-components/PlayerIconArrowRight"
 import PlayerIconResume from "@assets/icons-components/PlayerIconResume"
 
-const Player: FC = () => {
-	const range = useRef<HTMLInputElement>(null)
+interface IPlayer extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
+
+const Player: FC<IPlayer> = ({ className, ...props }) => {
+	const input = useRef<HTMLInputElement>(null)
 	const [trackState, setTrackState] = useState<"pause" | "resume">()
 	const [inputValue, setInputValue] = useState(null)
 
 	return (
-		<div className={styles.root}>
+		<div className={cn(styles.root, className)} {...props}>
 			<div className={styles.actions}>
 				<button className={styles.button}>
 					<PlayerIconArrowLeft />
@@ -31,8 +33,8 @@ const Player: FC = () => {
 				<span className={cn(styles.currentStart, styles.timestamps)}>0:00</span>
 				<div className={styles.range}>
 					<input
-						ref={range}
-						onChange={() => setInputValue(range.current.value)}
+						ref={input}
+						onChange={() => setInputValue(input.current.value)}
 						className={styles.controls}
 						type={"range"}
 						min={0}

@@ -1,11 +1,11 @@
 import { FC } from "react"
 
+import Player from "@common/Player"
 import PlayerTrackInfo from "@common/PlayerTrackInfo"
+import PlayerActions from "@common/PlayerActions"
 
 import styles from "./index.module.scss"
 import logo from "@assets/logo.jpeg"
-import Player from "@common/Player"
-import PlayerActions from "@common/PlayerActions"
 
 const Footer: FC = () => {
 	return (
@@ -18,9 +18,10 @@ const Footer: FC = () => {
 						author={"16th"}
 						titleLink={"/"}
 						authorLink={"/"}
+						className={styles.playerTrackInfo}
 					/>
-					<Player />
-					<PlayerActions />
+					<Player className={styles.player} />
+					<PlayerActions className={styles.playerActions} />
 				</div>
 			</div>
 		</footer>

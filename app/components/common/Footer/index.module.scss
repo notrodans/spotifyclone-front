@@ -17,4 +17,21 @@
 	flex: 1 1 auto;
 	align-items: center;
 	justify-content: space-between;
+	column-gap: rem(15);
+}
+
+.playerTrackInfo {
+	width: 30%;
+	min-width: rem(180);
+}
+
+.player {
+	@include adaptiveValue("min-width", 722, 280, 1);
+
+	width: 40%;
+}
+
+.playerActions {
+	width: 30%;
+	min-width: rem(180);
 }

@@ -1,7 +1,72 @@
 @import "../../../../styles/base/mixins";
 
 .root {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	column-gap: rem(13);
+}
+
+.button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	color: var(--color-second);
+
+	svg {
+		fill: currentcolor; /* stylelint-disable-line value-keyword-case */
+	}
+}
+
+.range {
+	position: relative;
+	display: flex;
 	flex: 0 0 rem(100);
-	height: rem(1);
+	align-items: center;
+	height: rem(5);
+	background-color: var(--color-progress);
+	border-radius: var(--min-border);
+
+	&:hover {
+		.rangeDot {
+			opacity: 1;
+		}
+
+		.rangeLine {
+			background-color: var(--color-second);
+		}
+	}
+}
+
+.rangeLine {
+	width: 0%;
+	height: 100%;
+	background-color: var(--color-first);
+	border-radius: var(--min-border);
+}
+
+.rangeDot {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	width: rem(12);
+	height: rem(12);
 	background-color: var(--color-second);
+	border-radius: 50%;
+	transform: translate(-50%, -50%);
+	opacity: 0;
+}
+
+.rangeLine,
+.rangeDot {
+	pointer-events: none;
+}
+
+.controls[type="range"] {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: rem(5);
+	opacity: 0;
 }
