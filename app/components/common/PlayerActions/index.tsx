@@ -9,10 +9,10 @@ import styles from "./index.module.scss"
 import PlayerIconQueue from "@assets/icons-components/PlayerIconQueue"
 
 interface IPlayerActions
-	extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> { }
+	extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
 
 const PlayerActions: FC<IPlayerActions> = ({ className, ...props }) => {
-	const [inputValue, setInputValue] = useState<number>(null)
+	const [inputValue, setInputValue] = useState<number>(50)
 	const input = useRef<HTMLInputElement>(null)
 
 	const onClickVolume = useCallback(() => {

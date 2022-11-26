@@ -15,7 +15,7 @@ interface ILoginPage {
 
 const LoginPage: NextPage<ILoginPage> = ({ userData }) => (
 	<>
-		<Meta title='Регистрация' description='Signup' />
+		<Meta title='Авторизация' description='LoginPage' />
 		<Wrapper userData={userData}>
 			<LoginComponent />
 		</Wrapper>
