@@ -22,7 +22,7 @@ const Player: FC<IPlayer> = ({ className, ...props }) => {
 				</button>
 				<button
 					onClick={() => setTrackState(trackState === "pause" ? "resume" : "pause")}
-					className={styles.button}>
+					className={cn(styles.button, styles.buttonFill)}>
 					{trackState === "resume" ? <PlayerIconPause /> : <PlayerIconResume />}
 				</button>
 				<button className={styles.button}>

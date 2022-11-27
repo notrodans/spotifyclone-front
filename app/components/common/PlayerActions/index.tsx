@@ -16,7 +16,7 @@ const PlayerActions: FC<IPlayerActions> = ({ className, ...props }) => {
 	const input = useRef<HTMLInputElement>(null)
 
 	const onClickVolume = useCallback(() => {
-		setInputValue(prev => (prev === 0 ? 20 : 0))
+		setInputValue(prev => (!prev ? 20 : 0))
 	}, [])
 
 	return (

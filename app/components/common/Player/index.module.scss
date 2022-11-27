@@ -30,7 +30,17 @@
 	}
 
 	svg {
-		fill: currentcolor;
+		fill: currentColor;
+	}
+}
+
+.buttonFill {
+	color: var(--color-second);
+	background-color: var(--color-tertiary);
+	border-radius: 50%;
+
+	svg {
+		fill: currentColor;
 	}
 }
 
