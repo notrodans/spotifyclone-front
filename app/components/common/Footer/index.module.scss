@@ -22,16 +22,14 @@
 
 .playerTrackInfo {
 	width: 30%;
-	min-width: rem(180);
+	min-width: rem(100);
 }
 
 .player {
-	@include adaptiveValue("min-width", 722, 280, 1);
-
 	width: 40%;
 }
 
 .playerActions {
 	width: 30%;
-	min-width: rem(180);
+	min-width: rem(100);
 }

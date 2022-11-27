@@ -34,5 +34,5 @@ export const useColor = (url: string) => {
 		})()
 	}, [fac, getColor, url])
 
-	return [colorOfImage]
+	return { colorOfImage }
 }

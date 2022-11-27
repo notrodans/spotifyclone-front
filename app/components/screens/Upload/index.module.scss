@@ -11,6 +11,10 @@
 
 .left {
 	flex: 1 1 73%;
+
+	&:not(:last-child) {
+		padding-right: rem(15);
+	}
 }
 
 .right {
