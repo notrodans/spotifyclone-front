@@ -1,11 +1,11 @@
 import { FC } from "react"
 
-import Player from "@common/Player"
-import PlayerTrackInfo from "@common/PlayerTrackInfo"
-import PlayerActions from "@common/PlayerActions"
-
 import styles from "./index.module.scss"
 import logo from "@assets/logo.jpeg"
+
+import PlayerTrackInfo from "@components/PlayerTrackInfo"
+import Player from "@components/Player"
+import PlayerActions from "@components/PlayerActions"
 
 const Footer: FC = () => {
 	return (

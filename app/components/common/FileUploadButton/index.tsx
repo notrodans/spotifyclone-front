@@ -5,7 +5,7 @@ import styles from "./index.module.scss"
 
 interface IFileUploadButton
 	extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
-	PropsWithChildren {
+		PropsWithChildren {
 	htmlFor: string
 }
 

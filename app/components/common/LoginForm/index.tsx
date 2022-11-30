@@ -35,15 +35,12 @@ const LoginForm: FC<LoginForm> = ({ className, ...props }) => {
 					password: data.password
 				}
 				postLogin(loginParams)
-				if (!isLoading) {
-					setTimeout(() => router.push("/"), 500)
-				}
+				setTimeout(() => router.push("/"), 500)
 			} catch (e) {
 				console.log(e)
 			}
 		},
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-		[isLoading]
+		[router]
 	)
 
 	const onErrorForm: SubmitErrorHandler<IFormValues> = errors => {

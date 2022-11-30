@@ -55,7 +55,8 @@
 	border-radius: var(--min-border);
 	transition: all 0.3s ease 0s;
 
-	&:hover {
+	&:hover,
+	&:focus {
 		color: var(--color-tertiary);
 		background-color: var(--color-main);
 	}

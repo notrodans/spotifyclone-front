@@ -38,7 +38,7 @@ const SignupForm: FC<SignupForm> = ({ className, ...props }) => {
 					password: data.password
 				}
 				postRegister(registerParams)
-				setTimeout(() => router.push("/login"), 1000)
+				router.push("/login")
 			} catch (e) {
 				console.warn(e)
 			}

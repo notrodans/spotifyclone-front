@@ -1,10 +1,14 @@
 import auth from "./slices/auth/auth.slice"
+import album from "./slices/uploadAlbum/uploadAlbum.slice"
+import audio from "./slices/audio/audio.slice"
 import { ThunkAction, configureStore } from "@reduxjs/toolkit"
 import { createWrapper } from "next-redux-wrapper"
 import { Action, combineReducers } from "redux"
 
 export const rootReducer = combineReducers({
-	auth
+	auth,
+	album,
+	audio
 })
 
 export const makeStore = () =>

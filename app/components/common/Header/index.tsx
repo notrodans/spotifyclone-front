@@ -1,25 +1,15 @@
 import Link from "next/link"
-import { FC, useEffect, useState } from "react"
+import { FC } from "react"
 import AddButton from "../AddButton"
 import HeaderAuthLinks from "../HeaderAuthLinks"
 import Profile from "../Profile"
 
 import styles from "./index.module.scss"
-import { IUser } from "@services/Auth/AuthService.type"
 import { useAppSelector } from "@redux/hooks"
 import { selectAuth } from "@redux/slices/auth/auth.slice"
 
-interface IHeader {
-	userData: IUser
-}
-
-const Header: FC<IHeader> = ({ userData }) => {
-	const { user: userRedux } = useAppSelector(selectAuth)
-	const [user, setUserState] = useState<IUser>(userData)
-
-	useEffect(() => {
-		setUserState(userData)
-	}, [userRedux, userData])
+const Header: FC = () => {
+	const { user } = useAppSelector(selectAuth)
 
 	return (
 		<header className={styles.root}>
@@ -39,7 +29,7 @@ const Header: FC<IHeader> = ({ userData }) => {
 								<Link href='/upload'>
 									<AddButton />
 								</Link>
-								<Profile userData={userData} />
+								<Profile />
 							</>
 						)}
 					</>

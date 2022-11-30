@@ -37,7 +37,7 @@ const authSlice = createSlice({
 			.addCase(postRegister.pending, state => {
 				state.isLoading = true
 			})
-			.addCase(postRegister.fulfilled, (state, { payload: {} }) => {
+			.addCase(postRegister.fulfilled, state => {
 				state.isLoading = false
 			})
 			.addCase(postRegister.rejected, state => {
@@ -46,13 +46,11 @@ const authSlice = createSlice({
 			.addCase(postLogin.pending, state => {
 				state.isLoading = true
 			})
-			.addCase(postLogin.fulfilled, (state, { payload }) => {
+			.addCase(postLogin.fulfilled, state => {
 				state.isLoading = false
-				state.user = payload
 			})
 			.addCase(postLogin.rejected, state => {
 				state.isLoading = false
-				state.user = null
 			})
 	}
 })

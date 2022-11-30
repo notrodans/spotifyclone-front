@@ -16,7 +16,7 @@ const Wrapper: FC<IWrapper> = ({ userData, className, children }) => {
 	return (
 		<>
 			<div className='wrapper'>
-				<Header userData={userData} />
+				<Header />
 				<div className='wrapper__body'>
 					{userData && <Sidebar />}
 					<main className={cn("page", className)}>{children}</main>

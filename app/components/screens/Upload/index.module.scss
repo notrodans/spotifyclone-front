@@ -23,6 +23,7 @@
 	margin-top: rem(-15);
 	padding: rem(45);
 	background: linear-gradient(var(--color), #040308 80%);
+	transition: background 0.3s ease 0s;
 }
 
 .rightBody {
@@ -62,8 +63,9 @@
 
 .trackItem {
 	position: relative;
+	display: flex;
+	justify-content: space-between;
 	padding-left: rem(40);
-	font-weight: 500;
 
 	&:not(:last-child) {
 		margin-bottom: rem(25);
@@ -78,13 +80,13 @@
 		content: counter(track-counter);
 		counter-increment: track-counter;
 	}
+}
 
-	&::after {
-		position: absolute;
-		top: 1px;
-		right: 0;
-		color: var(--color-gray);
-		font-weight: 500;
-		content: "3:30";
-	}
+.trackName {
+	font-weight: 500;
+}
+
+.trackTime {
+	color: var(--color-gray);
+	font-weight: 500;
 }

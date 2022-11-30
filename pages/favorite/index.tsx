@@ -28,7 +28,7 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
 	store => async ctx => {
 		const token = nookies.parseCookies(ctx)?.token
 		const data = jwt.decode(token) as { user: IUser }
-		const userData = data?.user ? { ...data?.user } : null
+		const userData = data?.user ? { ...data.user } : null
 		if (!userData) {
 			return {
 				redirect: {

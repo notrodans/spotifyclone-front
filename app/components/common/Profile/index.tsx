@@ -1,16 +1,11 @@
 import { useClickOutside } from "@hooks/useClickOutside"
 import { useAppDispatch, useAppSelector } from "@redux/hooks"
 import { logoutUser, selectAuth } from "@redux/slices/auth/auth.slice"
-import { FC, useEffect, useState } from "react"
+import { FC } from "react"
 import styles from "./index.module.scss"
 import cn from "classnames"
-import { IUser } from "@services/Auth/AuthService.type"
 import { useRouter } from "next/router"
 import Link from "next/link"
-
-interface IProfile {
-	userData: IUser
-}
 
 const profilesLinks = [
 	{
@@ -20,12 +15,8 @@ const profilesLinks = [
 	}
 ]
 
-const Profile: FC<IProfile> = ({ userData }) => {
-	const [user, setUserState] = useState<IUser>(userData)
-	const { user: userRedux } = useAppSelector(selectAuth)
-	useEffect(() => {
-		setUserState(userData)
-	}, [userRedux, userData])
+const Profile: FC = () => {
+	const { user } = useAppSelector(selectAuth)
 
 	const dispatch = useAppDispatch()
 	const { isShow, setIsShow, ref } = useClickOutside()

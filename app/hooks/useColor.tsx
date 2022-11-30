@@ -10,7 +10,7 @@ export const useColor = (url: string) => {
 	const getColor = useCallback(
 		async (url: string) => {
 			if (url) {
-				const { hex: color } = await fac.getColorAsync(url, { algorithm: "dominant" })
+				const { hex: color } = await fac.getColorAsync(url)
 				return color
 			}
 			return "#fff"

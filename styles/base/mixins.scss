@@ -8,8 +8,7 @@
 		font-weight: #{$weight};
 		font-family: $font_name;
 		font-style: #{$style};
-		src:
-			url("../fonts/#{$file_name}.woff2") format("woff2"),
+		src: url("../fonts/#{$file_name}.woff2") format("woff2"),
 			url("../fonts/#{$file_name}.woff") format("woff");
 		font-display: swap;
 	}
@@ -100,11 +99,10 @@
 
 	// If not support clamp();
 	@supports not (#{$property}: $propertyValue) {
-		#{$property}:
-			calc(
-				#{rem($minSize)} + #{$addSize} * (100vw - #{rem($widthTo)}) / #{math.div($widthFrom, 16) -
+		#{$property}: calc(
+			#{rem($minSize)} + #{$addSize} * (100vw - #{rem($widthTo)}) / #{math.div($widthFrom, 16) -
 				math.div($widthTo, 16)}
-			);
+		);
 	}
 
 	// Set default values
@@ -115,7 +113,8 @@
 		$keepSize !=
 		1 and
 		$keepSize !=
-		2 {
+		2
+	{
 		@media (min-width: $widthFromMedia) {
 			#{$property}: inherit;
 		}
