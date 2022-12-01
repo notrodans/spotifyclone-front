@@ -19,5 +19,5 @@ export const convertTime = (timestamps = 0) => {
 			return date.toISOString().substring(11, 19)
 		}
 	}
-	return ""
+	return "0:00"
 }

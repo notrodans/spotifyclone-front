@@ -1,41 +1,49 @@
 import { useAppDispatch, useAppSelector } from "@redux/hooks"
-import { selectAudio, setAudio, setDuration } from "@redux/slices/audio/audio.slice"
+import {
+	selectAudio,
+	setAudio,
+	setCurrentDuration,
+	setDuration
+} from "@redux/slices/audio/audio.slice"
+import { Track } from "@redux/slices/uploadAlbum/types"
 import { selectAlbum } from "@redux/slices/uploadAlbum/uploadAlbum.slice"
 import { FC, PropsWithChildren, useEffect, useState } from "react"
 
-interface IWrapperApp extends PropsWithChildren { }
+interface IWrapperApp extends PropsWithChildren {}
 
 const WrapperApp: FC<IWrapperApp> = ({ children }) => {
 	const dispatch = useAppDispatch()
-	const [audio, setAudioEl] = useState<HTMLAudioElement>(null)
+	const [audioEl, setAudioEl] = useState<HTMLAudioElement>(null)
+	const [audioFile, setAudioFile] = useState<Track>(null)
 	const { tracks } = useAppSelector(selectAlbum)
-	const { track, pause, volume, currentDuration } = useAppSelector(selectAudio)
+	const { track, pause, volume } = useAppSelector(selectAudio)
 
 	useEffect(() => {
-		if (!audio) {
-			dispatch(setAudio(tracks[0]))
+		if (!audioEl) {
 			setAudioEl(new Audio())
+			dispatch(setAudio(tracks[0]))
+			setAudioFile(track)
 		}
-	}, [tracks, audio, dispatch])
+	}, [tracks, track, audioEl, audioFile, dispatch])
 
 	useEffect(() => {
-		if (audio) {
-			audio.src = track?.link
-			audio.volume = volume
-			dispatch(setDuration(audio.duration))
-			if (pause) {
-				audio.pause()
-			} else {
-				audio.play()
+		if (audioEl && audioEl?.src) {
+			audioEl.volume = volume
+			audioEl.onloadedmetadata = () => {
+				dispatch(setDuration(audioEl.duration))
 			}
+			audioEl.ontimeupdate = () => {
+				dispatch(setCurrentDuration(audioEl.currentTime))
+			}
+			if (pause) {
+				audioEl.pause()
+			} else {
+				audioEl.play()
+			}
+		} else if (audioEl) {
+			audioEl.src = audioFile?.link
 		}
-	}, [tracks, track, audio, pause, currentDuration, volume])
-
-	useEffect(() => {
-		if (audio) {
-			audio.currentTime = currentDuration
-		}
-	}, [audio, currentDuration])
+	}, [tracks, audioEl, audioFile, pause, volume, dispatch])
 
 	return <>{children}</>
 }

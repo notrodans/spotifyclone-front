@@ -44,5 +44,5 @@ const audioSlice = createSlice({
 })
 
 export const selectAudio = (state: AppState) => state?.audio
-export const { setAudio, setStatus, setDuration, setCurrentDuration } = audioSlice.actions
+export const { setAudio, setStatus, setDuration, setCurrentDuration, setVolume } = audioSlice.actions
 export default audioSlice.reducer

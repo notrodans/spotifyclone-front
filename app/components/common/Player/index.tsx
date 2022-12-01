@@ -1,12 +1,4 @@
-import {
-	DetailedHTMLProps,
-	FC,
-	HTMLAttributes,
-	useCallback,
-	useEffect,
-	useRef,
-	useState
-} from "react"
+import { DetailedHTMLProps, FC, HTMLAttributes, useCallback, useRef } from "react"
 
 import styles from "./index.module.scss"
 import cn from "classnames"
@@ -15,7 +7,8 @@ import PlayerIconPause from "@assets/icons-components/PlayerIconPause"
 import PlayerIconArrowRight from "@assets/icons-components/PlayerIconArrowRight"
 import PlayerIconResume from "@assets/icons-components/PlayerIconResume"
 import { useAppDispatch, useAppSelector } from "@redux/hooks"
-import { selectAudio, setCurrentDuration, setStatus } from "@redux/slices/audio/audio.slice"
+import { selectAudio, setStatus } from "@redux/slices/audio/audio.slice"
+import { convertTime } from "@util/convertTime"
 
 interface IPlayer extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> { }
 
@@ -23,12 +16,8 @@ const Player: FC<IPlayer> = ({ className, ...props }) => {
 	const dispatch = useAppDispatch()
 	const durationRange = useRef<HTMLInputElement>(null)
 	const { pause, duration, currentDuration } = useAppSelector(selectAudio)
-	const onClickPause = useCallback(() => dispatch(setStatus(true)), [])
-	const onClickResume = useCallback(() => dispatch(setStatus(false)), [])
-
-	useEffect(() => {
-		console.log("render")
-	}, [])
+	const onClickPause = useCallback(() => dispatch(setStatus(true)), [dispatch])
+	const onClickResume = useCallback(() => dispatch(setStatus(false)), [dispatch])
 
 	return (
 		<div className={cn(styles.root, className)} {...props}>
@@ -50,16 +39,11 @@ const Player: FC<IPlayer> = ({ className, ...props }) => {
 				</button>
 			</div>
 			<div className={styles.body}>
-				<span className={cn(styles.currentStart, styles.timestamps)}>0:00</span>
+				<span className={cn(styles.currentStart, styles.timestamps)}>
+					{convertTime(currentDuration)}
+				</span>
 				<div className={styles.range}>
-					<input
-						ref={durationRange}
-						onChange={() => dispatch(setCurrentDuration(+durationRange.current?.value))}
-						className={styles.controls}
-						type={"range"}
-						min={0}
-						max={100}
-					/>
+					<input ref={durationRange} className={styles.controls} type={"range"} min={0} max={100} />
 					<span style={{ width: currentDuration + "%" }} className={styles.rangeLine} />
 					<span style={{ left: currentDuration + "%" }} className={styles.rangeDot} />
 				</div>

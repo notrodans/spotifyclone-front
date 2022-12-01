@@ -7,17 +7,20 @@ import cn from "classnames"
 
 import styles from "./index.module.scss"
 import PlayerIconQueue from "@assets/icons-components/PlayerIconQueue"
+import { selectAudio, setVolume } from "@redux/slices/audio/audio.slice"
+import { useAppDispatch, useAppSelector } from "@redux/hooks"
 
 interface IPlayerActions
-	extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
+	extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> { }
 
 const PlayerActions: FC<IPlayerActions> = ({ className, ...props }) => {
-	const [inputValue, setInputValue] = useState<number>(50)
 	const input = useRef<HTMLInputElement>(null)
+	const dispatch = useAppDispatch()
+	const { volume } = useAppSelector(selectAudio)
 
 	const onClickVolume = useCallback(() => {
-		setInputValue(prev => (!prev ? 20 : 0))
-	}, [])
+		setVolume(!volume ? 20 : 0)
+	}, [volume])
 
 	return (
 		<div className={cn(styles.root, className)} {...props}>
@@ -25,11 +28,11 @@ const PlayerActions: FC<IPlayerActions> = ({ className, ...props }) => {
 				<PlayerIconQueue />
 			</button>
 			<button onClick={onClickVolume} className={styles.button}>
-				{inputValue === 0 ? (
+				{volume === 0 ? (
 					<PlayerVolumeOff />
-				) : inputValue < 25 ? (
+				) : volume < 25 ? (
 					<PlayerVolumeLow />
-				) : inputValue < 50 ? (
+				) : volume < 50 ? (
 					<PlayerVolumeMedium />
 				) : (
 					<PlayerVolumeHigh />
@@ -38,14 +41,14 @@ const PlayerActions: FC<IPlayerActions> = ({ className, ...props }) => {
 			<div className={styles.range}>
 				<input
 					ref={input}
-					onChange={() => setInputValue(Number(input.current.value))}
+					onChange={() => dispatch(setVolume(+input.current.value))}
 					className={styles.controls}
 					type={"range"}
 					min={0}
 					max={100}
 				/>
-				<span style={{ width: inputValue + "%" }} className={styles.rangeLine} />
-				<span style={{ left: inputValue + "%" }} className={styles.rangeDot} />
+				<span style={{ width: volume * 100 + "%" }} className={styles.rangeLine} />
+				<span style={{ left: volume * 100 + "%" }} className={styles.rangeDot} />
 			</div>
 		</div>
 	)
