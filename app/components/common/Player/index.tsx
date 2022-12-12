@@ -1,4 +1,4 @@
-import { DetailedHTMLProps, FC, HTMLAttributes, useCallback, useRef } from "react"
+import { DetailedHTMLProps, FC, HTMLAttributes, useEffect, useRef, useState } from "react"
 
 import styles from "./index.module.scss"
 import cn from "classnames"
@@ -12,15 +12,55 @@ import {
 	PlayerIconPause,
 	PlayerIconResume
 } from "@assets/icons-components"
+import { selectAlbum } from "@redux/slices/uploadAlbum/uploadAlbum.slice"
 
 interface IPlayer extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
 
 const Player: FC<IPlayer> = ({ className, ...props }) => {
-	const { setStatus } = useActions()
+	const { setStatus, setAudio, setDuration, setCurrentDuration, setProgress } = useActions()
+	const { track, pause, volume, duration, currentDuration, progress } = useAppSelector(selectAudio)
+	const { tracks } = useAppSelector(selectAlbum)
+	const [audioEl, setAudioEl] = useState<HTMLAudioElement>(null)
 	const durationRange = useRef<HTMLInputElement>(null)
-	const { pause, duration, currentDuration, progress, track } = useAppSelector(selectAudio)
-	const onClickPause = useCallback(() => setStatus(true), [setStatus])
-	const onClickResume = useCallback(() => setStatus(false), [setStatus])
+
+	useEffect(() => {
+		if (!audioEl) {
+			setAudioEl(new Audio())
+			setAudio(tracks[0])
+		}
+	}, [tracks, audioEl, setAudio])
+
+	useEffect(() => {
+		if (audioEl) {
+			audioEl.onloadedmetadata = () => {
+				setDuration(audioEl.duration)
+			}
+		}
+	}, [audioEl, setDuration])
+
+	useEffect(() => {
+		if (audioEl && audioEl?.src) {
+			audioEl.volume = volume
+			audioEl.ontimeupdate = () => {
+				setCurrentDuration(audioEl?.currentTime)
+				setProgress()
+			}
+
+			if (pause) {
+				audioEl.pause()
+			} else {
+				audioEl.play()
+			}
+		} else {
+			if (audioEl && track) {
+				audioEl.src = track.link
+				console.log(audioEl, track.link)
+			}
+		}
+	}, [tracks, audioEl, pause, volume, track, setCurrentDuration, setProgress])
+
+	const onClickPause = () => setStatus(true)
+	const onClickResume = () => setStatus(false)
 
 	return (
 		<div className={cn(styles.root, className)} {...props}>

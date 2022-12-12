@@ -50,8 +50,8 @@ const PlayerActions: FC<IPlayerActions> = ({ className, ...props }) => {
 					min={0}
 					max={100}
 				/>
-				<span style={{ width: input.current?.value + "%" }} className={styles.rangeLine} />
-				<span style={{ left: input.current?.value + "%" }} className={styles.rangeDot} />
+				<span style={{ width: volume * 100 + "%" }} className={styles.rangeLine} />
+				<span style={{ left: volume * 100 + "%" }} className={styles.rangeDot} />
 			</div>
 		</div>
 	)

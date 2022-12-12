@@ -30,9 +30,12 @@
 	position: absolute;
 	right: rem(15);
 	bottom: 0;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
 	width: rem(42);
 	height: rem(42);
-	background-color: var(--color-tertiary);
+	background-color: var(--color-second);
 	border-radius: 50%;
 	transform: translateY(50%);
 	opacity: 0;

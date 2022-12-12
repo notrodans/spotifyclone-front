@@ -4,7 +4,6 @@ import "../styles/style.scss"
 
 import { wrapper } from "@redux/store"
 import ReactModal from "react-modal"
-import WrapperApp from "@layouts/WrapperApp"
 
 const App = ({ Component, ...pageProps }: AppProps) => {
 	const { store, props } = wrapper.useWrappedStore(pageProps)
@@ -12,9 +11,7 @@ const App = ({ Component, ...pageProps }: AppProps) => {
 
 	return (
 		<Provider store={store}>
-			<WrapperApp>
-				<Component {...props.pageProps} />
-			</WrapperApp>
+			<Component {...props.pageProps} />
 		</Provider>
 	)
 }

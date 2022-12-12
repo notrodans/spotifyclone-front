@@ -8,8 +8,6 @@ export const $axiosInstance = axios.create({
 })
 
 $axiosInstance.interceptors.request.use(config => {
-	if (typeof window !== "undefined") {
-		config.headers.Authorization = "Bearer " + nookies.parseCookies()?.token
-	}
+	config.headers.Authorization = "Bearer " + nookies.parseCookies()?.token
 	return config
 })
