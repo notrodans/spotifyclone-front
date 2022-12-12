@@ -2,7 +2,7 @@ import React, { FC } from "react"
 
 import { IconType } from "./IconType"
 
-const PlayIcon: FC<IconType> = ({ ...props }) => {
+export const PlayIcon: FC<IconType> = ({ ...props }) => {
 	return (
 		<svg {...props} width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'>
 			<path d='M15.3333 19.4667L19.08 16L15.3333 12.5333V19.4667Z' />
@@ -10,5 +10,3 @@ const PlayIcon: FC<IconType> = ({ ...props }) => {
 		</svg>
 	)
 }
-
-export default PlayIcon

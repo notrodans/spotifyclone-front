@@ -4,11 +4,12 @@ import Image from "next/image"
 import { useColor } from "@hooks/useColor"
 import FileUploadButton from "@components/common/FileUploadButton"
 import { convertTime } from "@util/convertTime"
-import { selectAlbum, setTrack } from "@redux/slices/uploadAlbum/uploadAlbum.slice"
-import { setAudio } from "@redux/slices/audio/audio.slice"
-import { useAppDispatch, useAppSelector } from "@redux/hooks"
+import { selectAlbum } from "@redux/slices/uploadAlbum/uploadAlbum.slice"
+import { useAppSelector } from "@redux/hooks"
+import { useActions } from "@hooks/useActions"
 
 const UploadComponent: FC = () => {
+	const { setTrack, setAudio } = useActions()
 	const { tracks } = useAppSelector(selectAlbum)
 	const [image, setImage] = useState<File>(null)
 	const [imageUrl, setImageUrl] = useState<string>(null)
@@ -16,16 +17,14 @@ const UploadComponent: FC = () => {
 	const album = useRef<HTMLDivElement>(null)
 	const uploadImageInput = useRef<HTMLInputElement>(null)
 	const uploadTrackInput = useRef<HTMLInputElement>(null)
-	const dispatch = useAppDispatch()
 
 	const onUploadImage = useCallback(() => setImage(uploadImageInput.current.files.item(0)), [])
 	const onUploadTrack = useCallback(() => {
 		const file = uploadTrackInput.current?.files.item(0)
 		const fileLink = window.URL.createObjectURL(new Blob([file], { type: "audio/*" }))
 		const trackObj = { name: file?.name, size: file?.size, type: file?.type, link: fileLink }
-		dispatch(setTrack(trackObj))
-		console.log(tracks)
-	}, [dispatch, tracks])
+		setTrack(trackObj)
+	}, [setTrack])
 
 	useEffect(() => {
 		const albumEl = album?.current
@@ -37,7 +36,7 @@ const UploadComponent: FC = () => {
 	}, [colorOfImage])
 
 	useEffect(() => {
-		; (async () => {
+		;(async () => {
 			if (image) {
 				setImageUrl(window.URL.createObjectURL(new Blob([image], { type: "image/*" })))
 			}
@@ -48,7 +47,7 @@ const UploadComponent: FC = () => {
 		<div ref={album} className={styles.root}>
 			<div className={styles.body}>
 				<div className={styles.left}>
-					<button onClick={() => dispatch(setAudio(tracks[0]))}>click</button>
+					<button onClick={() => setAudio(tracks[0])}>click</button>
 					<form action='' method={"post"}>
 						<FileUploadButton
 							ref={uploadImageInput}

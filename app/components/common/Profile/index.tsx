@@ -1,11 +1,12 @@
 import { useClickOutside } from "@hooks/useClickOutside"
-import { useAppDispatch, useAppSelector } from "@redux/hooks"
-import { logoutUser, selectAuth } from "@redux/slices/auth/auth.slice"
+import { useAppSelector } from "@redux/hooks"
+import { selectAuth } from "@redux/slices/auth/auth.slice"
 import { FC } from "react"
 import styles from "./index.module.scss"
 import cn from "classnames"
 import { useRouter } from "next/router"
 import Link from "next/link"
+import { useActions } from "@hooks/useActions"
 
 const profilesLinks = [
 	{
@@ -18,12 +19,12 @@ const profilesLinks = [
 const Profile: FC = () => {
 	const { user } = useAppSelector(selectAuth)
 
-	const dispatch = useAppDispatch()
+	const { logoutUser } = useActions()
 	const { isShow, setIsShow, ref } = useClickOutside()
 	const router = useRouter()
 
 	const onLogout = () => {
-		dispatch(logoutUser())
+		logoutUser()
 		router.push("/login")
 	}
 
@@ -35,7 +36,7 @@ const Profile: FC = () => {
 				className={cn(styles.userName, {
 					[styles.active]: isShow
 				})}>
-				{user && user.login}
+				{user?.login}
 			</button>
 			<nav
 				className={cn(styles.nav, {

@@ -23,14 +23,15 @@ const Header: FC = () => {
 				</div>
 				<div className={styles.body}>
 					<>
-						{!user && <HeaderAuthLinks />}
-						{user && (
+						{user ? (
 							<>
 								<Link href='/upload'>
 									<AddButton />
 								</Link>
 								<Profile />
 							</>
+						) : (
+							<HeaderAuthLinks />
 						)}
 					</>
 				</div>

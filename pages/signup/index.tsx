@@ -1,4 +1,4 @@
-import { setUser } from "@redux/slices/auth/auth.slice"
+import { authActions } from "@redux/slices/auth/auth.slice"
 import type { GetServerSideProps, NextPage } from "next"
 import * as jwt from "jsonwebtoken"
 import * as nookies from "nookies"
@@ -28,7 +28,7 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
 		const token = nookies.parseCookies(ctx)?.token
 		const data = jwt.decode(token) as { user: IUser }
 		const userData = data?.user ? { ...data.user } : null
-		store.dispatch(setUser(userData))
+		store.dispatch(authActions.setUser(userData))
 		if (userData) {
 			return {
 				redirect: {

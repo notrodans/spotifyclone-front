@@ -1,8 +1,8 @@
-import AddIcon from "@assets/icons-components/AddIcon"
 import { AnchorHTMLAttributes, DetailedHTMLProps, forwardRef } from "react"
 
 import styles from "./index.module.scss"
 import cn from "classnames"
+import { AddIcon } from "@assets/icons-components/AddIcon"
 
 interface IAddButton
 	extends DetailedHTMLProps<AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement> {}

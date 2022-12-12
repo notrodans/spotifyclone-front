@@ -1,26 +1,29 @@
-import PlayerVolumeHigh from "@assets/icons-components/PlayerVolumeHigh"
-import PlayerVolumeLow from "@assets/icons-components/PlayerVolumeLow"
-import PlayerVolumeMedium from "@assets/icons-components/PlayerVolumeMedium"
-import PlayerVolumeOff from "@assets/icons-components/PlayerVolumeOff"
-import { DetailedHTMLProps, FC, HTMLAttributes, useCallback, useRef, useState } from "react"
+import { DetailedHTMLProps, FC, HTMLAttributes, useCallback, useRef } from "react"
 import cn from "classnames"
 
 import styles from "./index.module.scss"
-import PlayerIconQueue from "@assets/icons-components/PlayerIconQueue"
-import { selectAudio, setVolume } from "@redux/slices/audio/audio.slice"
-import { useAppDispatch, useAppSelector } from "@redux/hooks"
+import { selectAudio } from "@redux/slices/audio/audio.slice"
+import { useAppSelector } from "@redux/hooks"
+import { useActions } from "@hooks/useActions"
+import {
+	PlayerIconQueue,
+	PlayerVolumeHigh,
+	PlayerVolumeLow,
+	PlayerVolumeMedium,
+	PlayerVolumeOff
+} from "@assets/icons-components"
 
 interface IPlayerActions
-	extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> { }
+	extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
 
 const PlayerActions: FC<IPlayerActions> = ({ className, ...props }) => {
 	const input = useRef<HTMLInputElement>(null)
-	const dispatch = useAppDispatch()
+	const { setVolume } = useActions()
 	const { volume } = useAppSelector(selectAudio)
 
 	const onClickVolume = useCallback(() => {
 		setVolume(!volume ? 20 : 0)
-	}, [volume])
+	}, [setVolume, volume])
 
 	return (
 		<div className={cn(styles.root, className)} {...props}>
@@ -30,9 +33,9 @@ const PlayerActions: FC<IPlayerActions> = ({ className, ...props }) => {
 			<button onClick={onClickVolume} className={styles.button}>
 				{volume === 0 ? (
 					<PlayerVolumeOff />
-				) : volume < 25 ? (
+				) : volume < 0.25 ? (
 					<PlayerVolumeLow />
-				) : volume < 50 ? (
+				) : volume < 0.5 ? (
 					<PlayerVolumeMedium />
 				) : (
 					<PlayerVolumeHigh />
@@ -41,14 +44,14 @@ const PlayerActions: FC<IPlayerActions> = ({ className, ...props }) => {
 			<div className={styles.range}>
 				<input
 					ref={input}
-					onChange={() => dispatch(setVolume(+input.current.value))}
+					onChange={() => setVolume(+input.current.value)}
 					className={styles.controls}
 					type={"range"}
 					min={0}
 					max={100}
 				/>
-				<span style={{ width: volume * 100 + "%" }} className={styles.rangeLine} />
-				<span style={{ left: volume * 100 + "%" }} className={styles.rangeDot} />
+				<span style={{ width: input.current?.value + "%" }} className={styles.rangeLine} />
+				<span style={{ left: input.current?.value + "%" }} className={styles.rangeDot} />
 			</div>
 		</div>
 	)

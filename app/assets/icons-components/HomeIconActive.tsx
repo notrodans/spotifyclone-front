@@ -2,7 +2,7 @@ import React, { FC } from "react"
 
 import { IconType } from "./IconType"
 
-const HomeIconActive: FC<IconType> = ({ ...props }) => {
+export const HomeIconActive: FC<IconType> = ({ ...props }) => {
 	return (
 		<svg {...props} width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'>
 			<path d='M13.3334 18.6666H18.6667V28H13.3334V18.6666Z' />
@@ -10,5 +10,3 @@ const HomeIconActive: FC<IconType> = ({ ...props }) => {
 		</svg>
 	)
 }
-
-export default HomeIconActive

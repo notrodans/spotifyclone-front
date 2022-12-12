@@ -1,49 +1,51 @@
-import { useAppDispatch, useAppSelector } from "@redux/hooks"
-import {
-	selectAudio,
-	setAudio,
-	setCurrentDuration,
-	setDuration
-} from "@redux/slices/audio/audio.slice"
-import { Track } from "@redux/slices/uploadAlbum/types"
+import { useActions } from "@hooks/useActions"
+import { useAppSelector } from "@redux/hooks"
+import { selectAudio } from "@redux/slices/audio/audio.slice"
 import { selectAlbum } from "@redux/slices/uploadAlbum/uploadAlbum.slice"
 import { FC, PropsWithChildren, useEffect, useState } from "react"
 
 interface IWrapperApp extends PropsWithChildren {}
 
 const WrapperApp: FC<IWrapperApp> = ({ children }) => {
-	const dispatch = useAppDispatch()
+	const { setAudio, setDuration, setCurrentDuration, setProgress } = useActions()
 	const [audioEl, setAudioEl] = useState<HTMLAudioElement>(null)
-	const [audioFile, setAudioFile] = useState<Track>(null)
 	const { tracks } = useAppSelector(selectAlbum)
 	const { track, pause, volume } = useAppSelector(selectAudio)
 
 	useEffect(() => {
 		if (!audioEl) {
 			setAudioEl(new Audio())
-			dispatch(setAudio(tracks[0]))
-			setAudioFile(track)
+			setAudio(tracks[0])
 		}
-	}, [tracks, track, audioEl, audioFile, dispatch])
+	}, [tracks, audioEl, setAudio])
+
+	useEffect(() => {
+		if (audioEl) {
+			audioEl.onloadedmetadata = () => {
+				setDuration(audioEl.duration)
+			}
+		}
+	}, [audioEl, setDuration])
 
 	useEffect(() => {
 		if (audioEl && audioEl?.src) {
 			audioEl.volume = volume
-			audioEl.onloadedmetadata = () => {
-				dispatch(setDuration(audioEl.duration))
-			}
 			audioEl.ontimeupdate = () => {
-				dispatch(setCurrentDuration(audioEl.currentTime))
+				setCurrentDuration(audioEl?.currentTime)
+				setProgress()
 			}
 			if (pause) {
 				audioEl.pause()
 			} else {
 				audioEl.play()
 			}
-		} else if (audioEl) {
-			audioEl.src = audioFile?.link
+		} else {
+			if (audioEl && track) {
+				audioEl.src = track.link
+				console.log(audioEl, track.link)
+			}
 		}
-	}, [tracks, audioEl, audioFile, pause, volume, dispatch])
+	}, [tracks, audioEl, pause, volume, track, setCurrentDuration, setProgress])
 
 	return <>{children}</>
 }

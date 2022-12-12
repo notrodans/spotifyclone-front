@@ -1,3 +1,4 @@
+import { PlayerIconPause } from "@assets/icons-components"
 import cn from "classnames"
 import Image, { StaticImageData } from "next/image"
 import Link from "next/link"
@@ -21,7 +22,9 @@ const RecentItem: FC<IRecentItem> = ({ title, src, link, className, ...props }) 
 					</div>
 					<span className={styles.title}>{title}</span>
 				</div>
-				<button onClick={() => console.log("click")} className={styles.button} type={"button"} />
+				<button className={styles.button} type={"button"}>
+					<PlayerIconPause />
+				</button>
 			</a>
 		</Link>
 	)

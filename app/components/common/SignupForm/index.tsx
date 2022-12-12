@@ -1,4 +1,4 @@
-import { FC, HTMLAttributes, useCallback, useState } from "react"
+import { FC, HTMLAttributes, useState } from "react"
 
 import styles from "./index.module.scss"
 import cn from "classnames"
@@ -29,23 +29,19 @@ const SignupForm: FC<SignupForm> = ({ className, ...props }) => {
 		password: ""
 	})
 
-	const onSubmitForm: SubmitHandler<IFormValues> = useCallback(
-		async data => {
-			try {
-				const registerParams = {
-					login: data.login,
-					email: data.email,
-					password: data.password
-				}
-				postRegister(registerParams)
-				router.push("/login")
-			} catch (e) {
-				console.warn(e)
+	const onSubmitForm: SubmitHandler<IFormValues> = async data => {
+		try {
+			const registerParams = {
+				login: data.login,
+				email: data.email,
+				password: data.password
 			}
-		},
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-		[isLoading]
-	)
+			postRegister(registerParams)
+			router.push("/login")
+		} catch (e) {
+			console.warn(e)
+		}
+	}
 
 	const onErrorForm: SubmitErrorHandler<IFormValues> = errors => {
 		console.log(errors)

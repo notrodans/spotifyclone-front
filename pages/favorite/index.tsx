@@ -2,7 +2,7 @@ import type { GetServerSideProps, NextPage } from "next"
 import * as nookies from "nookies"
 import * as jwt from "jsonwebtoken"
 import { wrapper } from "@redux/store"
-import { setUser } from "@redux/slices/auth/auth.slice"
+import { authActions } from "@redux/slices/auth/auth.slice"
 
 import Meta from "@components/SEO/Meta"
 import Wrapper from "@layouts/Wrapper"
@@ -37,7 +37,7 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
 				}
 			}
 		}
-		store.dispatch(setUser(userData))
+		store.dispatch(authActions.setUser(userData))
 		return {
 			props: {
 				userData

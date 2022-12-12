@@ -13,8 +13,7 @@ export const rootReducer = combineReducers({
 
 export const makeStore = () =>
 	configureStore({
-		reducer: rootReducer,
-		devTools: true
+		reducer: rootReducer
 	})
 
 export type AppStore = ReturnType<typeof makeStore>

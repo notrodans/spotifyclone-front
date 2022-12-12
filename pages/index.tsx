@@ -4,7 +4,7 @@ import * as jwt from "jsonwebtoken"
 
 import { IUser } from "@services/Auth/AuthService.type"
 import { wrapper } from "@redux/store"
-import { setUser } from "@redux/slices/auth/auth.slice"
+import { authActions } from "@redux/slices/auth/auth.slice"
 import Wrapper from "@layouts/Wrapper"
 import Meta from "@components/SEO/Meta"
 import HomeComponent from "@components/screens/Home"
@@ -37,7 +37,7 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
 				}
 			}
 		}
-		store.dispatch(setUser(userData))
+		store.dispatch(authActions.setUser(userData))
 		return {
 			props: {
 				userData

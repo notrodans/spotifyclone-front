@@ -1,4 +1,4 @@
-import { DetailedHTMLProps, forwardRef, InputHTMLAttributes, memo, PropsWithChildren } from "react"
+import { DetailedHTMLProps, forwardRef, InputHTMLAttributes, PropsWithChildren } from "react"
 
 import cn from "classnames"
 import styles from "./index.module.scss"
@@ -20,4 +20,4 @@ const FileUploadButton = forwardRef<HTMLInputElement, IFileUploadButton>(
 	)
 )
 
-export default memo(FileUploadButton)
+export default FileUploadButton

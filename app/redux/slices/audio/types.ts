@@ -4,6 +4,7 @@ export interface IAudioState {
 	track: Track
 	pause: boolean
 	volume: number
-	duration: string
+	duration: number
 	currentDuration: number
+	progress: number
 }

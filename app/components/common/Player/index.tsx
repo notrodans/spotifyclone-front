@@ -2,31 +2,35 @@ import { DetailedHTMLProps, FC, HTMLAttributes, useCallback, useRef } from "reac
 
 import styles from "./index.module.scss"
 import cn from "classnames"
-import PlayerIconArrowLeft from "@assets/icons-components/PlayerIconArrowLeft"
-import PlayerIconPause from "@assets/icons-components/PlayerIconPause"
-import PlayerIconArrowRight from "@assets/icons-components/PlayerIconArrowRight"
-import PlayerIconResume from "@assets/icons-components/PlayerIconResume"
-import { useAppDispatch, useAppSelector } from "@redux/hooks"
-import { selectAudio, setStatus } from "@redux/slices/audio/audio.slice"
+import { useAppSelector } from "@redux/hooks"
+import { selectAudio } from "@redux/slices/audio/audio.slice"
 import { convertTime } from "@util/convertTime"
+import { useActions } from "@hooks/useActions"
+import {
+	PlayerIconArrowLeft,
+	PlayerIconArrowRight,
+	PlayerIconPause,
+	PlayerIconResume
+} from "@assets/icons-components"
 
-interface IPlayer extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> { }
+interface IPlayer extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
 
 const Player: FC<IPlayer> = ({ className, ...props }) => {
-	const dispatch = useAppDispatch()
+	const { setStatus } = useActions()
 	const durationRange = useRef<HTMLInputElement>(null)
-	const { pause, duration, currentDuration } = useAppSelector(selectAudio)
-	const onClickPause = useCallback(() => dispatch(setStatus(true)), [dispatch])
-	const onClickResume = useCallback(() => dispatch(setStatus(false)), [dispatch])
+	const { pause, duration, currentDuration, progress, track } = useAppSelector(selectAudio)
+	const onClickPause = useCallback(() => setStatus(true), [setStatus])
+	const onClickResume = useCallback(() => setStatus(false), [setStatus])
 
 	return (
 		<div className={cn(styles.root, className)} {...props}>
 			<div className={styles.actions}>
-				<button className={styles.button}>
+				<button className={styles.button} disabled={!track ? true : false}>
 					<PlayerIconArrowLeft />
 				</button>
 				<button
-					onClick={() => dispatch(setStatus(!pause))}
+					onClick={() => setStatus(!pause)}
+					disabled={!track ? true : false}
 					className={cn(styles.button, styles.buttonFill)}>
 					{pause ? (
 						<PlayerIconPause onClick={onClickPause} />
@@ -34,20 +38,20 @@ const Player: FC<IPlayer> = ({ className, ...props }) => {
 						<PlayerIconResume onClick={onClickResume} />
 					)}
 				</button>
-				<button className={styles.button}>
+				<button className={styles.button} disabled={!track ? true : false}>
 					<PlayerIconArrowRight />
 				</button>
 			</div>
 			<div className={styles.body}>
 				<span className={cn(styles.currentStart, styles.timestamps)}>
-					{convertTime(currentDuration)}
+					{convertTime(currentDuration) || "0:00"}
 				</span>
 				<div className={styles.range}>
 					<input ref={durationRange} className={styles.controls} type={"range"} min={0} max={100} />
-					<span style={{ width: currentDuration + "%" }} className={styles.rangeLine} />
-					<span style={{ left: currentDuration + "%" }} className={styles.rangeDot} />
+					<span style={{ width: progress + "%" }} className={styles.rangeLine} />
+					<span style={{ left: progress + "%" }} className={styles.rangeDot} />
 				</div>
-				<span className={cn(styles.currentEnd, styles.timestamps)}>{duration}</span>
+				<span className={cn(styles.currentEnd, styles.timestamps)}>{convertTime(duration)}</span>
 			</div>
 		</div>
 	)

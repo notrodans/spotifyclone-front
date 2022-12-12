@@ -1,4 +1,4 @@
-import { FC, HTMLAttributes, useCallback, useState } from "react"
+import { FC, HTMLAttributes, useState } from "react"
 
 import styles from "./index.module.scss"
 import cn from "classnames"
@@ -27,21 +27,18 @@ const LoginForm: FC<LoginForm> = ({ className, ...props }) => {
 		password: ""
 	})
 
-	const onSubmitForm: SubmitHandler<IFormValues> = useCallback(
-		async data => {
-			try {
-				const loginParams = {
-					login: data.email,
-					password: data.password
-				}
-				postLogin(loginParams)
-				setTimeout(() => router.push("/"), 500)
-			} catch (e) {
-				console.log(e)
+	const onSubmitForm: SubmitHandler<IFormValues> = async data => {
+		try {
+			const loginParams = {
+				login: data.email,
+				password: data.password
 			}
-		},
-		[router]
-	)
+			postLogin(loginParams)
+			setTimeout(() => router.push("/"), 500)
+		} catch (e) {
+			console.log(e)
+		}
+	}
 
 	const onErrorForm: SubmitErrorHandler<IFormValues> = errors => {
 		console.log(errors)

@@ -1,7 +1,7 @@
 import { FC } from "react"
 import { IconType } from "./IconType"
 
-const PlayerVolumeLow: FC<IconType> = () => {
+export const PlayerVolumeLow: FC<IconType> = () => {
 	return (
 		<svg
 			role='presentation'
@@ -15,5 +15,3 @@ const PlayerVolumeLow: FC<IconType> = () => {
 		</svg>
 	)
 }
-
-export default PlayerVolumeLow

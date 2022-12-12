@@ -1,12 +1,14 @@
+import {
+	FavoriteIcon,
+	FavoriteIconActive,
+	HomeIcon,
+	HomeIconActive
+} from "@assets/icons-components"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { FC } from "react"
 
 import styles from "./index.module.scss"
-import FavoriteIcon from "@assets/icons-components/FavoriteIcon"
-import FavoriteIconActive from "@assets/icons-components/FavoriteIconActive"
-import HomeIcon from "@assets/icons-components/HomeIcon"
-import HomeIconActive from "@assets/icons-components/HomeIconActive"
 
 const Links = [
 	{

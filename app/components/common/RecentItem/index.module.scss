@@ -38,18 +38,6 @@
 	opacity: 0;
 	transition: all 0.3s ease 0s;
 
-	&::before {
-		position: absolute;
-		top: 50%;
-		left: 55%;
-		border-right: 10px solid transparent;
-		border-bottom: 14px solid var(--color-main);
-		border-left: 10px solid transparent;
-		transform: translate(-50%, -50%) rotate(90deg);
-		transition: all 0.3s ease 0s;
-		content: "";
-	}
-
 	.root:hover & {
 		bottom: 50%;
 		opacity: 1;
@@ -57,9 +45,5 @@
 
 	&:hover {
 		transform: translateY(50%) scale(1.1);
-
-		&::before {
-			border-bottom: 14px solid var(--color-first);
-		}
 	}
 }
