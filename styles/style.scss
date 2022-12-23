@@ -15,14 +15,16 @@ body {
 
 .wrapper {
 	display: flex;
-	flex-direction: column;
-	min-height: 100vh;
 	overflow: hidden;
+
+	min-height: 100vh;
+	flex-direction: column;
 
 	&__body {
 		display: flex;
-		flex: 1 1 auto;
+
 		min-height: 100%;
+		flex: 1 1 auto;
 
 		> main {
 			flex: 1 1 auto;
@@ -63,5 +65,3 @@ body {
 	}
 }
 
-@import "base";
-@import "common";

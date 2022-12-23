@@ -7,8 +7,9 @@
 
 .containerWithoutMaxWidth {
 	display: flex;
-	flex-direction: column;
+
 	min-height: 100%;
+	flex-direction: column;
 }
 
 .body {

@@ -7,10 +7,13 @@ import { convertTime } from "@util/convertTime"
 import { selectAlbum } from "@redux/slices/uploadAlbum/uploadAlbum.slice"
 import { useAppSelector } from "@redux/hooks"
 import { useActions } from "@hooks/useActions"
+import { useRouter } from "next/router"
+import { selectAuth } from "@redux/slices/auth/auth.slice"
 
 const UploadComponent: FC = () => {
 	const { setTrack, setAudio } = useActions()
 	const { tracks } = useAppSelector(selectAlbum)
+	const { user } = useAppSelector(selectAuth)
 	const [image, setImage] = useState<File>(null)
 	const [imageUrl, setImageUrl] = useState<string>(null)
 	const { colorOfImage } = useColor(imageUrl || "")
@@ -18,12 +21,19 @@ const UploadComponent: FC = () => {
 	const uploadImageInput = useRef<HTMLInputElement>(null)
 	const uploadTrackInput = useRef<HTMLInputElement>(null)
 
+	const router = useRouter()
+	if (!user) {
+		router.push("/login")
+	}
+
 	const onUploadImage = useCallback(() => setImage(uploadImageInput.current.files.item(0)), [])
 	const onUploadTrack = useCallback(() => {
 		const file = uploadTrackInput.current?.files.item(0)
-		const fileLink = window.URL.createObjectURL(new Blob([file], { type: "audio/*" }))
-		const trackObj = { name: file?.name, size: file?.size, type: file?.type, link: fileLink }
-		setTrack(trackObj)
+		if (file) {
+			const fileLink = window.URL.createObjectURL(new Blob([file], { type: "audio/*" }))
+			const trackObj = { name: file.name, size: file.size, type: file.type, link: fileLink }
+			setTrack(trackObj)
+		}
 	}, [setTrack])
 
 	useEffect(() => {
@@ -70,7 +80,12 @@ const UploadComponent: FC = () => {
 				<div className={styles.right}>
 					<div className={styles.rightBody}>
 						<div className={styles.image}>
-							<Image src={imageUrl || "/placeholder.png"} width={250} height={250} />
+							<Image
+								src={imageUrl || "/placeholder.png"}
+								width={250}
+								height={250}
+								alt='placeholder'
+							/>
 						</div>
 						<div className={styles.title}>Example title</div>
 						<ol className={styles.trackList}>

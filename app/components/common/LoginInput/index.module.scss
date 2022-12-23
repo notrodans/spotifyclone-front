@@ -2,10 +2,12 @@
 
 .root {
 	display: inline-block;
+
 	max-width: rem(290);
 	padding: rem(5) rem(10);
-	color: var(--color-main);
-	font-weight: 500;
-	background-color: transparent;
 	border: rem(2) solid var(--color-main);
+	background-color: transparent;
+	color: var(--color-main);
+
+	font-weight: 500;
 }

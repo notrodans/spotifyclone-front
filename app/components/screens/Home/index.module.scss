@@ -2,9 +2,10 @@
 @import "../../../../styles/vars/forMixins";
 
 .root {
+
 	min-height: 100%;
-	overflow-y: auto;
 	border-radius: var(--min-border);
+	overflow-y: auto;
 }
 
 .containerWithoutMaxWidth {
@@ -12,8 +13,8 @@
 
 .body {
 	display: grid;
-	grid-template-columns: repeat(4, 1fr);
 	gap: rem(25);
+	grid-template-columns: repeat(4, 1fr);
 
 	@media (max-width: $tablet) {
 		grid-template-columns: repeat(3, 1fr);

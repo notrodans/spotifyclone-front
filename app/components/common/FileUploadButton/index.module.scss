@@ -11,14 +11,17 @@
 
 .label {
 	display: inline-flex;
-	align-items: center;
+
 	min-width: 100%;
+	align-items: center;
 	padding: rem(10);
-	color: var(--color-input-font);
-	font-weight: 500;
-	background-color: var(--color-tertiary);
 	border-radius: var(--min-border);
+	background-color: var(--color-tertiary);
+	color: var(--color-input-font);
+
 	cursor: pointer;
+
+	font-weight: 500;
 	transition: color 0.3s ease 0s;
 
 	&:hover {
