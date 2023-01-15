@@ -1,16 +1,12 @@
-import { authActions } from "@redux/slices/auth/auth.slice"
-import type { GetServerSideProps, NextPage } from "next"
-import * as jwt from "jsonwebtoken"
-import * as nookies from "nookies"
-import { wrapper } from "@redux/store"
-import { IUser } from "@services/Auth/AuthService.type"
-
-import Meta from "@components/SEO/Meta"
-import Wrapper from "@layouts/Wrapper"
-import LoginComponent from "@components/screens/Login"
+import Meta from "@components/SEO/Meta";
+import LoginComponent from "@components/screens/Login";
+import Wrapper from "@layouts/Wrapper";
+import { IUser } from "@services/Auth/AuthService.type";
+import { getUserExisted } from "@util/getUserExisted";
+import type { GetServerSideProps, NextPage } from "next";
 
 interface ILoginPage {
-	userData: IUser
+	userData: IUser;
 }
 
 const LoginPage: NextPage<ILoginPage> = ({ userData }) => (
@@ -20,28 +16,8 @@ const LoginPage: NextPage<ILoginPage> = ({ userData }) => (
 			<LoginComponent />
 		</Wrapper>
 	</>
-)
+);
 
-export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
-	store => async ctx => {
-		const token = nookies.parseCookies(ctx)?.token
-		const data = jwt.decode(token) as { user: IUser }
-		const userData = data?.user ? { ...data.user } : null
-		store.dispatch(authActions.setUser(userData))
-		if (userData) {
-			return {
-				redirect: {
-					destination: "/",
-					permanent: true
-				}
-			}
-		}
-		return {
-			props: {
-				userData
-			}
-		}
-	}
-)
+export const getServerSideProps: GetServerSideProps = getUserExisted;
 
-export default LoginPage
+export default LoginPage;

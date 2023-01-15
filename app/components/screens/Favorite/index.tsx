@@ -1,15 +1,15 @@
-import { useAppSelector } from "@redux/hooks"
-import { selectAuth } from "@redux/slices/auth/auth.slice"
-import { useRouter } from "next/router"
-import { FC } from "react"
+import { useAppSelector } from "@redux/hooks";
+import { selectAuth } from "@redux/slices/auth/auth.slice";
+import { useRouter } from "next/router";
+import { FC } from "react";
 
 const FavoriteComponent: FC = () => {
-	const { user } = useAppSelector(selectAuth)
-	const router = useRouter()
+	const { user } = useAppSelector(selectAuth);
+	const router = useRouter();
 	if (!user) {
-		router.push("/login")
+		router.push("/login");
 	}
-	return <div>favorite</div>
-}
+	return <div>favorite</div>;
+};
 
-export default FavoriteComponent
+export default FavoriteComponent;

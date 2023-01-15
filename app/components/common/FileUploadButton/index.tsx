@@ -1,12 +1,11 @@
-import { DetailedHTMLProps, forwardRef, InputHTMLAttributes, PropsWithChildren } from "react"
-
-import cn from "classnames"
-import styles from "./index.module.scss"
+import styles from "./index.module.scss";
+import cn from "classnames";
+import { DetailedHTMLProps, forwardRef, InputHTMLAttributes, PropsWithChildren } from "react";
 
 interface IFileUploadButton
 	extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
 		PropsWithChildren {
-	htmlFor: string
+	htmlFor: string;
 }
 
 const FileUploadButton = forwardRef<HTMLInputElement, IFileUploadButton>(
@@ -18,6 +17,6 @@ const FileUploadButton = forwardRef<HTMLInputElement, IFileUploadButton>(
 			<input ref={ref} {...props} className={styles.input} type={"file"} hidden />
 		</div>
 	)
-)
+);
 
-export default FileUploadButton
+export default FileUploadButton;

@@ -1,66 +1,69 @@
-import { DetailedHTMLProps, FC, HTMLAttributes, useEffect, useRef, useState } from "react"
-
-import styles from "./index.module.scss"
-import cn from "classnames"
-import { useAppSelector } from "@redux/hooks"
-import { selectAudio } from "@redux/slices/audio/audio.slice"
-import { convertTime } from "@util/convertTime"
-import { useActions } from "@hooks/useActions"
+import styles from "./index.module.scss";
 import {
 	PlayerIconArrowLeft,
 	PlayerIconArrowRight,
 	PlayerIconPause,
 	PlayerIconResume
-} from "@assets/icons-components"
-import { selectAlbum } from "@redux/slices/uploadAlbum/uploadAlbum.slice"
+} from "@assets/icons-components";
+import { useActions } from "@hooks/useActions";
+import { useAppSelector } from "@redux/hooks";
+import { selectAudio } from "@redux/slices/audio/audio.slice";
+import { selectAlbum } from "@redux/slices/uploadAlbum/uploadAlbum.slice";
+import { convertTime } from "@util/convertTime";
+import cn from "classnames";
+import { DetailedHTMLProps, FC, HTMLAttributes, useEffect, useRef, useState } from "react";
 
 interface IPlayer extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
 
 const Player: FC<IPlayer> = ({ className, ...props }) => {
-	const { setStatus, setAudio, setDuration, setCurrentDuration, setProgress } = useActions()
-	const { track, pause, volume, duration, currentDuration, progress } = useAppSelector(selectAudio)
-	const { tracks } = useAppSelector(selectAlbum)
-	const [audioEl, setAudioEl] = useState<HTMLAudioElement>(null)
-	const durationRange = useRef<HTMLInputElement>(null)
+	const { setStatus, setAudio, setDuration, setCurrentDuration, setProgress } = useActions();
+	const { track, pause, volume, duration, currentDuration, progress } = useAppSelector(selectAudio);
+	const { tracks } = useAppSelector(selectAlbum);
+	const [audioEl, setAudioEl] = useState<HTMLAudioElement>(null);
+	const durationRange = useRef<HTMLInputElement>(null);
 
 	useEffect(() => {
 		if (!audioEl) {
-			setAudioEl(new Audio())
-			setAudio(tracks[0])
+			setAudioEl(new Audio());
+			setAudio(tracks[0]);
 		}
-	}, [tracks, audioEl, setAudio])
+	}, [tracks, audioEl, setAudio]);
 
 	useEffect(() => {
 		if (audioEl) {
 			audioEl.onloadedmetadata = () => {
-				setDuration(audioEl.duration)
-			}
+				setDuration(audioEl.duration);
+			};
 		}
-	}, [audioEl, setDuration])
+	}, [audioEl, setDuration]);
 
 	useEffect(() => {
 		if (audioEl && audioEl?.src) {
-			audioEl.volume = volume
+			audioEl.volume = volume;
 			audioEl.ontimeupdate = () => {
-				setCurrentDuration(audioEl?.currentTime)
-				setProgress()
-			}
+				setCurrentDuration(audioEl?.currentTime);
+				setProgress();
+			};
 
 			if (pause) {
-				audioEl.pause()
+				audioEl.pause();
 			} else {
-				audioEl.play()
+				audioEl.play();
 			}
 		} else {
 			if (audioEl && track) {
-				audioEl.src = track.link
-				console.log(audioEl, track.link)
+				audioEl.src = track.link;
+				console.log(audioEl, track.link);
 			}
 		}
-	}, [tracks, audioEl, pause, volume, track, setCurrentDuration, setProgress])
+	}, [tracks, audioEl, pause, volume, track, setCurrentDuration, setProgress]);
 
-	const onClickPause = () => setStatus(true)
-	const onClickResume = () => setStatus(false)
+	const onClickPause = () => {
+		setStatus(true);
+	};
+	const onClickResume = () => {
+		setStatus(false);
+	};
 
 	return (
 		<div className={cn(styles.root, className)} {...props}>
@@ -94,7 +97,7 @@ const Player: FC<IPlayer> = ({ className, ...props }) => {
 				<span className={cn(styles.currentEnd, styles.timestamps)}>{convertTime(duration)}</span>
 			</div>
 		</div>
-	)
-}
+	);
+};
 
-export default Player
+export default Player;

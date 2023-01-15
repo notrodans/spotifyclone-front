@@ -1,15 +1,14 @@
-import Link from "next/link"
-import { FC } from "react"
-import AddButton from "../AddButton"
-import HeaderAuthLinks from "../HeaderAuthLinks"
-import Profile from "../Profile"
-
-import styles from "./index.module.scss"
-import { useAppSelector } from "@redux/hooks"
-import { selectAuth } from "@redux/slices/auth/auth.slice"
+import AddButton from "../AddButton";
+import HeaderAuthLinks from "../HeaderAuthLinks";
+import Profile from "../Profile";
+import styles from "./index.module.scss";
+import { useAppSelector } from "@redux/hooks";
+import { selectAuth } from "@redux/slices/auth/auth.slice";
+import Link from "next/link";
+import { FC } from "react";
 
 const Header: FC = () => {
-	const { user } = useAppSelector(selectAuth)
+	const { user } = useAppSelector(selectAuth);
 
 	return (
 		<header className={styles.root}>
@@ -37,7 +36,7 @@ const Header: FC = () => {
 				</div>
 			</div>
 		</header>
-	)
-}
+	);
+};
 
-export default Header
+export default Header;

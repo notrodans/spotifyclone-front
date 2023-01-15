@@ -1,17 +1,16 @@
-import cn from "classnames"
-import Image, { StaticImageData } from "next/image"
-import Link from "next/link"
-import { DetailedHTMLProps, FC, HTMLAttributes } from "react"
-
-import styles from "./index.module.scss"
+import styles from "./index.module.scss";
+import cn from "classnames";
+import Image, { StaticImageData } from "next/image";
+import Link from "next/link";
+import { DetailedHTMLProps, FC, HTMLAttributes } from "react";
 
 interface IPlayerTrackInfo
 	extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-	src: string | StaticImageData
-	title: string
-	author: string
-	titleLink: string
-	authorLink: string
+	src: string | StaticImageData;
+	title: string;
+	author: string;
+	titleLink: string;
+	authorLink: string;
 }
 
 const PlayerTrackInfo: FC<IPlayerTrackInfo> = ({
@@ -43,7 +42,7 @@ const PlayerTrackInfo: FC<IPlayerTrackInfo> = ({
 				</Link>
 			</div>
 		</div>
-	)
-}
+	);
+};
 
-export default PlayerTrackInfo
+export default PlayerTrackInfo;

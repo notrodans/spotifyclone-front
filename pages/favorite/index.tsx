@@ -1,16 +1,12 @@
-import type { GetServerSideProps, NextPage } from "next"
-import * as nookies from "nookies"
-import * as jwt from "jsonwebtoken"
-import { wrapper } from "@redux/store"
-import { authActions } from "@redux/slices/auth/auth.slice"
-
-import Meta from "@components/SEO/Meta"
-import Wrapper from "@layouts/Wrapper"
-import { IUser } from "@services/Auth/AuthService.type"
-import FavoriteComponent from "@components/screens/Favorite"
+import Meta from "@components/SEO/Meta";
+import FavoriteComponent from "@components/screens/Favorite";
+import Wrapper from "@layouts/Wrapper";
+import { IUser } from "@services/Auth/AuthService.type";
+import { getUser } from "@util/getUser";
+import type { GetServerSideProps, NextPage } from "next";
 
 interface IFavorite {
-	userData: IUser
+	userData: IUser;
 }
 
 const Favorite: NextPage<IFavorite> = ({ userData }) => {
@@ -21,29 +17,9 @@ const Favorite: NextPage<IFavorite> = ({ userData }) => {
 				<FavoriteComponent />
 			</Wrapper>
 		</>
-	)
-}
+	);
+};
 
-export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
-	store => async ctx => {
-		const token = nookies.parseCookies(ctx)?.token
-		const data = jwt.decode(token) as { user: IUser }
-		const userData = data?.user ? { ...data.user } : null
-		if (!userData) {
-			return {
-				redirect: {
-					destination: "/login",
-					permanent: true
-				}
-			}
-		}
-		store.dispatch(authActions.setUser(userData))
-		return {
-			props: {
-				userData
-			}
-		}
-	}
-)
+export const getServerSideProps: GetServerSideProps = getUser;
 
-export default Favorite
+export default Favorite;

@@ -1,33 +1,32 @@
-import { FC, HTMLAttributes, useState } from "react"
-
-import styles from "./index.module.scss"
-import cn from "classnames"
-import { SubmitErrorHandler, SubmitHandler, useForm } from "react-hook-form"
-import LoginInput from "../LoginInput"
-import { useRouter } from "next/router"
-import { validateEmailPattern } from "@util/regxpMail"
-import { useAppSelector } from "@redux/hooks"
-import { selectAuth } from "@redux/slices/auth/auth.slice"
-import { useActions } from "@hooks/useActions"
+import LoginInput from "../LoginInput";
+import styles from "./index.module.scss";
+import { useActions } from "@hooks/useActions";
+import { useAppSelector } from "@redux/hooks";
+import { selectAuth } from "@redux/slices/auth/auth.slice";
+import { validateEmailPattern } from "@util/regxpMail";
+import cn from "classnames";
+import { useRouter } from "next/router";
+import { FC, HTMLAttributes, useState } from "react";
+import { SubmitErrorHandler, SubmitHandler, useForm } from "react-hook-form";
 
 interface IFormValues {
-	login: string
-	email: string
-	password: string
+	login: string;
+	email: string;
+	password: string;
 }
 
 interface SignupForm extends HTMLAttributes<HTMLDivElement> {}
 
 const SignupForm: FC<SignupForm> = ({ className, ...props }) => {
-	const router = useRouter()
-	const { isLoading } = useAppSelector(selectAuth)
-	const { postRegister } = useActions()
-	const { register, handleSubmit } = useForm<IFormValues>({ mode: "onChange" })
+	const router = useRouter();
+	const { isLoading } = useAppSelector(selectAuth);
+	const { postRegister } = useActions();
+	const { register, handleSubmit } = useForm<IFormValues>({ mode: "onChange" });
 	const [{ login, email, password }, setValues] = useState<IFormValues>({
 		login: "",
 		email: "",
 		password: ""
-	})
+	});
 
 	const onSubmitForm: SubmitHandler<IFormValues> = async data => {
 		try {
@@ -35,17 +34,17 @@ const SignupForm: FC<SignupForm> = ({ className, ...props }) => {
 				login: data.login,
 				email: data.email,
 				password: data.password
-			}
-			postRegister(registerParams)
-			router.push("/login")
+			};
+			await postRegister(registerParams);
+			router.push("/login");
 		} catch (e) {
-			console.warn(e)
+			console.warn(e);
 		}
-	}
+	};
 
 	const onErrorForm: SubmitErrorHandler<IFormValues> = errors => {
-		console.log(errors)
-	}
+		console.log(errors);
+	};
 
 	return (
 		<div className={cn(styles.root, className)} {...props}>
@@ -94,7 +93,7 @@ const SignupForm: FC<SignupForm> = ({ className, ...props }) => {
 				</div>
 			</div>
 		</div>
-	)
-}
+	);
+};
 
-export default SignupForm
+export default SignupForm;

@@ -1,38 +1,38 @@
-import { FastAverageColor } from "fast-average-color"
-import { useCallback, useEffect, useRef, useState } from "react"
+import { FastAverageColor } from "fast-average-color";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export const useColor = (url: string) => {
-	const [fac, setFac] = useState<FastAverageColor>(null)
-	const [colorOfImage, setColorOfImage] = useState<string>(null)
+	const [fac, setFac] = useState<FastAverageColor>(null);
+	const [colorOfImage, setColorOfImage] = useState<string>(null);
 
-	const isMount = useRef(false)
+	const isMount = useRef(false);
 
 	const getColor = useCallback(
 		async (url: string) => {
 			if (url) {
-				const { hex: color } = await fac.getColorAsync(url)
-				return color
+				const { hex: color } = await fac.getColorAsync(url);
+				return color;
 			}
-			return "#fff"
+			return "#fff";
 		},
 		[fac]
-	)
+	);
 
 	useEffect(() => {
 		if (!isMount.current) {
-			setFac(new FastAverageColor())
+			setFac(new FastAverageColor());
 		}
-		!isMount.current && (isMount.current = true)
-	}, [])
+		!isMount.current && (isMount.current = true);
+	}, []);
 
 	useEffect(() => {
-		;(async () => {
+		(async () => {
 			if (fac) {
-				const color = await getColor(url)
-				setColorOfImage(color)
+				const color = await getColor(url);
+				setColorOfImage(color);
 			}
-		})()
-	}, [fac, getColor, url])
+		})();
+	}, [fac, getColor, url]);
 
-	return { colorOfImage }
-}
+	return { colorOfImage };
+};

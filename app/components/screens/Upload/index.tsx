@@ -1,57 +1,57 @@
-import { FC, useCallback, useEffect, useRef, useState } from "react"
-import styles from "./index.module.scss"
-import Image from "next/image"
-import { useColor } from "@hooks/useColor"
-import FileUploadButton from "@components/common/FileUploadButton"
-import { convertTime } from "@util/convertTime"
-import { selectAlbum } from "@redux/slices/uploadAlbum/uploadAlbum.slice"
-import { useAppSelector } from "@redux/hooks"
-import { useActions } from "@hooks/useActions"
-import { useRouter } from "next/router"
-import { selectAuth } from "@redux/slices/auth/auth.slice"
+import styles from "./index.module.scss";
+import FileUploadButton from "@components/common/FileUploadButton";
+import { useActions } from "@hooks/useActions";
+import { useColor } from "@hooks/useColor";
+import { useAppSelector } from "@redux/hooks";
+import { selectAuth } from "@redux/slices/auth/auth.slice";
+import { selectAlbum } from "@redux/slices/uploadAlbum/uploadAlbum.slice";
+import { convertTime } from "@util/convertTime";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import { FC, useCallback, useEffect, useRef, useState } from "react";
 
 const UploadComponent: FC = () => {
-	const { setTrack, setAudio } = useActions()
-	const { tracks } = useAppSelector(selectAlbum)
-	const { user } = useAppSelector(selectAuth)
-	const [image, setImage] = useState<File>(null)
-	const [imageUrl, setImageUrl] = useState<string>(null)
-	const { colorOfImage } = useColor(imageUrl || "")
-	const album = useRef<HTMLDivElement>(null)
-	const uploadImageInput = useRef<HTMLInputElement>(null)
-	const uploadTrackInput = useRef<HTMLInputElement>(null)
+	const { setTrack, setAudio } = useActions();
+	const { tracks } = useAppSelector(selectAlbum);
+	const { user } = useAppSelector(selectAuth);
+	const [image, setImage] = useState<File>(null);
+	const [imageUrl, setImageUrl] = useState<string>(null);
+	const { colorOfImage } = useColor(imageUrl || "");
+	const album = useRef<HTMLDivElement>(null);
+	const uploadImageInput = useRef<HTMLInputElement>(null);
+	const uploadTrackInput = useRef<HTMLInputElement>(null);
 
-	const router = useRouter()
+	const router = useRouter();
 	if (!user) {
-		router.push("/login")
+		router.push("/login");
 	}
 
-	const onUploadImage = useCallback(() => setImage(uploadImageInput.current.files.item(0)), [])
+	const onUploadImage = useCallback(() => setImage(uploadImageInput.current.files.item(0)), []);
 	const onUploadTrack = useCallback(() => {
-		const file = uploadTrackInput.current?.files.item(0)
+		const file = uploadTrackInput.current?.files.item(0);
 		if (file) {
-			const fileLink = window.URL.createObjectURL(new Blob([file], { type: "audio/*" }))
-			const trackObj = { name: file.name, size: file.size, type: file.type, link: fileLink }
-			setTrack(trackObj)
+			const fileLink = window.URL.createObjectURL(new Blob([file], { type: "audio/*" }));
+			const trackObj = { name: file.name, size: file.size, type: file.type, link: fileLink };
+			setTrack(trackObj);
 		}
-	}, [setTrack])
+	}, [setTrack]);
 
 	useEffect(() => {
-		const albumEl = album?.current
-		albumEl.style.setProperty("--color", colorOfImage ?? "#fff")
+		const albumEl = album?.current;
+		albumEl.style.setProperty("--color", colorOfImage ?? "#fff");
 
 		return () => {
-			albumEl.style.removeProperty("--color")
-		}
-	}, [colorOfImage])
+			albumEl.style.removeProperty("--color");
+		};
+	}, [colorOfImage]);
 
 	useEffect(() => {
-		;(async () => {
+		(async () => {
 			if (image) {
-				setImageUrl(window.URL.createObjectURL(new Blob([image], { type: "image/*" })))
+				setImageUrl(window.URL.createObjectURL(new Blob([image], { type: "image/*" })));
 			}
-		})()
-	}, [image])
+		})();
+	}, [image]);
 
 	return (
 		<div ref={album} className={styles.root}>
@@ -101,7 +101,7 @@ const UploadComponent: FC = () => {
 				</div>
 			</div>
 		</div>
-	)
-}
+	);
+};
 
-export default UploadComponent
+export default UploadComponent;

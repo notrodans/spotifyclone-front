@@ -1,5 +1,6 @@
-import { IAuthData } from "@services/Auth/AuthService.type"
+import { IUser } from "@services/Auth/AuthService.type";
 
-export interface IAuthState extends IAuthData {
-	isLoading: boolean
+export interface IAuthState {
+	user: IUser | null;
+	isLoading: boolean;
 }

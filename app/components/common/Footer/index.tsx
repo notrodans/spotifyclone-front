@@ -1,11 +1,9 @@
-import { FC } from "react"
-
-import styles from "./index.module.scss"
-import logo from "@assets/logo.jpeg"
-
-import PlayerTrackInfo from "@components/PlayerTrackInfo"
-import Player from "@components/Player"
-import PlayerActions from "@components/PlayerActions"
+import styles from "./index.module.scss";
+import logo from "@assets/logo.jpeg";
+import Player from "@components/Player";
+import PlayerActions from "@components/PlayerActions";
+import PlayerTrackInfo from "@components/PlayerTrackInfo";
+import { FC } from "react";
 
 const Footer: FC = () => {
 	return (
@@ -25,7 +23,7 @@ const Footer: FC = () => {
 				</div>
 			</div>
 		</footer>
-	)
-}
+	);
+};
 
-export default Footer
+export default Footer;

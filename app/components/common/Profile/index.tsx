@@ -1,11 +1,11 @@
-import { useClickOutside } from "@hooks/useClickOutside"
-import { useAppSelector } from "@redux/hooks"
-import { selectAuth } from "@redux/slices/auth/auth.slice"
-import { FC } from "react"
-import styles from "./index.module.scss"
-import cn from "classnames"
-import Link from "next/link"
-import { useActions } from "@hooks/useActions"
+import styles from "./index.module.scss";
+import { useActions } from "@hooks/useActions";
+import { useClickOutside } from "@hooks/useClickOutside";
+import { useAppSelector } from "@redux/hooks";
+import { selectAuth } from "@redux/slices/auth/auth.slice";
+import cn from "classnames";
+import Link from "next/link";
+import { FC } from "react";
 
 const profilesLinks = [
 	{
@@ -13,17 +13,17 @@ const profilesLinks = [
 		text: "Профиль",
 		link: "/profile"
 	}
-]
+];
 
 const Profile: FC = () => {
-	const { user } = useAppSelector(selectAuth)
+	const { user } = useAppSelector(selectAuth);
 
-	const { logoutUser } = useActions()
-	const { isShow, setIsShow, ref } = useClickOutside()
+	const { logoutUser } = useActions();
+	const { isShow, setIsShow, ref } = useClickOutside();
 
 	const onLogout = () => {
-		logoutUser()
-	}
+		logoutUser();
+	};
 
 	return (
 		<div ref={ref} className={styles.root}>
@@ -55,7 +55,7 @@ const Profile: FC = () => {
 				</ul>
 			</nav>
 		</div>
-	)
-}
+	);
+};
 
-export default Profile
+export default Profile;

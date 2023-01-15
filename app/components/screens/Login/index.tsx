@@ -1,8 +1,8 @@
-import LoginForm from "@components/LoginForm"
-import { FC } from "react"
+import LoginForm from "@components/LoginForm";
+import { FC } from "react";
 
 const LoginComponent: FC = () => {
-	return <LoginForm />
-}
+	return <LoginForm />;
+};
 
-export default LoginComponent
+export default LoginComponent;

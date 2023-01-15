@@ -1,24 +1,46 @@
-import { $axiosInstance } from "@axios/axiosInstance"
-import { IAuthData, IUser } from "./AuthService.type"
-import { decode } from "jsonwebtoken"
+import { ITokens, IUser, UserModel } from "./AuthService.type";
+import { $axiosClassic, $axiosWithToken } from "@axios/axiosInstance";
+import { AxiosInstance } from "axios";
+import { decode } from "jsonwebtoken";
+import { GetServerSidePropsContext, PreviewData } from "next";
+import * as nookies from "nookies";
+import { ParsedUrlQuery } from "querystring";
 
 export class AuthService {
-	static async register(login: string, email: string, password: string) {
-		const { data } = await $axiosInstance.post<IAuthData>("auth/register", {
+	static async register(login: string, email: string, password: string): Promise<UserModel> {
+		const { data: user } = await $axiosWithToken.post<UserModel>("auth/register", {
 			login,
 			email,
 			password
-		})
-		const { user } = decode(data.accessToken) as { user: IUser }
-		return user
+		});
+		return user;
 	}
 
-	static async login(email: string, password: string) {
-		const { data } = await $axiosInstance.post<IAuthData>("auth/login", {
+	static async login(email: string, password: string): Promise<IUser> {
+		const { data } = await $axiosWithToken.post<ITokens>("auth/login", {
 			login: email,
 			password
-		})
-		const { user } = decode(data.accessToken) as { user: IUser }
-		return user
+		});
+		const user = decode(data.accessToken) as IUser;
+		return user;
+	}
+
+	static async getNewTokens(
+		refreshToken: string,
+		ctx?: GetServerSidePropsContext<ParsedUrlQuery, PreviewData>
+	) {
+		const tokens = await $axiosClassic.post<ITokens>("auth/access-token", {
+			refreshToken,
+			headers: {
+				["Content-Type"]: "application/json"
+			}
+		});
+		if (ctx) {
+			nookies.destroyCookie(ctx, "refresh");
+			nookies.destroyCookie(ctx, "access");
+			nookies.setCookie(ctx, "refresh", tokens.data.refreshToken);
+			nookies.setCookie(ctx, "access", tokens.data.accessToken);
+		}
+		return tokens;
 	}
 }

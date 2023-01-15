@@ -1,6 +1,6 @@
-import { FC, PropsWithChildren } from "react"
-import ReactModal from "react-modal"
-import styles from "./index.module.scss"
+import styles from "./index.module.scss";
+import { FC, PropsWithChildren } from "react";
+import ReactModal from "react-modal";
 
 interface IPopup extends PropsWithChildren, ReactModal.Props {}
 
@@ -23,7 +23,7 @@ const Popup: FC<IPopup> = ({
 			{...props}>
 			{children}
 		</ReactModal>
-	)
-}
+	);
+};
 
-export default Popup
+export default Popup;

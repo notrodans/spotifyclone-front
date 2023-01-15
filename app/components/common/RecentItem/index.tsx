@@ -1,15 +1,14 @@
-import { PlayerIconPause } from "@assets/icons-components"
-import cn from "classnames"
-import Image, { StaticImageData } from "next/image"
-import Link from "next/link"
-import { FC, LinkHTMLAttributes } from "react"
-
-import styles from "./index.module.scss"
+import styles from "./index.module.scss";
+import { PlayerIconPause } from "@assets/icons-components";
+import cn from "classnames";
+import Image, { StaticImageData } from "next/image";
+import Link from "next/link";
+import { FC, LinkHTMLAttributes } from "react";
 
 interface IRecentItem extends LinkHTMLAttributes<HTMLElement> {
-	title: string
-	src: string | StaticImageData
-	link: string
+	title: string;
+	src: string | StaticImageData;
+	link: string;
 }
 
 const RecentItem: FC<IRecentItem> = ({ title, src, link, className, ...props }) => {
@@ -27,7 +26,7 @@ const RecentItem: FC<IRecentItem> = ({ title, src, link, className, ...props }) 
 				</button>
 			</a>
 		</Link>
-	)
-}
+	);
+};
 
-export default RecentItem
+export default RecentItem;

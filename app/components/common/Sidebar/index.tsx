@@ -1,14 +1,13 @@
+import styles from "./index.module.scss";
 import {
 	FavoriteIcon,
 	FavoriteIconActive,
 	HomeIcon,
 	HomeIconActive
-} from "@assets/icons-components"
-import Link from "next/link"
-import { useRouter } from "next/router"
-import { FC } from "react"
-
-import styles from "./index.module.scss"
+} from "@assets/icons-components";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { FC } from "react";
 
 const Links = [
 	{
@@ -25,10 +24,10 @@ const Links = [
 		icon: <FavoriteIcon className={styles.icon} />,
 		iconActive: <FavoriteIconActive className={styles.icon} />
 	}
-]
+];
 
 const Sidebar: FC = () => {
-	const { pathname } = useRouter()
+	const { pathname } = useRouter();
 	return (
 		<div className={styles.root}>
 			<div className={styles.containerWithoutMaxWidth}>
@@ -43,7 +42,7 @@ const Sidebar: FC = () => {
 				</div>
 			</div>
 		</div>
-	)
-}
+	);
+};
 
-export default Sidebar
+export default Sidebar;

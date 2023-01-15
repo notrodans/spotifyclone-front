@@ -1,10 +1,10 @@
-import Link from "next/link"
-import { useRouter } from "next/router"
-import { FC } from "react"
-import styles from "./index.module.scss"
+import styles from "./index.module.scss";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { FC } from "react";
 
 const HeaderAuthLinks: FC = () => {
-	const { pathname } = useRouter()
+	const { pathname } = useRouter();
 	return (
 		<>
 			{pathname === "/signup" ? (
@@ -21,7 +21,7 @@ const HeaderAuthLinks: FC = () => {
 				</Link>
 			)}
 		</>
-	)
-}
+	);
+};
 
-export default HeaderAuthLinks
+export default HeaderAuthLinks;

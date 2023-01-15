@@ -1,8 +1,8 @@
-import SignupForm from "@components/common/SignupForm"
-import { FC } from "react"
+import SignupForm from "@components/common/SignupForm";
+import { FC } from "react";
 
 const SignupComponent: FC = () => {
-	return <SignupForm />
-}
+	return <SignupForm />;
+};
 
-export default SignupComponent
+export default SignupComponent;
