@@ -3,7 +3,7 @@ import ProfileComponent from "@components/screens/Profile";
 import Wrapper from "@layouts/Wrapper";
 import { IUser } from "@services/Auth/AuthService.type";
 import { getUser } from "@util/getUser";
-import type { GetServerSideProps, NextPage } from "next";
+import type { NextPage } from "next";
 
 interface IProfile {
 	userData: IUser;
@@ -20,6 +20,6 @@ const Profile: NextPage<IProfile> = ({ userData }) => {
 	);
 };
 
-export const getServerSideProps: GetServerSideProps = getUser;
+export const getServerSideProps = getUser;
 
 export default Profile;

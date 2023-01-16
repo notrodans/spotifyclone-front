@@ -6,7 +6,7 @@ import { GetServerSideProps } from "next";
 import * as nookies from "nookies";
 
 export const getUserExisted: GetServerSideProps = wrapper.getServerSideProps(store => async ctx => {
-	const token = nookies.parseCookies(ctx)?.access;
+	const token = nookies.parseCookies(ctx).access;
 	const user = jwt.decode(token) as IUser;
 	const userData = user?.email ? { ...user } : null;
 	store.dispatch(authActions.setUser(userData));

@@ -8,8 +8,8 @@ import * as nookies from "nookies";
 
 export const getUser: GetServerSideProps = wrapper.getServerSideProps(store => async ctx => {
 	try {
+		const $axiosWithTokenSSR = axiosWithTokenSSR(ctx);
 		const token = nookies.parseCookies(ctx)?.access;
-		const user = jwt.decode(token) as IUser;
 		if (!token) {
 			return {
 				redirect: {
@@ -18,23 +18,23 @@ export const getUser: GetServerSideProps = wrapper.getServerSideProps(store => a
 				}
 			};
 		}
-		const $axiosWithTokenSSR = axiosWithTokenSSR(ctx);
-		const { data: userData } = await $axiosWithTokenSSR.get<UserModel>("auth/me/" + user.email);
-		if (!userData) {
+		const user = jwt.decode(token) as IUser;
+		const { data: userData } = await $axiosWithTokenSSR.get<UserModel>("artist/me/" + user?.email);
+		store.dispatch(authActions.setUser(userData));
+		if (userData)
+			return {
+				props: {
+					userData
+				}
+			};
+	} catch (e: any) {
+		if (e?.response?.status === 401) {
 			return {
 				redirect: {
-					destination: "/login",
+					destination: ctx.resolvedUrl,
 					permanent: true
 				}
 			};
 		}
-		store.dispatch(authActions.setUser(userData));
-		return {
-			props: {
-				userData
-			}
-		};
-	} catch (e) {
-		console.log(e);
 	}
 });

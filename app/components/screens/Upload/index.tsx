@@ -22,9 +22,11 @@ const UploadComponent: FC = () => {
 	const uploadTrackInput = useRef<HTMLInputElement>(null);
 
 	const router = useRouter();
-	if (!user) {
-		router.push("/login");
-	}
+	useEffect(() => {
+		if (!user) {
+			router.push("/login");
+		}
+	}, [user]);
 
 	const onUploadImage = useCallback(() => setImage(uploadImageInput.current.files.item(0)), []);
 	const onUploadTrack = useCallback(() => {

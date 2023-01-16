@@ -3,7 +3,7 @@ import HomeComponent from "@components/screens/Home";
 import Wrapper from "@layouts/Wrapper";
 import { IUser } from "@services/Auth/AuthService.type";
 import { getUser } from "@util/getUser";
-import type { GetServerSideProps, NextPage } from "next";
+import type { NextPage } from "next";
 
 interface IHomePage {
 	userData: IUser;
@@ -20,6 +20,6 @@ const HomePage: NextPage<IHomePage> = ({ userData }) => {
 	);
 };
 
-export const getServerSideProps: GetServerSideProps = getUser;
+export const getServerSideProps = getUser;
 
 export default HomePage;

@@ -1,6 +1,5 @@
 import { ITokens, IUser, UserModel } from "./AuthService.type";
-import { $axiosClassic, $axiosWithToken } from "@axios/axiosInstance";
-import { AxiosInstance } from "axios";
+import { $axiosClassic, $axiosWithToken, axiosWithTokenSSR } from "@axios/axiosInstance";
 import { decode } from "jsonwebtoken";
 import { GetServerSidePropsContext, PreviewData } from "next";
 import * as nookies from "nookies";
@@ -30,14 +29,9 @@ export class AuthService {
 		ctx?: GetServerSidePropsContext<ParsedUrlQuery, PreviewData>
 	) {
 		const tokens = await $axiosClassic.post<ITokens>("auth/access-token", {
-			refreshToken,
-			headers: {
-				["Content-Type"]: "application/json"
-			}
+			refreshToken
 		});
 		if (ctx) {
-			nookies.destroyCookie(ctx, "refresh");
-			nookies.destroyCookie(ctx, "access");
 			nookies.setCookie(ctx, "refresh", tokens.data.refreshToken);
 			nookies.setCookie(ctx, "access", tokens.data.accessToken);
 		}

@@ -30,9 +30,7 @@ export const axiosWithTokenSSR = (ctx: GetServerSidePropsContext<ParsedUrlQuery,
 	const refreshToken = nookies.parseCookies(ctx)?.refresh;
 
 	$axiosWithTokenSSR.interceptors.request.use(config => {
-		if (nookies.parseCookies(ctx)?.access) {
-			config.headers["Authorization"] = "Bearer " + nookies.parseCookies(ctx)?.access;
-		}
+		config.headers["Authorization"] = "Bearer " + nookies.parseCookies(ctx)?.access;
 		return config;
 	});
 
@@ -40,12 +38,9 @@ export const axiosWithTokenSSR = (ctx: GetServerSidePropsContext<ParsedUrlQuery,
 		config => config,
 		async error => {
 			const originalRequest = error.config;
-			console.log(error);
 			if (error.response.status === 401 && error.config && !error.config._isRetry) {
 				originalRequest._isRetry = true;
 				try {
-					nookies.destroyCookie(ctx, "access");
-					nookies.destroyCookie(ctx, "refresh");
 					await AuthService.getNewTokens(refreshToken, ctx);
 					return $axiosWithTokenSSR.request(originalRequest);
 				} catch (err) {

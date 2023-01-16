@@ -3,7 +3,7 @@ import UploadComponent from "@components/screens/Upload";
 import Wrapper from "@layouts/Wrapper";
 import { IUser } from "@services/Auth/AuthService.type";
 import { getUser } from "@util/getUser";
-import type { GetServerSideProps, NextPage } from "next";
+import type { NextPage } from "next";
 
 interface IUploadPage {
 	userData: IUser;
@@ -18,6 +18,6 @@ const UploadPage: NextPage<IUploadPage> = ({ userData }) => (
 	</>
 );
 
-export const getServerSideProps: GetServerSideProps = getUser;
+export const getServerSideProps = getUser;
 
 export default UploadPage;

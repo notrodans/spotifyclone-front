@@ -3,7 +3,7 @@ import FavoriteComponent from "@components/screens/Favorite";
 import Wrapper from "@layouts/Wrapper";
 import { IUser } from "@services/Auth/AuthService.type";
 import { getUser } from "@util/getUser";
-import type { GetServerSideProps, NextPage } from "next";
+import type { NextPage } from "next";
 
 interface IFavorite {
 	userData: IUser;
@@ -20,6 +20,6 @@ const Favorite: NextPage<IFavorite> = ({ userData }) => {
 	);
 };
 
-export const getServerSideProps: GetServerSideProps = getUser;
+export const getServerSideProps = getUser;
 
 export default Favorite;

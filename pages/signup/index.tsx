@@ -3,7 +3,7 @@ import SignupComponent from "@components/screens/Signup";
 import Wrapper from "@layouts/Wrapper";
 import { IUser } from "@services/Auth/AuthService.type";
 import { getUserExisted } from "@util/getUserExisted";
-import type { GetServerSideProps, NextPage } from "next";
+import type { NextPage } from "next";
 
 interface ISignupPage {
 	userData: IUser;
@@ -20,6 +20,6 @@ const SignupPage: NextPage<ISignupPage> = ({ userData }) => {
 	);
 };
 
-export const getServerSideProps: GetServerSideProps = getUserExisted;
+export const getServerSideProps = getUserExisted;
 
 export default SignupPage;
