@@ -1,4 +1,5 @@
 import styles from "./index.module.scss";
+import { useUser } from "@context/UserContext";
 import { useActions } from "@hooks/useActions";
 import { useClickOutside } from "@hooks/useClickOutside";
 import { useAppSelector } from "@redux/hooks";
@@ -16,13 +17,13 @@ const profilesLinks = [
 ];
 
 const Profile: FC = () => {
-	const { user } = useAppSelector(selectAuth);
+	const { user } = useUser();
 
-	const { logoutUser } = useActions();
+	// const { logoutUser } = useActions();
 	const { isShow, setIsShow, ref } = useClickOutside();
 
 	const onLogout = () => {
-		logoutUser();
+		// logoutUser();
 	};
 
 	return (

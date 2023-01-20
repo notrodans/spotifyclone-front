@@ -20,7 +20,7 @@ interface SignupForm extends HTMLAttributes<HTMLDivElement> {}
 const SignupForm: FC<SignupForm> = ({ className, ...props }) => {
 	const router = useRouter();
 	const { isLoading } = useAppSelector(selectAuth);
-	const { postRegister } = useActions();
+	// const { postRegister } = useActions();
 	const { register, handleSubmit } = useForm<IFormValues>({ mode: "onChange" });
 	const [{ login, email, password }, setValues] = useState<IFormValues>({
 		login: "",
@@ -35,7 +35,7 @@ const SignupForm: FC<SignupForm> = ({ className, ...props }) => {
 				email: data.email,
 				password: data.password
 			};
-			await postRegister(registerParams);
+			// await postRegister(registerParams);
 			router.push("/login");
 		} catch (e) {
 			console.warn(e);

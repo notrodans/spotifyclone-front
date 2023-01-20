@@ -1,13 +1,14 @@
 export interface IUser {
-	login?: string;
 	email: string;
+	login?: string;
 }
 
 export interface UserModel {
-	login: string;
 	email: string;
-	passwordHash: string;
 	_id: string;
+	login: string;
+	passwordHash: string;
+	__v: number;
 }
 
 export interface ITokens {
@@ -16,13 +17,13 @@ export interface ITokens {
 }
 
 export interface IRegisterResponse {
-	login: string;
 	email: string;
+	login: string;
 }
 
 export interface IRegisterFields {
-	login: string;
 	email: string;
+	login: string;
 	password: string;
 }
 

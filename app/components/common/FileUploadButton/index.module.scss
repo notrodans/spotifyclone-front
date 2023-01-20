@@ -1,6 +1,7 @@
 @import "../../../../styles/base/mixins";
 
 .root {
+
 	&:not(:last-child) {
 		margin-bottom: rem(10);
 	}

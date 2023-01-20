@@ -6,14 +6,14 @@ import { getUser } from "@util/getUser";
 import type { NextPage } from "next";
 
 interface IHomePage {
-	userData: IUser;
+	user: IUser;
 }
 
-const HomePage: NextPage<IHomePage> = ({ userData }) => {
+const HomePage: NextPage<IHomePage> = ({ user }) => {
 	return (
 		<>
 			<Meta title='Главная' description='GeneralPage' />
-			<Wrapper userData={userData}>
+			<Wrapper user={user}>
 				<HomeComponent />
 			</Wrapper>
 		</>

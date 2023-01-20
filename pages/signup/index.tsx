@@ -6,14 +6,14 @@ import { getUserExisted } from "@util/getUserExisted";
 import type { NextPage } from "next";
 
 interface ISignupPage {
-	userData: IUser;
+	user: IUser;
 }
 
-const SignupPage: NextPage<ISignupPage> = ({ userData }) => {
+const SignupPage: NextPage<ISignupPage> = ({ user }) => {
 	return (
 		<>
 			<Meta title='Регистрация' description='Signup' />
-			<Wrapper userData={userData}>
+			<Wrapper user={user}>
 				<SignupComponent />
 			</Wrapper>
 		</>

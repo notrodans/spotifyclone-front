@@ -9,15 +9,15 @@ import { GetServerSideProps, NextPage } from "next";
 import * as nookies from "nookies";
 
 interface IArtistPage {
-	userData: IUser;
+	user: IUser;
 	artist: UserModel;
 }
 
-const Artist: NextPage<IArtistPage> = ({ artist, userData }) => {
+const Artist: NextPage<IArtistPage> = ({ artist, user }) => {
 	return (
 		<>
 			<Meta title={artist?.login} description='Artist' />
-			<Wrapper userData={userData}>Artist: {artist?.email}</Wrapper>{" "}
+			<Wrapper user={user}>Artist: {artist?.email}</Wrapper>
 		</>
 	);
 };

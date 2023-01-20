@@ -21,16 +21,33 @@ $axiosWithToken.interceptors.request.use(config => {
 	return config;
 });
 
+$axiosWithToken.interceptors.response.use(
+	config => config,
+	async error => {
+		const originalRequest = error.config;
+		if (error.response.status === 401 && error.config && !error.config._isRetry) {
+			originalRequest._isRetry = true;
+			try {
+				await AuthService.getNewTokens();
+				return $axiosWithToken.request(originalRequest);
+			} catch (err) {
+				console.log("НЕ АВТОРИЗОВАН");
+			}
+		}
+		throw error;
+	}
+);
+
 export const axiosWithTokenSSR = (ctx: GetServerSidePropsContext<ParsedUrlQuery, PreviewData>) => {
 	const $axiosWithTokenSSR = axios.create({
 		baseURL: process.env.NEXT_PUBLIC_API_URL,
 		withCredentials: true
 	});
 
-	const refreshToken = nookies.parseCookies(ctx)?.refresh;
+	const accessToken = nookies.parseCookies(ctx)?.access;
 
 	$axiosWithTokenSSR.interceptors.request.use(config => {
-		config.headers["Authorization"] = "Bearer " + nookies.parseCookies(ctx)?.access;
+		config.headers["Authorization"] = "Bearer " + accessToken;
 		return config;
 	});
 
@@ -38,11 +55,11 @@ export const axiosWithTokenSSR = (ctx: GetServerSidePropsContext<ParsedUrlQuery,
 		config => config,
 		async error => {
 			const originalRequest = error.config;
-			if (error.response.status === 401 && error.config && !error.config._isRetry) {
+			if (error?.response?.status === 401 && error.config && !error.config._isRetry) {
 				originalRequest._isRetry = true;
 				try {
-					await AuthService.getNewTokens(refreshToken, ctx);
-					return $axiosWithTokenSSR.request(originalRequest);
+					await AuthService.getNewTokens(ctx);
+					return await $axiosWithTokenSSR.request(originalRequest);
 				} catch (err) {
 					console.log("НЕ АВТОРИЗОВАН");
 				}
@@ -50,5 +67,6 @@ export const axiosWithTokenSSR = (ctx: GetServerSidePropsContext<ParsedUrlQuery,
 			throw error;
 		}
 	);
+
 	return $axiosWithTokenSSR;
 };

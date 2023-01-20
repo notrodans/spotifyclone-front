@@ -2,13 +2,12 @@ import AddButton from "../AddButton";
 import HeaderAuthLinks from "../HeaderAuthLinks";
 import Profile from "../Profile";
 import styles from "./index.module.scss";
-import { useAppSelector } from "@redux/hooks";
-import { selectAuth } from "@redux/slices/auth/auth.slice";
+import { useUser } from "@context/UserContext";
 import Link from "next/link";
 import { FC } from "react";
 
 const Header: FC = () => {
-	const { user } = useAppSelector(selectAuth);
+	const { user } = useUser();
 
 	return (
 		<header className={styles.root}>

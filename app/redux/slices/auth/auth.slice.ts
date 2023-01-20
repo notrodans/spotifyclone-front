@@ -3,7 +3,6 @@ import { IAuthState } from "./types";
 import { AppState } from "@redux/store";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IUser } from "@services/Auth/AuthService.type";
-import { HYDRATE } from "next-redux-wrapper";
 import * as nookies from "nookies";
 
 const initialState: IAuthState = {
@@ -31,10 +30,6 @@ const authSlice = createSlice({
 	},
 	extraReducers: builder => {
 		builder
-			.addCase(HYDRATE, (state, { payload }: any) => ({
-				...state,
-				...payload.auth
-			}))
 			.addCase(postRegister.pending, state => {
 				state.isLoading = true;
 			})

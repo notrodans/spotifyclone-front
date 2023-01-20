@@ -6,14 +6,14 @@ import { getUser } from "@util/getUser";
 import type { NextPage } from "next";
 
 interface IFavorite {
-	userData: IUser;
+	user: IUser;
 }
 
-const Favorite: NextPage<IFavorite> = ({ userData }) => {
+const Favorite: NextPage<IFavorite> = ({ user }) => {
 	return (
 		<>
 			<Meta title={"Избранные"} description={"FavoritePage"} />
-			<Wrapper userData={userData}>
+			<Wrapper user={user}>
 				<FavoriteComponent />
 			</Wrapper>
 		</>

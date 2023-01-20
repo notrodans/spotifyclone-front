@@ -2,7 +2,6 @@ import audio from "./slices/audio/audio.slice";
 import auth from "./slices/auth/auth.slice";
 import album from "./slices/uploadAlbum/uploadAlbum.slice";
 import { ThunkAction, configureStore } from "@reduxjs/toolkit";
-import { createWrapper } from "next-redux-wrapper";
 import { Action, combineReducers } from "redux";
 
 export const rootReducer = combineReducers({
@@ -11,14 +10,10 @@ export const rootReducer = combineReducers({
 	audio
 });
 
-export const makeStore = () =>
-	configureStore({
-		reducer: rootReducer
-	});
+export const store = configureStore({
+	reducer: rootReducer
+});
 
-export type AppStore = ReturnType<typeof makeStore>;
-export type AppState = ReturnType<AppStore["getState"]>;
-export type AppDispatch = AppStore["dispatch"];
+export type AppState = ReturnType<typeof store.getState>;
+export type AppDispatch = ReturnType<typeof store.dispatch>;
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, AppState, unknown, Action>;
-
-export const wrapper = createWrapper<AppStore>(makeStore);

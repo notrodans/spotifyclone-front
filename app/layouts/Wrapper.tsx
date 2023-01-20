@@ -8,19 +8,19 @@ import { DetailedHTMLProps, FC, HTMLAttributes, PropsWithChildren } from "react"
 interface IWrapper
 	extends PropsWithChildren,
 		DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-	userData?: IUser;
+	user: IUser;
 }
 
-const Wrapper: FC<IWrapper> = ({ userData, className, children }) => {
+const Wrapper: FC<IWrapper> = ({ user, className, children }) => {
 	return (
 		<>
 			<div className='wrapper'>
 				<Header />
 				<div className='wrapper__body'>
-					{userData && <Sidebar />}
+					{user && <Sidebar />}
 					<main className={cn("page", className)}>{children}</main>
 				</div>
-				{userData && <Footer />}
+				{user && <Footer />}
 			</div>
 		</>
 	);

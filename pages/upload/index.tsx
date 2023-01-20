@@ -6,17 +6,19 @@ import { getUser } from "@util/getUser";
 import type { NextPage } from "next";
 
 interface IUploadPage {
-	userData: IUser;
+	user: IUser;
 }
 
-const UploadPage: NextPage<IUploadPage> = ({ userData }) => (
-	<>
-		<Meta title='Загрузка треков' description='Upload Tracks' />
-		<Wrapper userData={userData}>
-			<UploadComponent />
-		</Wrapper>
-	</>
-);
+const UploadPage: NextPage<IUploadPage> = ({ user }) => {
+	return (
+		<>
+			<Meta title='Загрузка треков' description='Upload Tracks' />
+			<Wrapper user={user}>
+				<UploadComponent />
+			</Wrapper>
+		</>
+	);
+};
 
 export const getServerSideProps = getUser;
 

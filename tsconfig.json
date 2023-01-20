@@ -33,6 +33,7 @@
 			"@hooks/*": ["hooks/*"],
 			"@axios/*": ["axios/*"],
 			"@util/*": ["util/*"],
+			"@context/*": ["context/*"],
 			"@services/*": ["services/*"]
 		}
 	},

@@ -1,5 +1,6 @@
 import styles from "./index.module.scss";
 import FileUploadButton from "@components/common/FileUploadButton";
+import { useUser } from "@context/UserContext";
 import { useActions } from "@hooks/useActions";
 import { useColor } from "@hooks/useColor";
 import { useAppSelector } from "@redux/hooks";
@@ -11,9 +12,9 @@ import { useRouter } from "next/router";
 import { FC, useCallback, useEffect, useRef, useState } from "react";
 
 const UploadComponent: FC = () => {
-	const { setTrack, setAudio } = useActions();
+	// const { setTrack, setAudio } = useActions();
 	const { tracks } = useAppSelector(selectAlbum);
-	const { user } = useAppSelector(selectAuth);
+	const { user } = useUser();
 	const [image, setImage] = useState<File>(null);
 	const [imageUrl, setImageUrl] = useState<string>(null);
 	const { colorOfImage } = useColor(imageUrl || "");
@@ -34,9 +35,9 @@ const UploadComponent: FC = () => {
 		if (file) {
 			const fileLink = window.URL.createObjectURL(new Blob([file], { type: "audio/*" }));
 			const trackObj = { name: file.name, size: file.size, type: file.type, link: fileLink };
-			setTrack(trackObj);
+			// setTrack(trackObj);
 		}
-	}, [setTrack]);
+	}, []);
 
 	useEffect(() => {
 		const albumEl = album?.current;
@@ -59,7 +60,7 @@ const UploadComponent: FC = () => {
 		<div ref={album} className={styles.root}>
 			<div className={styles.body}>
 				<div className={styles.left}>
-					<button onClick={() => setAudio(tracks[0])}>click</button>
+					{/* <button onClick={() => setAudio(tracks[0])}>click</button> */}
 					<form action='' method={"post"}>
 						<FileUploadButton
 							ref={uploadImageInput}

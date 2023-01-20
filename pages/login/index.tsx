@@ -6,13 +6,13 @@ import { getUserExisted } from "@util/getUserExisted";
 import type { NextPage } from "next";
 
 interface ILoginPage {
-	userData: IUser;
+	user: IUser;
 }
 
-const LoginPage: NextPage<ILoginPage> = ({ userData }) => (
+const LoginPage: NextPage<ILoginPage> = ({ user }) => (
 	<>
 		<Meta title='Авторизация' description='LoginPage' />
-		<Wrapper userData={userData}>
+		<Wrapper user={user}>
 			<LoginComponent />
 		</Wrapper>
 	</>

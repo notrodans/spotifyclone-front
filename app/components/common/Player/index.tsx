@@ -23,7 +23,7 @@ const Player: FC<IPlayer> = ({ className, ...props }) => {
 	const durationRange = useRef<HTMLInputElement>(null);
 
 	useEffect(() => {
-		if (!audioEl) {
+		if (!audioEl && !track) {
 			setAudioEl(new Audio());
 			setAudio(tracks[0]);
 		}
