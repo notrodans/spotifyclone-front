@@ -11,23 +11,24 @@ import { selectAudio } from "@redux/slices/audio/audio.slice";
 import { selectAlbum } from "@redux/slices/uploadAlbum/uploadAlbum.slice";
 import { convertTime } from "@util/convertTime";
 import cn from "classnames";
-import { DetailedHTMLProps, FC, HTMLAttributes, useEffect, useRef, useState } from "react";
+import { DetailedHTMLProps, FC, HTMLAttributes, useEffect, useRef } from "react";
 
 interface IPlayer extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
+
+let audioEl: HTMLAudioElement;
 
 const Player: FC<IPlayer> = ({ className, ...props }) => {
 	const { setStatus, setAudio, setDuration, setCurrentDuration, setProgress } = useActions();
 	const { track, pause, volume, duration, currentDuration, progress } = useAppSelector(selectAudio);
 	const { tracks } = useAppSelector(selectAlbum);
-	const [audioEl, setAudioEl] = useState<HTMLAudioElement>(null);
 	const durationRange = useRef<HTMLInputElement>(null);
 
 	useEffect(() => {
-		if (!audioEl && !track) {
-			setAudioEl(new Audio());
+		if (!audioEl) {
+			audioEl = new Audio();
 			setAudio(tracks[0]);
 		}
-	}, [tracks, audioEl, setAudio]);
+	}, []);
 
 	useEffect(() => {
 		if (audioEl) {
@@ -35,7 +36,7 @@ const Player: FC<IPlayer> = ({ className, ...props }) => {
 				setDuration(audioEl.duration);
 			};
 		}
-	}, [audioEl, setDuration]);
+	}, [setDuration]);
 
 	useEffect(() => {
 		if (audioEl && audioEl?.src) {

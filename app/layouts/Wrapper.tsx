@@ -1,9 +1,13 @@
-import Footer from "@components/common/Footer";
 import Header from "@components/common/Header";
 import Sidebar from "@components/common/Sidebar";
 import { IUser } from "@services/Auth/AuthService.type";
 import cn from "classnames";
+import dynamic from "next/dynamic";
 import { DetailedHTMLProps, FC, HTMLAttributes, PropsWithChildren } from "react";
+
+const Footer = dynamic(() => import("@components/Footer"), {
+	ssr: false
+});
 
 interface IWrapper
 	extends PropsWithChildren,
