@@ -9,11 +9,11 @@ interface IHomePage {
 	user: IUser;
 }
 
-const HomePage: NextPage<IHomePage> = ({ user }) => {
+const HomePage: NextPage<IHomePage> = () => {
 	return (
 		<>
 			<Meta title='Главная' description='GeneralPage' />
-			<Wrapper user={user}>
+			<Wrapper>
 				<HomeComponent />
 			</Wrapper>
 		</>

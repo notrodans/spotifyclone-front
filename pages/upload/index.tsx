@@ -9,11 +9,11 @@ interface IUploadPage {
 	user: IUser;
 }
 
-const UploadPage: NextPage<IUploadPage> = ({ user }) => {
+const UploadPage: NextPage<IUploadPage> = () => {
 	return (
 		<>
 			<Meta title='Загрузка треков' description='Upload Tracks' />
-			<Wrapper user={user}>
+			<Wrapper>
 				<UploadComponent />
 			</Wrapper>
 		</>

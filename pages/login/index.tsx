@@ -9,10 +9,10 @@ interface ILoginPage {
 	user: IUser;
 }
 
-const LoginPage: NextPage<ILoginPage> = ({ user }) => (
+const LoginPage: NextPage<ILoginPage> = () => (
 	<>
 		<Meta title='Авторизация' description='LoginPage' />
-		<Wrapper user={user}>
+		<Wrapper>
 			<LoginComponent />
 		</Wrapper>
 	</>

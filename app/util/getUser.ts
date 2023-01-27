@@ -1,4 +1,4 @@
-import { fetcherSSR } from "./fetch";
+import { fetcherSSR } from "./fetchUser";
 import { IUser, UserModel } from "@services/Auth/AuthService.type";
 import * as jwt from "jsonwebtoken";
 import { GetServerSideProps } from "next";
@@ -8,7 +8,7 @@ export const getUser: GetServerSideProps = async ctx => {
 	try {
 		const tokenAccess = nookies.parseCookies(ctx).access;
 		const tokenRefresh = nookies.parseCookies(ctx).refresh;
-		if (!tokenAccess && !tokenRefresh) {
+		if (!tokenRefresh) {
 			return {
 				redirect: {
 					destination: "/login",
@@ -17,7 +17,7 @@ export const getUser: GetServerSideProps = async ctx => {
 			};
 		}
 		const userTokenData = jwt.decode(tokenAccess) as IUser;
-		const [error, data] = await fetcherSSR<UserModel>(ctx, "artist/me/" + userTokenData?.email);
+		const [, data] = await fetcherSSR<UserModel>(ctx, "artist/me/" + userTokenData.email);
 		if (!data) {
 			return {
 				redirect: {

@@ -9,11 +9,11 @@ interface IProfile {
 	user: IUser;
 }
 
-const Profile: NextPage<IProfile> = ({ user }) => {
+const Profile: NextPage<IProfile> = () => {
 	return (
 		<>
 			<Meta title='Профиль' description='ProfilePage' />
-			<Wrapper user={user}>
+			<Wrapper>
 				<ProfileComponent />
 			</Wrapper>
 		</>

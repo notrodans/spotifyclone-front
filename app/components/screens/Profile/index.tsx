@@ -1,11 +1,10 @@
-import { useAppSelector } from "@redux/hooks";
-import { selectAuth } from "@redux/slices/auth/auth.slice";
+import { useUser } from "@context/UserContext";
 import { FC } from "react";
 
 const ProfileComponent: FC = () => {
-	const { user } = useAppSelector(selectAuth);
+	const { user } = useUser();
 
-	return <div>{user?.login}</div>;
+	return <div>{user.login}</div>;
 };
 
 export default ProfileComponent;

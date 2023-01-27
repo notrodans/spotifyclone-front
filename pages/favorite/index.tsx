@@ -9,11 +9,11 @@ interface IFavorite {
 	user: IUser;
 }
 
-const Favorite: NextPage<IFavorite> = ({ user }) => {
+const Favorite: NextPage<IFavorite> = () => {
 	return (
 		<>
 			<Meta title={"Избранные"} description={"FavoritePage"} />
-			<Wrapper user={user}>
+			<Wrapper>
 				<FavoriteComponent />
 			</Wrapper>
 		</>

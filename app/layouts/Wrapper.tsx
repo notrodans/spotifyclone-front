@@ -1,6 +1,6 @@
 import Header from "@components/common/Header";
 import Sidebar from "@components/common/Sidebar";
-import { IUser } from "@services/Auth/AuthService.type";
+import { useUser } from "@context/UserContext";
 import cn from "classnames";
 import dynamic from "next/dynamic";
 import { DetailedHTMLProps, FC, HTMLAttributes, PropsWithChildren } from "react";
@@ -11,11 +11,10 @@ const Footer = dynamic(() => import("@components/Footer"), {
 
 interface IWrapper
 	extends PropsWithChildren,
-		DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-	user: IUser;
-}
+		DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
 
-const Wrapper: FC<IWrapper> = ({ user, className, children }) => {
+const Wrapper: FC<IWrapper> = ({ className, children }) => {
+	const { user } = useUser();
 	return (
 		<>
 			<div className='wrapper'>

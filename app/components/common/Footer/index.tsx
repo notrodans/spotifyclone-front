@@ -1,9 +1,13 @@
 import styles from "./index.module.scss";
 import logo from "@assets/logo.jpeg";
-import Player from "@components/Player";
 import PlayerActions from "@components/PlayerActions";
 import PlayerTrackInfo from "@components/PlayerTrackInfo";
+import dynamic from "next/dynamic";
 import { FC } from "react";
+
+const Player = dynamic(() => import("@components/Player"), {
+	ssr: false
+});
 
 const Footer: FC = () => {
 	return (

@@ -9,11 +9,11 @@ interface ISignupPage {
 	user: IUser;
 }
 
-const SignupPage: NextPage<ISignupPage> = ({ user }) => {
+const SignupPage: NextPage<ISignupPage> = () => {
 	return (
 		<>
 			<Meta title='Регистрация' description='Signup' />
-			<Wrapper user={user}>
+			<Wrapper>
 				<SignupComponent />
 			</Wrapper>
 		</>
